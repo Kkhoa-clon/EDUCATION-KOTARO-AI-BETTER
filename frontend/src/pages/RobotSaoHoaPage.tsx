@@ -1,34 +1,33 @@
+import { Box } from '@mui/material'
+
 const RobotSaoHoaPage = () => {
-  const containerStyle: React.CSSProperties = {
-    width: '100vw',
-    height: 'calc(100vh - 3.5em)',
-    padding: 0,
-    margin: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: 'none',
-    marginTop: '3.5em',
-  }
-
-  const iframeStyle: React.CSSProperties = {
-    width: '100vw',
-    height: '100vh',
-    minHeight: 0,
-    border: 'none',
-    background: '#fff',
-    display: 'block',
-  }
-
   return (
-    <div style={containerStyle}>
-      <iframe
+    <Box
+      sx={{
+        width: '100vw',
+        height: 'calc(100vh - 64px)',
+        p: 0,
+        m: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        mt: 8,
+      }}
+    >
+      <Box
+        component="iframe"
         src="/trang-chu/robot-sao-hoa-2.html"
         title="Kotaro AI - Khám Phá Sao Hỏa Cùng NASA"
         allow="clipboard-write"
-        style={iframeStyle}
+        sx={{
+          width: '100vw',
+          height: '100vh',
+          border: 'none',
+          bgcolor: '#fff',
+          display: 'block',
+        }}
       />
-    </div>
+    </Box>
   )
 }
 

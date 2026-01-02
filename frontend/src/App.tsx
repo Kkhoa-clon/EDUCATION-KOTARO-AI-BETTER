@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { ThemeProvider, CssBaseline, Box } from '@mui/material'
+import { theme } from './theme'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -27,51 +29,62 @@ import RobotSaoHoaPage from './pages/RobotSaoHoaPage'
 // Lab pages
 import Lab2DPage from './pages/Lab2DPage'
 
-const appStyle: React.CSSProperties = {
-  minHeight: '100vh',
-  background: '#1c1d26',
-  color: '#fff',
-}
-
 function App() {
   return (
-    <Router>
-      <div style={appStyle}>
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/chatbot" element={<ChatbotComponent />} />
-            
-            {/* Thư viện routes */}
-            <Route path="/thu-vien" element={<ThuVien />} />
-            <Route path="/thu-vien/ebook" element={<EbookPage />} />
-            <Route path="/thu-vien/hoa-hoc" element={<HoaHocPage />} />
-            <Route path="/thu-vien/vat-ly" element={<VatLyPage />} />
-            <Route path="/thu-vien/sinh-hoc" element={<SinhHocPage />} />
-            <Route path="/thu-vien/nghien-cuu" element={<NghienCuuPage />} />
-            <Route path="/thu-vien/on-hsg" element={<OnHSGPage />} />
-            
-            {/* Thiên văn routes */}
-            <Route path="/thien-van" element={<ThienVan />} />
-            <Route path="/thien-van/he-mat-troi" element={<HeMatTroiPage />} />
-            <Route path="/thien-van/trai-dat" element={<TraiDatPage />} />
-            <Route path="/thien-van/tieu-hanh-tinh" element={<TieuHanhTinhPage />} />
-            <Route path="/thien-van/hanh-tinh-khac" element={<HanhTinhKhacPage />} />
-            <Route path="/thien-van/image-nasa" element={<ImageNASAPage />} />
-            <Route path="/thien-van/robot-sao-hoa" element={<RobotSaoHoaPage />} />
-            
-            {/* Lab routes */}
-            <Route path="/lab/lab2d" element={<Lab2DPage />} />
-            
-            {/* Other routes */}
-            <Route path="/quiz" element={<Quiz />} />
-            <Route path="/lien-he" element={<LienHe />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Box
+          sx={{
+            minHeight: '100vh',
+            bgcolor: 'background.default',
+            color: 'text.primary',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <Header />
+          <Box
+            component="main"
+            sx={{
+              flexGrow: 1,
+              pt: { xs: 8, sm: 9 },
+            }}
+          >
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/chatbot" element={<ChatbotComponent />} />
+
+              {/* Thư viện routes */}
+              <Route path="/thu-vien" element={<ThuVien />} />
+              <Route path="/thu-vien/ebook" element={<EbookPage />} />
+              <Route path="/thu-vien/hoa-hoc" element={<HoaHocPage />} />
+              <Route path="/thu-vien/vat-ly" element={<VatLyPage />} />
+              <Route path="/thu-vien/sinh-hoc" element={<SinhHocPage />} />
+              <Route path="/thu-vien/nghien-cuu" element={<NghienCuuPage />} />
+              <Route path="/thu-vien/on-hsg" element={<OnHSGPage />} />
+
+              {/* Thiên văn routes */}
+              <Route path="/thien-van" element={<ThienVan />} />
+              <Route path="/thien-van/he-mat-troi" element={<HeMatTroiPage />} />
+              <Route path="/thien-van/trai-dat" element={<TraiDatPage />} />
+              <Route path="/thien-van/tieu-hanh-tinh" element={<TieuHanhTinhPage />} />
+              <Route path="/thien-van/hanh-tinh-khac" element={<HanhTinhKhacPage />} />
+              <Route path="/thien-van/image-nasa" element={<ImageNASAPage />} />
+              <Route path="/thien-van/robot-sao-hoa" element={<RobotSaoHoaPage />} />
+
+              {/* Lab routes */}
+              <Route path="/lab/lab2d" element={<Lab2DPage />} />
+
+              {/* Other routes */}
+              <Route path="/quiz" element={<Quiz />} />
+              <Route path="/lien-he" element={<LienHe />} />
+            </Routes>
+          </Box>
+          <Footer />
+        </Box>
+      </Router>
+    </ThemeProvider>
   )
 }
 

@@ -1,85 +1,115 @@
+import { Link } from 'react-router-dom'
+import { Box, Container, Typography, Link as MuiLink, Stack, Grid } from '@mui/material'
+import GitHubIcon from '@mui/icons-material/GitHub'
+import ScienceIcon from '@mui/icons-material/Science'
+
 const Footer = () => {
-  const footerStyle: React.CSSProperties = {
-    background: '#2a2b36',
-    padding: '3rem 1rem',
-    marginTop: '5rem',
-  }
-
-  const containerStyle: React.CSSProperties = {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '0 1rem',
-  }
-
-  const gridStyle: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-    gap: '2rem',
-  }
-
-  const titleStyle: React.CSSProperties = {
-    fontSize: '1.25rem',
-    fontWeight: 'bold',
-    color: '#73d239',
-    marginBottom: '1rem',
-  }
-
-  const textStyle: React.CSSProperties = {
-    color: 'rgba(255, 255, 255, 0.75)',
-    lineHeight: 1.6,
-  }
-
-  const linkStyle: React.CSSProperties = {
-    color: 'rgba(255, 255, 255, 0.75)',
-    textDecoration: 'none',
-    transition: 'color 0.3s ease',
-  }
-
-  const listStyle: React.CSSProperties = {
-    listStyle: 'none',
-    padding: 0,
-    margin: 0,
-  }
-
-  const listItemStyle: React.CSSProperties = {
-    marginBottom: '0.5rem',
-  }
-
   return (
-    <footer style={footerStyle}>
-      <div style={containerStyle}>
-        <div style={gridStyle}>
-          <div>
-            <h3 style={titleStyle}>KOTARO AI</h3>
-            <p style={textStyle}>
-              Nền tảng giáo dục số tích hợp trí tuệ nhân tạo
-            </p>
-          </div>
-          <div>
-            <h4 style={{ ...titleStyle, fontSize: '1.125rem' }}>Liên kết</h4>
-            <ul style={listStyle}>
-              <li style={listItemStyle}>
-                <a href="https://github.com/Kkhoa-clon/EDUCATION-KOTARO-AI" 
-                   style={linkStyle}
-                   target="_blank"
-                   rel="noopener noreferrer">
-                  GitHub
-                </a>
-              </li>
-              <li style={listItemStyle}>
-                <a href="/lien-he" style={linkStyle}>Liên hệ</a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 style={{ ...titleStyle, fontSize: '1.125rem' }}>Thông tin</h4>
-            <p style={{ ...textStyle, fontSize: '0.875rem' }}>
-              © 2025 EDUCATION KOTARO AI. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <Box
+      component="footer"
+      sx={{
+        bgcolor: 'background.paper',
+        borderTop: '1px solid',
+        borderColor: 'divider',
+        py: { xs: 4, sm: 6 },
+        mt: 8,
+      }}
+    >
+      <Container maxWidth="lg">
+        <Grid container spacing={4}>
+          {/* @ts-ignore - MUI Grid item prop is valid */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Stack spacing={2}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <ScienceIcon color="primary" />
+                <Typography variant="h6" color="primary" fontWeight={700}>
+                  KOTARO AI
+                </Typography>
+              </Box>
+              <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 280 }}>
+                Nền tảng giáo dục số tích hợp trí tuệ nhân tạo, mang đến trải nghiệm học tập hiện đại và hiệu quả.
+              </Typography>
+            </Stack>
+          </Grid>
+
+          {/* @ts-expect-error - MUI Grid item prop is valid */}
+          <Grid item xs={6} sm={3} md={2}>
+            <Typography variant="subtitle2" fontWeight={600} gutterBottom>
+              Sản phẩm
+            </Typography>
+            <Stack spacing={1}>
+              <MuiLink component={Link} to="/chatbot" color="text.secondary" variant="body2">
+                Trợ Lý Sen
+              </MuiLink>
+              <MuiLink component={Link} to="/thu-vien" color="text.secondary" variant="body2">
+                Thư Viện
+              </MuiLink>
+              <MuiLink component={Link} to="/thien-van" color="text.secondary" variant="body2">
+                Thiên Văn
+              </MuiLink>
+              <MuiLink component={Link} to="/quiz" color="text.secondary" variant="body2">
+                Quiz
+              </MuiLink>
+            </Stack>
+          </Grid>
+
+          {/* @ts-ignore - MUI Grid item prop is valid */}
+          <Grid item xs={6} sm={3} md={2}>
+            <Typography variant="subtitle2" fontWeight={600} gutterBottom>
+              Tài nguyên
+            </Typography>
+            <Stack spacing={1}>
+              <MuiLink
+                href="https://github.com/Kkhoa-clon/EDUCATION-KOTARO-AI"
+                target="_blank"
+                rel="noopener noreferrer"
+                color="text.secondary"
+                variant="body2"
+              >
+                GitHub
+              </MuiLink>
+              <MuiLink component={Link} to="/lien-he" color="text.secondary" variant="body2">
+                Liên hệ
+              </MuiLink>
+            </Stack>
+          </Grid>
+
+          {/* @ts-ignore - MUI Grid item prop is valid */}
+          <Grid item xs={12} md={4}>
+            <Typography variant="subtitle2" fontWeight={600} gutterBottom>
+              Liên hệ
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+              Có câu hỏi hoặc góp ý? Hãy liên hệ với chúng tôi.
+            </Typography>
+            <MuiLink
+              href="https://github.com/Kkhoa-clon/EDUCATION-KOTARO-AI"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="primary"
+              sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5 }}
+            >
+              <GitHubIcon fontSize="small" />
+              <span>GitHub Repository</span>
+            </MuiLink>
+          </Grid>
+        </Grid>
+
+        <Box
+          sx={{
+            mt: 4,
+            pt: 4,
+            borderTop: '1px solid',
+            borderColor: 'divider',
+            textAlign: 'center',
+          }}
+        >
+          <Typography variant="body2" color="text.secondary">
+&copy; 2025 EDUCATION KOTARO AI. All rights reserved. | Designed with by Đỗ Nguyễn Đăng Khoa & Nguyễn Văng Ngọc Tiến.
+          </Typography>
+        </Box>
+      </Container>
+    </Box>
   )
 }
 

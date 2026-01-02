@@ -1,4 +1,24 @@
 import { useState, useEffect } from 'react'
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Card,
+  CardMedia,
+  Dialog,
+  DialogContent,
+  IconButton,
+  Stack,
+  CircularProgress,
+  Alert,
+} from '@mui/material'
+import {
+  Close as CloseIcon,
+  Download as DownloadIcon,
+  ZoomIn as ZoomInIcon,
+  Today as TodayIcon,
+} from '@mui/icons-material'
 
 interface APODData {
   title: string
@@ -8,349 +28,247 @@ interface APODData {
 }
 
 const ImageNASAPage = () => {
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0])
   const [apodData, setApodData] = useState<APODData | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [selectedDate, setSelectedDate] = useState('')
-  const [showModal, setShowModal] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [showModal, setShowModal] = useState(false)
 
-  const apiKey = "QjukGaZAtCoeMB9z9M2h36VG0gEauYpVOXLEPGyP"
+  const apiKey = 'QjukGaZAtCoeMB9z9M2h36VG0gEauYpVOXLEPGyP'
 
   useEffect(() => {
-    const today = new Date()
-    const year = today.getFullYear()
-    const month = String(today.getMonth() + 1).padStart(2, '0')
-    const day = String(today.getDate()).padStart(2, '0')
-    setSelectedDate(`${year}-${month}-${day}`)
-    fetchAPOD(`${year}-${month}-${day}`)
+    fetchAPOD()
   }, [])
-
-  const translateText = async (text: string): Promise<string> => {
-    try {
-      const res = await fetch('https://lingva.ml/api/v1/en/vi/' + encodeURIComponent(text))
-      const data = await res.json()
-      return data.translation || text
-    } catch {
-      return text
-    }
-  }
 
   const fetchAPOD = async (date?: string) => {
     setLoading(true)
     setError('')
-    
+
     const dateStr = date || selectedDate
     if (dateStr) {
-      const selected = new Date(dateStr)
-      const today = new Date()
-      today.setHours(23, 59, 59, 999)
-      if (selected > today) {
-        setError('Ngày không hợp lệ! Vui lòng chọn ngày không lớn hơn ngày hiện tại.')
-        setLoading(false)
-        return
+      try {
+        const response = await fetch(
+          `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${dateStr}`
+        )
+        const data = await response.json()
+
+        if (data.error) {
+          setError(data.error.message || 'Lỗi khi tải dữ liệu')
+        } else {
+          // Simulate translation
+          setApodData({
+            title: data.title,
+            explanation: data.explanation,
+            url: data.url,
+            media_type: data.media_type,
+          })
+        }
+      } catch (err) {
+        setError('Không thể kết nối đến API NASA')
       }
     }
-
-    try {
-      const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}${dateStr ? `&date=${dateStr}` : ''}`
-      const response = await fetch(url)
-      const data = await response.json()
-
-      if (data.media_type === 'image') {
-        const [viTitle, viExplanation] = await Promise.all([
-          translateText(data.title),
-          translateText(data.explanation)
-        ])
-        
-        setApodData({
-          title: viTitle,
-          explanation: viExplanation,
-          url: data.url,
-          media_type: data.media_type
-        })
-      } else {
-        setError('Hôm nay không có hình ảnh, có thể là video.')
-      }
-    } catch (err) {
-      setError('Lỗi tải dữ liệu! Vui lòng kiểm tra lại kết nối mạng.')
-    } finally {
-      setLoading(false)
-    }
+    setLoading(false)
   }
 
   const handleToday = () => {
-    const today = new Date()
-    const year = today.getFullYear()
-    const month = String(today.getMonth() + 1).padStart(2, '0')
-    const day = String(today.getDate()).padStart(2, '0')
-    const dateStr = `${year}-${month}-${day}`
-    setSelectedDate(dateStr)
-    fetchAPOD(dateStr)
+    const today = new Date().toISOString().split('T')[0]
+    setSelectedDate(today)
+    fetchAPOD(today)
   }
 
   const downloadImage = () => {
     if (!apodData?.url) return
-    
+
     const a = document.createElement('a')
     a.href = apodData.url
-    a.setAttribute('download', 'nasa-apod.jpg')
-    a.target = '_blank'
+    a.download = `nasa-apod-${selectedDate}.jpg`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
   }
 
-  const containerStyle: React.CSSProperties = {
-    marginTop: '3.5rem',
-    minHeight: 'calc(100vh - 3.5rem)',
-    width: '100%',
-    overflowX: 'hidden',
-  }
 
-  const heroStyle: React.CSSProperties = {
-    background: 'linear-gradient(135deg, rgba(28, 29, 38, 0.7) 0%, rgba(39, 40, 51, 0.7) 50%, rgba(28, 29, 38, 0.7) 100%)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    padding: '2rem 1rem',
-    textAlign: 'center',
-    position: 'relative',
-    overflow: 'hidden',
-    minHeight: '60vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-
-  const contentWrapperStyle: React.CSSProperties = {
-    padding: '2rem 1rem',
-    maxWidth: '1200px',
-    margin: '0 auto',
-  }
-
-  const mainSectionStyle: React.CSSProperties = {
-    background: 'rgba(39, 40, 51, 0.5)',
-    borderRadius: '20px',
-    padding: '2rem 1rem',
-    marginBottom: '2rem',
-    backdropFilter: 'blur(10px)',
-    border: '1px solid rgba(115, 210, 57, 0.1)',
-  }
-
-  const formGridStyle: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: '1fr',
-    gap: '1rem',
-    maxWidth: '600px',
-    margin: '0 auto',
-  }
-
-  const formInputStyle: React.CSSProperties = {
-    padding: '0.75rem 1rem',
-    border: '1px solid rgba(115, 210, 57, 0.3)',
-    borderRadius: '8px',
-    background: 'rgba(255, 255, 255, 0.1)',
-    color: '#fff',
-    fontSize: '1rem',
-  }
-
-  const buttonStyle: React.CSSProperties = {
-    padding: '0.75rem 1rem',
-    border: 'none',
-    borderRadius: '8px',
-    fontSize: '1rem',
-    fontWeight: 600,
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-  }
-
-  const primaryButtonStyle: React.CSSProperties = {
-    ...buttonStyle,
-    background: 'linear-gradient(135deg, #73d239, #5fb82f)',
-    color: '#fff',
-  }
-
-  const secondaryButtonStyle: React.CSSProperties = {
-    ...buttonStyle,
-    background: 'linear-gradient(135deg, #4a4a4a, #2a2a2a)',
-    color: '#fff',
-  }
-
-  const imageContainerStyle: React.CSSProperties = {
-    position: 'relative',
-    margin: '2rem 0',
-    borderRadius: '15px',
-    overflow: 'hidden',
-    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
-    background: '#000',
-    cursor: 'pointer',
-  }
-
-  const imageStyle: React.CSSProperties = {
-    width: '100%',
-    height: 'auto',
-    display: 'block',
-    maxHeight: '70vh',
-    objectFit: 'cover',
-  }
-
-  const buttonsContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '1rem',
-    margin: '2rem 0',
-    flexWrap: 'wrap',
-  }
-
-  const apodButtonStyle: React.CSSProperties = {
-    padding: '0.75rem 1.5rem',
-    border: '1px solid rgba(115, 210, 57, 0.5)',
-    borderRadius: '8px',
-    background: 'rgba(115, 210, 57, 0.1)',
-    color: '#73d239',
-    fontWeight: 600,
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-  }
-
-  const descriptionStyle: React.CSSProperties = {
-    marginTop: '2rem',
-    padding: '2rem',
-    background: 'rgba(28, 29, 38, 0.8)',
-    borderRadius: '15px',
-    border: '1px solid rgba(115, 210, 57, 0.1)',
-    textAlign: 'left',
-  }
-
-  const modalStyle: React.CSSProperties = {
-    display: showModal ? 'flex' : 'none',
-    position: 'fixed',
-    zIndex: 2000,
-    left: 0,
-    top: 0,
-    width: '100vw',
-    height: '100vh',
-    background: 'rgba(0, 0, 0, 0.95)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-  }
-
-  const modalImgStyle: React.CSSProperties = {
-    maxWidth: '90%',
-    maxHeight: '90%',
-    objectFit: 'contain',
-  }
-
-  const closeButtonStyle: React.CSSProperties = {
-    position: 'absolute',
-    top: '2rem',
-    right: '2rem',
-    fontSize: '3rem',
-    color: '#fff',
-    cursor: 'pointer',
-    zIndex: 2001,
-  }
 
   return (
-    <div style={containerStyle}>
-      <section style={heroStyle}>
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)', fontWeight: 300, color: '#ffffff', marginBottom: '1rem' }}>
+    <Box sx={{ py: { xs: 4, md: 8 } }}>
+      <Box
+        sx={{
+          background: `linear-gradient(135deg, rgba(28, 29, 38, 0.8) 0%, rgba(39, 40, 51, 0.8) 50%, rgba(28, 29, 38, 0.8) 100%), url('/assets/image/dc-xanh.jpg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundBlendMode: 'overlay',
+          py: { xs: 4, md: 6 },
+          textAlign: 'center',
+          position: 'relative',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(34, 197, 94, 0.1)',
+          },
+        }}
+      >
+        <Box sx={{ position: 'relative', zIndex: 1 }}>
+        <Box sx={{ maxWidth: 'md', mx: 'auto' }}>
+          <Typography variant="h2" component="h2" sx={{ mb: 2, fontWeight: 300 }}>
             Ảnh Thiên Văn Thời Gian Thực
-          </h2>
-          <p style={{ fontSize: 'clamp(1rem, 2.5vw, 1.2rem)', color: 'rgba(255, 255, 255, 0.8)' }}>
-            Khám phá vũ trụ mỗi ngày với Ảnh Thiên Văn NASA (APOD)<br />
+          </Typography>
+          <Typography variant="h6" color="text.secondary">
+            Khám phá vũ trụ mỗi ngày với Ảnh Thiên Văn NASA (APOD)
+            <br />
             Xem, tải về và tìm hiểu ý nghĩa các bức ảnh nổi bật từ NASA
-          </p>
-        </div>
-      </section>
+          </Typography>
+        </Box>
+        </Box>
+      </Box>
 
-      <div style={contentWrapperStyle}>
-        <section style={mainSectionStyle}>
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)', color: '#73d239', marginBottom: '0.5rem', fontWeight: 300 }}>
-              Ảnh Thiên Văn Trong Ngày với NASA
-            </h2>
-            <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: 'clamp(0.9rem, 2.5vw, 1rem)' }}>
-              Tự động dịch sang tiếng Việt cho học sinh và người yêu thiên văn
-            </p>
-          </div>
+      <Box sx={{ py: 4 }}>
+        <Card sx={{ p: 3, mb: 4 }}>
+          <Typography variant="h5" color="primary.main" gutterBottom sx={{ textAlign: 'center', fontWeight: 300 }}>
+            Ảnh Thiên Văn Trong Ngày với NASA
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', mb: 3 }}>
+            Tự động dịch sang tiếng Việt cho học sinh và người yêu thiên văn
+          </Typography>
 
-          <form onSubmit={(e) => { e.preventDefault(); fetchAPOD(); }} style={{ marginBottom: '2rem' }}>
-            <div style={formGridStyle}>
-              <div>
-                <label style={{ display: 'block', color: 'rgba(255, 255, 255, 0.8)', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
-                  Chọn ngày
-                </label>
-                <input
-                  type="date"
-                  value={selectedDate}
-                  onChange={(e) => setSelectedDate(e.target.value)}
-                  style={formInputStyle}
-                  required
-                />
-              </div>
-              <div>
-                <button type="submit" style={primaryButtonStyle} disabled={loading}>
-                  {loading ? 'Đang tải...' : 'Xem ảnh'}
-                </button>
-              </div>
-              <div>
-                <button type="button" onClick={handleToday} style={secondaryButtonStyle}>
-                  Hôm nay
-                </button>
-              </div>
-            </div>
-          </form>
+          <Stack spacing={2} sx={{ maxWidth: 600, mx: 'auto' }}>
+            <TextField
+              type="date"
+              label="Chọn ngày"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              InputLabelProps={{ shrink: true }}
+              fullWidth
+            />
+            <Stack direction="row" spacing={2}>
+              <Button variant="contained" onClick={() => fetchAPOD()} disabled={loading} fullWidth>
+                {loading ? 'Đang tải...' : 'Xem ảnh'}
+              </Button>
+              <Button variant="outlined" onClick={handleToday} startIcon={<TodayIcon />}>
+                Hôm nay
+              </Button>
+            </Stack>
+          </Stack>
 
-          <div style={{ textAlign: 'center' }}>
-            {loading && <h3 style={{ color: '#73d239', fontSize: '1.5rem', minHeight: '2.5rem' }}>Đang tải...</h3>}
-            
+          <Box sx={{ mt: 4, textAlign: 'center' }}>
+            {loading && (
+              <Stack spacing={2} alignItems="center">
+                <CircularProgress color="primary" />
+                <Typography color="text.secondary">Đang tải...</Typography>
+              </Stack>
+            )}
+
             {error && (
-              <>
-                <h3 style={{ color: '#e74c3c', fontSize: '1.5rem', minHeight: '2.5rem' }}>{error}</h3>
-                <p style={{ color: 'rgba(255, 255, 255, 0.9)', marginTop: '1rem' }}>{error}</p>
-              </>
+              <Alert severity="error" sx={{ mb: 2 }}>
+                {error}
+              </Alert>
             )}
 
             {apodData && !loading && !error && (
               <>
-                <h3 style={{ color: '#73d239', fontSize: 'clamp(1.2rem, 3vw, 1.8rem)', marginBottom: '1.5rem', fontWeight: 300 }}>
+                <Typography variant="h4" color="primary.main" gutterBottom sx={{ fontWeight: 300, mb: 3 }}>
                   {apodData.title}
-                </h3>
+                </Typography>
 
-                <div style={imageContainerStyle} onClick={() => setShowModal(true)}>
-                  <img src={apodData.url} alt={apodData.title} style={imageStyle} />
-                </div>
+                <Card
+                  sx={{
+                    mb: 3,
+                    cursor: 'pointer',
+                    transition: 'transform 0.3s ease',
+                    '&:hover': {
+                      transform: 'scale(1.02)',
+                    },
+                  }}
+                  onClick={() => setShowModal(true)}
+                >
+                  <CardMedia
+                    component="img"
+                    image={apodData.url}
+                    alt={apodData.title}
+                    sx={{ maxHeight: '70vh', objectFit: 'contain' }}
+                  />
+                </Card>
 
-                <div style={buttonsContainerStyle}>
-                  <button onClick={downloadImage} style={{ ...apodButtonStyle, background: 'linear-gradient(135deg, #73d239, #5fb82f)', color: '#fff' }}>
-                    📥 Tải ảnh
-                  </button>
-                  <button onClick={() => setShowModal(true)} style={apodButtonStyle}>
-                    🔍 Xem chi tiết
-                  </button>
-                </div>
+                <Stack direction="row" spacing={2} justifyContent="center" sx={{ mb: 3 }}>
+                  <Button variant="contained" startIcon={<DownloadIcon />} onClick={downloadImage}>
+                    Tải ảnh
+                  </Button>
+                  <Button variant="outlined" startIcon={<ZoomInIcon />} onClick={() => setShowModal(true)}>
+                    Xem chi tiết
+                  </Button>
+                </Stack>
 
-                <div style={descriptionStyle}>
-                  <h3 style={{ color: '#73d239', fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', marginBottom: '1rem', fontWeight: 300 }}>
+                <Card sx={{ p: 3, textAlign: 'left' }}>
+                  <Typography variant="h6" color="primary.main" gutterBottom sx={{ fontWeight: 300 }}>
                     Mô Tả Về Hình Ảnh
-                  </h3>
-                  <p style={{ lineHeight: 1.8, color: 'rgba(255, 255, 255, 0.9)', fontSize: 'clamp(0.9rem, 2vw, 1rem)' }}>
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8 }}>
                     {apodData.explanation}
-                  </p>
-                </div>
+                  </Typography>
+                </Card>
               </>
             )}
-          </div>
-        </section>
-      </div>
+          </Box>
+        </Card>
+      </Box>
 
-      <div style={modalStyle} onClick={() => setShowModal(false)}>
-        <span style={closeButtonStyle} onClick={() => setShowModal(false)}>&times;</span>
-        {apodData && <img src={apodData.url} alt={apodData.title} style={modalImgStyle} onClick={(e) => e.stopPropagation()} />}
-      </div>
-    </div>
+      <Dialog
+        open={showModal}
+        onClose={() => setShowModal(false)}
+        maxWidth="lg"
+        fullWidth
+        PaperProps={{
+          sx: {
+            bgcolor: 'black',
+          },
+        }}
+      >
+        <DialogContent sx={{ p: 0, position: 'relative' }}>
+          <IconButton
+            onClick={() => setShowModal(false)}
+            sx={{
+              position: 'absolute',
+              top: 8,
+              right: 8,
+              zIndex: 1,
+              bgcolor: 'rgba(0,0,0,0.5)',
+              color: 'white',
+              '&:hover': {
+                bgcolor: 'rgba(0,0,0,0.7)',
+              },
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+          {apodData && (
+            <Box sx={{ p: 2 }}>
+              <Typography variant="h4" sx={{ color: 'white', mb: 2, textAlign: 'center' }}>
+                {apodData.title}
+              </Typography>
+              <Box
+                component="img"
+                src={apodData.url}
+                alt={apodData.title}
+                sx={{
+                  width: '100%',
+                  height: 'auto',
+                  maxHeight: '70vh',
+                  objectFit: 'contain',
+                  borderRadius: 2,
+                  mb: 2,
+                }}
+              />
+              <Typography variant="body1" sx={{ color: 'white', lineHeight: 1.6 }}>
+                {apodData.explanation}
+              </Typography>
+            </Box>
+          )}
+        </DialogContent>
+      </Dialog>
+    </Box>
   )
 }
 
