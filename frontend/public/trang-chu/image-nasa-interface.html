@@ -1,0 +1,858 @@
+<!DOCTYPE HTML>
+<html lang="vi">
+<head>
+    <title>Kotaro AI - Ảnh Thiên Văn NASA (APOD)</title>
+    <meta name="description" content="Khám phá vũ trụ mỗi ngày với Ảnh Thiên Văn NASA (APOD) - Xem, tải về và tìm hiểu ý nghĩa các bức ảnh nổi bật từ NASA, tự động dịch sang tiếng Việt cho học sinh và người yêu thiên văn." />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="google-site-verification" content="GTAdd7e4F9ZHNyTFcWm-1K8Ia0Xo9pDLlq4DWLYGWYw" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="icon" href="/hinh-anh/logo-Photoroom.png" type="image/x-jpg">
+    <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>  
+    <style>
+        /* NASA APOD Modern Responsive Design */
+        /* ================================= */
+        
+                 /* CSS Reset & Base Styles */
+         * {
+             box-sizing: border-box;
+         }
+        
+        
+        
+        /* Main Container */
+        .apod-container {
+            margin-top: 3.5rem;
+            min-height: calc(100vh - 3.5rem);
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+                 /* Hero Section */
+         .apod-hero {
+             background: linear-gradient(135deg, rgba(28, 29, 38, 0.7) 0%, rgba(39, 40, 51, 0.7) 50%, rgba(28, 29, 38, 0.7) 100%), url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+             background-size: cover;
+             background-position: center;
+             background-attachment: fixed;
+             padding: 2rem 1rem;
+             text-align: center;
+             position: relative;
+             overflow: hidden;
+             min-height: 60vh;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+         }
+        
+        .apod-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
+            opacity: 0.3;
+            animation: twinkle 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            100% { opacity: 0.4; }
+        }
+        
+        .apod-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .apod-hero h2 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 300;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(115, 210, 57, 0.3);
+            line-height: 1.2;
+        }
+        
+        .apod-hero p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0;
+            line-height: 1.6;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Main Content */
+        .content-wrapper {
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .main-section {
+            background: rgba(39, 40, 51, 0.5);
+            border-radius: 20px;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(115, 210, 57, 0.1);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-header h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: #73d239;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+        
+        .section-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+        
+        /* Form Styles */
+        .apod-form {
+            margin-bottom: 2rem;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .form-input,
+        .form-button {
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(115, 210, 57, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            outline: none;
+        }
+        
+        .form-input:focus {
+            border-color: #73d239;
+            box-shadow: 0 0 0 2px rgba(115, 210, 57, 0.2);
+        }
+        
+        .form-button {
+            background: linear-gradient(135deg, #73d239, #5fb82f);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .form-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(115, 210, 57, 0.4);
+        }
+        
+        .form-button.secondary {
+            background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
+        }
+        
+        .form-button.secondary:hover {
+            box-shadow: 0 5px 15px rgba(74, 74, 74, 0.4);
+        }
+        
+        /* APOD Content */
+        .apod-content {
+            text-align: center;
+        }
+        
+        .apod-title {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #73d239;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            min-height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .apod-image-container {
+            position: relative;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            background: #000;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .apod-image-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+        }
+        
+        .apod-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #111;
+            object-fit: cover;
+            max-height: 70vh;
+        }
+        
+        .apod-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .apod-button {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(115, 210, 57, 0.5);
+            border-radius: 8px;
+            background: rgba(115, 210, 57, 0.1);
+            color: #73d239;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+        
+        .apod-button:hover {
+            background: rgba(115, 210, 57, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(115, 210, 57, 0.3);
+        }
+        
+        .apod-button.primary {
+            background: linear-gradient(135deg, #73d239, #5fb82f);
+            color: #fff;
+            border-color: #73d239;
+        }
+        
+        .apod-description {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(28, 29, 38, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(115, 210, 57, 0.1);
+            text-align: left;
+        }
+        
+        .apod-description h3 {
+            color: #73d239;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        
+        .apod-description p {
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        
+        .modal img {
+            max-width: calc(100vw - 2rem);
+            max-height: calc(100vh - 2rem);
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            object-fit: contain;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.7);
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: #73d239;
+            background: rgba(0, 0, 0, 0.9);
+            border-color: #73d239;
+        }
+        
+        /* Loading States */
+        .loading {
+            color: #73d239;
+            position: relative;
+        }
+        
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(115, 210, 57, 0.3);
+            border-top: 2px solid #73d239;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-state {
+            color: #e44c65;
+        }
+        
+        /* Google Translate Widget */
+        .translate-widget {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            z-index: 3000;
+            background: rgba(28, 29, 38, 0.9);
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(115, 210, 57, 0.2);
+        }
+        
+        /* Responsive Design */
+        /* ================ */
+        
+        /* Small Mobile (480px+) */
+        @media screen and (min-width: 480px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .form-group:first-child {
+                grid-column: 1 / -1;
+            }
+        }
+        
+                 /* Tablet Portrait (768px+) */
+         @media screen and (min-width: 768px) {
+            
+            .apod-hero {
+                padding: 3rem 2rem;
+                min-height: 70vh;
+            }
+            
+            .content-wrapper {
+                padding: 3rem 2rem;
+            }
+            
+            .main-section {
+                padding: 3rem 2rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+            
+            .form-group:first-child {
+                grid-column: 1;
+            }
+            
+            .apod-buttons {
+                gap: 1.5rem;
+            }
+        }
+        
+        /* Tablet Landscape (1024px+) */
+        @media screen and (min-width: 1024px) {
+            .apod-hero {
+                padding: 4rem 2rem;
+                min-height: 80vh;
+            }
+            
+            .content-wrapper {
+                padding: 4rem 2rem;
+            }
+            
+            .apod-image-container {
+                max-width: 80%;
+                margin: 2rem auto;
+            }
+        }
+        
+        /* Desktop (1200px+) */
+        @media screen and (min-width: 1200px) {
+            .content-wrapper {
+                padding: 5rem 2rem;
+            }
+            
+            .main-section {
+                padding: 4rem 3rem;
+            }
+            
+            .close-modal {
+                top: 2rem;
+                right: 2rem;
+                width: 4rem;
+                height: 4rem;
+                font-size: 2.5rem;
+            }
+        }
+        
+        /* Large Desktop (1440px+) */
+        @media screen and (min-width: 1440px) {
+            .apod-hero {
+                padding: 5rem 4rem;
+            }
+            
+            .apod-image-container {
+                max-width: 70%;
+            }
+        }
+        
+        /* Touch Device Optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .apod-image-container:hover {
+                transform: none;
+            }
+            
+            .form-button:hover,
+            .apod-button:hover {
+                transform: none;
+            }
+            
+            .close-modal {
+                width: 4rem;
+                height: 4rem;
+                font-size: 2rem;
+            }
+        }
+        
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            .apod-hero::before {
+                animation: none;
+            }
+            
+            .apod-image-container,
+            .form-button,
+            .apod-button {
+                transition: none;
+            }
+            
+            .loading::after {
+                animation: none;
+            }
+        }
+        
+        /* High Contrast Mode */
+        @media (prefers-contrast: high) {
+            .apod-hero {
+                background: #000;
+            }
+            
+            .main-section {
+                background: rgba(0, 0, 0, 0.9);
+                border: 2px solid #73d239;
+            }
+            
+            .form-input {
+                background: #000;
+                border: 2px solid #73d239;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            .apod-hero,
+            #header,
+            .apod-buttons,
+            .translate-widget {
+                display: none;
+            }
+            
+            .apod-image {
+                max-height: none;
+            }
+            
+            body {
+                background: #fff;
+                color: #000;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="/assets/css/simple-buttons.css" /></head>
+
+<body class="is-preload">
+    <div id="page-wrapper">
+			<!-- Header -->
+			<header id="header">
+				<h1 id="logo"><a href="/index-old.html">KOTARO AI</a></h1>
+				<nav id="nav">
+					<ul>
+                        <li><a href="https://github.com/Kkhoa-clon/EDUCATION-KOTARO-AI">Mã Nguồn Mở</a></li>
+						<li>
+                            <a>Thư Viện</a>
+							<ul>
+								<li><a href="/trang-chu/thu-vien/nghien-cuu.html">Nghiên Cứu</a></li>
+								<li><a href="/trang-chu/thu-vien/ebook.html">Ebook</a></li>
+								<li>
+									<li><a href="/trang-chu/thu-vien/on-hsg.html">Ôn Luyện Học Sinh Giỏi</a></li>
+									<li><a href="/trang-chu/thu-vien/vat-ly.html">Vật Lý</a></li>
+									<li><a href="/trang-chu/thu-vien/hoa-hoc.html">Hóa Học</a></li>
+									<li><a href="/trang-chu/thu-vien/sinh-hoc.html">Sinh Học</a></li>
+								</li>
+							</ul>
+						</li>
+						<li><a href="/chatbot-old.html">Trợ Lý Sen</a></li>
+						<li>
+							<a>Thiên Văn Học</a>
+							<ul>
+								<li><a href="/trang-chu/he-mat-troi.html">Hệ Mặt Trời</a></li>
+								<li><a href="/trang-chu/tieu-hanh-tinh.html">Tiểu Hành Tinh</a></li>
+								<li><a href="/trang-chu/trai-dat.html">Trái Đất</a></li>
+								<li><a href="/trang-chu/hanh-tinh-khac.html">Hành Tinh Ngoài Hệ Mặt Trời</a></li>
+								<li><a href="/trang-chu/image-nasa-interface.html">Ảnh Thiên Văn Thời Gian Thực</a></li>
+								<li><a href="/trang-chu/robot-sao-hoa.html">Robot Thám Hiểm Sao Hỏa</a>
+							</ul>
+						</li>
+						<li><a href="/trang-chu/quiz.html">Tạo Câu Hỏi</a></li>
+						<li>
+							<a>Mô Phỏng</a>
+							<ul>
+								<li>
+									<li><a href="/trang-chu/lab/lab2d.html">Thí Nghiệm 2D</a></li>
+									<li><a href="/trang-chu/he-mat-troi.html">Hệ Mặt Trời 3D</a></li>
+									<li><a href="/trang-chu/tieu-hanh-tinh.html">Tiểu Hành Tinh 3D</a></li>
+									<li><a href="/trang-chu/trai-dat.html">Trái Đất 3D</a></li>
+									<li><a href="/trang-chu/hanh-tinh-khac.html">Hành Tinh Ngoài Hệ Mặt Trời 3D</a></li>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+
+        <!-- Hero Section -->
+        <section class="apod-hero">
+            <div class="apod-hero-content">
+                <h2>Ảnh Thiên Văn Thời Gian Thực</h2>
+                <p>Khám phá vũ trụ mỗi ngày với Ảnh Thiên Văn NASA (APOD)<br />
+                Xem, tải về và tìm hiểu ý nghĩa các bức ảnh nổi bật từ NASA</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="apod-container">
+            <div class="content-wrapper">
+                <section class="main-section">
+                    <div class="section-header">
+                        <h2>Ảnh Thiên Văn Trong Ngày với NASA</h2>
+                        <p>Tự động dịch sang tiếng Việt cho học sinh và người yêu thiên văn</p>
+                    </div>
+                    
+                    <!-- Search Form -->
+                    <form class="apod-form" onsubmit="return false;">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="datePicker">Chọn ngày</label>
+                                <input type="date" id="datePicker" class="form-input" required />
+                            </div>
+                            <div class="form-group">
+                                <label>&nbsp;</label>
+                                <button type="submit" id="fetchBtn" class="form-button">
+                                     Xem ảnh
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <label>&nbsp;</label>
+                                <button type="button" id="todayBtn" class="form-button secondary">
+                                     Hôm nay
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <!-- APOD Content -->
+                    <div class="apod-content">
+                        <h3 id="title" class="apod-title loading">Đang tải...</h3>
+                        
+                        <div class="apod-image-container" id="imageContainer" style="display: none;">
+                            <img id="image" class="apod-image" alt="Astronomy Picture" />
+                        </div>
+                        
+                        <div id="apod-buttons" class="apod-buttons" style="display: none;">
+                            <button id="downloadBtn" class="apod-button primary">
+                                 Tải ảnh
+                            </button>
+                            <button id="viewDetailBtn" class="apod-button">
+                                 Xem chi tiết
+                            </button>
+                        </div>
+                        
+                        <div class="apod-description">
+                            <h3>Mô Tả Về Hình Ảnh</h3>
+                            <p id="explanation">Đang tải thông tin...</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Modal for detailed image view -->
+        <div id="imageModal" class="modal">
+            <span id="closeModal" class="close-modal">&times;</span>
+            <img id="modalImg" src="" alt="Detailed view" />
+        </div>
+
+        <!-- Google Translate widget -->
+        <div id="google_translate_element" class="translate-widget"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery.scrolly.min.js"></script>
+    <script src="/assets/js/jquery.dropotron.min.js"></script>
+    <script src="/assets/js/jquery.scrollex.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+    
+    <script type="text/javascript">
+        // Ẩn widget Google Translate và chỉ dịch sang tiếng Việt
+        document.addEventListener("DOMContentLoaded", function() {
+            var translateWidget = document.getElementById('google_translate_element');
+            if (translateWidget) {
+                translateWidget.style.display = 'none';
+            }
+        });
+        // Không khởi tạo Google Translate, chỉ sử dụng dịch tiếng Việt qua Lingva hoặc API khác nếu cần
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <script>
+        // Votre JavaScript existant reste inchangé
+        const apiKey = "QjukGaZAtCoeMB9z9M2h36VG0gEauYpVOXLEPGyP";
+        const datePicker = document.getElementById("datePicker");
+        const fetchBtn = document.getElementById("fetchBtn");
+        const todayBtn = document.getElementById("todayBtn");
+        const titleEl = document.getElementById("title");
+        const imageEl = document.getElementById("image");
+        const imageContainer = document.getElementById("imageContainer");
+        const explanationEl = document.getElementById("explanation");
+        const downloadBtn = document.getElementById("downloadBtn");
+        const viewDetailBtn = document.getElementById("viewDetailBtn");
+        const apodButtons = document.getElementById("apod-buttons");
+        const imageModal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        const closeModal = document.getElementById("closeModal");
+        let currentImageUrl = "";
+
+        // Hàm dịch sử dụng Lingva Translate API
+        async function lingvaTranslate(text) {
+            try {
+                const res = await fetch('https://lingva.ml/api/v1/en/vi/' + encodeURIComponent(text));
+                const data = await res.json();
+                return data.translation || text;
+            } catch {
+                return text;
+            }
+        }
+
+        // Hàm lấy ngày hiện tại
+        function getTodayDate() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // Hàm thiết lập ngày hiện tại
+        function setTodayDate() {
+            datePicker.value = getTodayDate();
+        }
+
+        // Hàm kiểm tra ngày hợp lệ
+        function isValidDate(dateString) {
+            const selectedDate = new Date(dateString);
+            const today = new Date();
+            today.setHours(23, 59, 59, 999);
+            return selectedDate <= today;
+        }
+
+        async function fetchAPOD() {
+            let date = '';
+            
+            if (datePicker.value) {
+                if (!isValidDate(datePicker.value)) {
+                    titleEl.textContent = "Ngày không hợp lệ!";
+                    titleEl.className = "apod-title error-state";
+                    imageContainer.style.display = "none";
+                    explanationEl.textContent = "Vui lòng chọn ngày không lớn hơn ngày hiện tại.";
+                    apodButtons.style.display = "none";
+                    return;
+                }
+                date = datePicker.value;
+            }
+            
+            const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}${date ? `&date=${date}` : ""}`;
+            
+            titleEl.textContent = "Đang tải...";
+            titleEl.className = "apod-title loading";
+            imageContainer.style.display = "none";
+            apodButtons.style.display = "none";
+            
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+                
+                if (data.media_type === "image") {
+                    const [viTitle, viExplanation] = await Promise.all([
+                        lingvaTranslate(data.title),
+                        lingvaTranslate(data.explanation)
+                    ]);
+                    
+                    titleEl.textContent = viTitle;
+                    titleEl.className = "apod-title";
+                    imageEl.src = data.url;
+                    imageContainer.style.display = "block";
+                    explanationEl.textContent = viExplanation;
+                    apodButtons.style.display = "flex";
+                    currentImageUrl = data.url;
+                } else {
+                    titleEl.textContent = "Hiện Không Có Ảnh Thiên Văn";
+                    titleEl.className = "apod-title error-state";
+                    imageContainer.style.display = "none";
+                    explanationEl.textContent = "Hôm nay không có hình ảnh, có thể là video.";
+                    apodButtons.style.display = "none";
+                    currentImageUrl = "";
+                }
+            } catch (err) {
+                titleEl.textContent = "Lỗi tải dữ liệu!";
+                titleEl.className = "apod-title error-state";
+                imageContainer.style.display = "none";
+                explanationEl.textContent = "Vui lòng kiểm tra lại kết nối mạng.";
+                apodButtons.style.display = "none";
+                currentImageUrl = "";
+            }
+        }
+
+        // Event listeners
+        fetchBtn.onclick = fetchAPOD;
+        todayBtn.onclick = function() {
+            setTodayDate();
+            fetchAPOD();
+        };
+        
+        // Tự động fetch khi thay đổi ngày
+        datePicker.addEventListener('change', fetchAPOD);
+
+        // Thiết lập ngày hiện tại khi trang load
+        setTodayDate();
+        
+        // Tải dữ liệu ngay khi vào trang
+        fetchAPOD();
+
+        // Nút tải ảnh
+        downloadBtn.onclick = function() {
+            if (!currentImageUrl) return;
+            
+            // Lấy tên file từ URL nếu có, fallback là nasa-apod.jpg
+            let filename = 'nasa-apod.jpg';
+            try {
+                const urlObj = new URL(currentImageUrl);
+                const pathParts = urlObj.pathname.split('/');
+                const lastPart = pathParts[pathParts.length - 1];
+                if (lastPart && lastPart.includes('.')) filename = lastPart;
+            } catch {}
+            
+            const a = document.createElement('a');
+            a.href = currentImageUrl;
+            a.setAttribute('download', filename);
+            a.target = '_blank'; // Luôn mở ở tab mới nếu không hỗ trợ download
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        };
+
+        // Xem chi tiết ảnh (modal)
+        viewDetailBtn.onclick = function() {
+            if (!currentImageUrl) return;
+            modalImg.src = currentImageUrl;
+            imageModal.style.display = 'flex';
+        };
+
+        imageEl.onclick = viewDetailBtn.onclick;
+
+        closeModal.onclick = function() {
+            imageModal.style.display = 'none';
+            modalImg.src = '';
+        };
+
+        imageModal.onclick = function(e) {
+            if (e.target === imageModal) {
+                imageModal.style.display = 'none';
+                modalImg.src = '';
+            }
+        };
+
+
+    </script>
+</body>
+</html>

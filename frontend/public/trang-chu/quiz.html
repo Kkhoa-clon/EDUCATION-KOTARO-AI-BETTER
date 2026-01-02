@@ -1,0 +1,427 @@
+<!DOCTYPE HTML>
+<html lang="vi">
+<head>
+    <title>Kotaro AI - Câu Hỏi Ngẫu Nhiên (Tiếng Việt)</title>
+    <meta name="description" content="Câu Hỏi Ngẫu Nhiên Tiếng Việt"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/modern-ui.css" />
+    <link rel="stylesheet" href="/assets/css/cuon-trang.css" />
+    <link rel="stylesheet" href="/assets/css/simple-buttons.css" />
+    <link rel="icon" href="/hinh-anh/logo-Photoroom.png" type="image/x-jpg">
+    <noscript>
+        <link rel="stylesheet" href="/assets/css/noscript.css" />
+    </noscript>
+<link rel="stylesheet" href="/assets/css/simple-buttons.css" /></head>
+<body class="is-preload landing">
+    <div id="page-wrapper">
+			<!-- Header -->
+			<header id="header">
+				<h1 id="logo"><a href="/index-old.html">KOTARO AI</a></h1>
+				<nav id="nav">
+					<ul>
+                        <li><a href="https://github.com/Kkhoa-clon/EDUCATION-KOTARO-AI">Mã Nguồn Mở</a></li>
+						<li>
+                            <a>Thư Viện</a>
+							<ul>
+								<li><a href="/trang-chu/thu-vien/nghien-cuu.html">Nghiên Cứu</a></li>
+								<li><a href="/trang-chu/thu-vien/ebook.html">Ebook</a></li>
+								<li>
+									<li><a href="/trang-chu/thu-vien/on-hsg.html">Ôn Luyện Học Sinh Giỏi</a></li>
+									<li><a href="/trang-chu/thu-vien/vat-ly.html">Vật Lý</a></li>
+									<li><a href="/trang-chu/thu-vien/hoa-hoc.html">Hóa Học</a></li>
+									<li><a href="/trang-chu/thu-vien/sinh-hoc.html">Sinh Học</a></li>
+								</li>
+							</ul>
+						</li>
+						<li><a href="/chatbot-old.html">Trợ Lý Sen</a></li>
+						<li>
+							<a>Thiên Văn Học</a>
+							<ul>
+								<li><a href="/trang-chu/he-mat-troi.html">Hệ Mặt Trời</a></li>
+								<li><a href="/trang-chu/tieu-hanh-tinh.html">Tiểu Hành Tinh</a></li>
+								<li><a href="/trang-chu/trai-dat.html">Trái Đất</a></li>
+								<li><a href="/trang-chu/hanh-tinh-khac.html">Hành Tinh Ngoài Hệ Mặt Trời</a></li>
+								<li><a href="/trang-chu/image-nasa-interface.html">Ảnh Thiên Văn Thời Gian Thực</a></li>
+								<li><a href="/trang-chu/robot-sao-hoa.html">Robot Thám Hiểm Sao Hỏa</a>
+							</ul>
+						</li>
+						<li><a href="/trang-chu/quiz.html">Tạo Câu Hỏi</a></li>
+						<li>
+							<a>Mô Phỏng</a>
+							<ul>
+								<li>
+									<li><a href="/trang-chu/lab/lab2d.html">Thí Nghiệm 2D</a></li>
+									<li><a href="/trang-chu/he-mat-troi.html">Hệ Mặt Trời 3D</a></li>
+									<li><a href="/trang-chu/tieu-hanh-tinh.html">Tiểu Hành Tinh 3D</a></li>
+									<li><a href="/trang-chu/trai-dat.html">Trái Đất 3D</a></li>
+									<li><a href="/trang-chu/hanh-tinh-khac.html">Hành Tinh Ngoài Hệ Mặt Trời 3D</a></li>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+        <section id="quiz-section" class="modern-section">
+            <div class="section-background">
+                <div class="bg-overlay"></div>
+                <div class="floating-elements">
+                    <div class="float-element" data-speed="0.5"></div>
+                    <div class="float-element" data-speed="0.8"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="section-content">
+                    <div class="content-left content-wrapper">
+                        <div class="section-badge">
+                            <span class="badge-icon">🎓</span>
+                            <span class="badge-text">Quiz Khoa Học</span>
+                        </div>
+                        <h2 class="section-title">
+                            <span class="title-line">Câu hỏi ngẫu nhiên</span>
+                            <span class="title-line highlight">Kotaro AI</span>
+                        </h2>
+                        <div id="config" class="quiz-config">
+                            <label for="amount">Số câu hỏi:</label>
+                            <select id="amount" class="select-amount">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                            <label for="category">Chủ đề:</label>
+                            <select id="category"></select>
+                            <label for="difficulty">Độ khó:</label>
+                            <select id="difficulty">
+                                <option value="">Tất cả</option>
+                                <option value="easy">Dễ</option>
+                                <option value="medium">Trung bình</option>
+                                <option value="hard">Khó</option>
+                            </select>
+                            <label for="type">Loại câu hỏi:</label>
+                            <select id="type">
+                                <option value="">Tất cả</option>
+                                <option value="multiple">Nhiều lựa chọn</option>
+                                <option value="boolean">Đúng/Sai</option>
+                            </select>
+                            <br>
+                            <button class="btn-primary button-3d" onclick="startQuiz()">Bắt đầu</button>
+                            <div id="loading-quiz" class="loading-dots" style="display:none;margin-top:1em;">Đang tải câu hỏi...</div>
+                        </div>
+                        <div id="quiz" style="display:none">
+                            <div class="box glass">
+                                <div id="quiz-progress" style="margin-bottom:1em;font-weight:600;font-size:1.1em;"></div>
+                                <div id="question" class="main-description fade-in-text" style="min-height:60px"></div>
+                                <div id="answers" class="cta-buttons answers-grid"></div>
+                                <div id="feedback" class="sub-description"></div>
+                                <button id="next-btn" class="btn-secondary button-3d" style="display:none" onclick="nextQuestion()">Câu tiếp theo</button>
+                            </div>
+                        </div>
+                        <div id="result" style="display:none">
+                            <div class="feature-card">
+                                <div class="card-icon">🏆</div>
+                                <div id="score" class="card-text"></div>
+                                <button class="btn-primary button-3d" onclick="restartQuiz()">Làm lại</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-right">
+                        <div class="image-showcase">
+                            <div class="main-image">
+                                <img src="/hinh-anh/logo-v2-Photoroom.png" alt="Kotaro AI" style="max-width:320px;">
+                            </div>
+                            <div class="floating-card card-1">
+                                <div class="card-icon">🤖</div>
+                                <div class="card-text">AI hỗ trợ tạo câu hỏi theo chủ đề</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/assets/js/jquery.scrolly.min.js"></script>
+    <script src="/assets/js/jquery.dropotron.min.js"></script>
+    <script src="/assets/js/jquery.scrollex.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/cuon-trang.js"></script>
+    <script src="/assets/js/modern-ui.js"></script>
+    <script>
+    // --- Backend logic & dịch tự động ---
+    const scienceCategories = [
+        { id: 17, name: "Khoa học & Tự nhiên" },
+        { id: 18, name: "Khoa học: Máy tính" },
+        { id: 19, name: "Khoa học: Toán học" },
+        { id: 27, name: "Động vật" },
+        { id: 30, name: "Khoa học: Thiết bị" }
+    ];
+    const otherCategories = [
+        { id: 9, name: "Kiến thức chung" },
+        { id: 10, name: "Giải trí: Sách" },
+        { id: 11, name: "Giải trí: Phim ảnh" },
+        { id: 12, name: "Giải trí: Âm nhạc" },
+        { id: 13, name: "Giải trí: Nhạc kịch & Sân khấu" },
+        { id: 14, name: "Giải trí: Truyền hình" },
+        { id: 15, name: "Giải trí: Trò chơi điện tử" },
+        { id: 16, name: "Giải trí: Board Games" },
+        { id: 20, name: "Thần thoại" },
+        { id: 21, name: "Thể thao" },
+        { id: 22, name: "Địa lý" },
+        { id: 23, name: "Lịch sử" },
+        { id: 24, name: "Chính trị" },
+        { id: 25, name: "Nghệ thuật" },
+        { id: 26, name: "Người nổi tiếng" },
+        { id: 28, name: "Phương tiện" },
+        { id: 29, name: "Giải trí: Truyện tranh" },
+        { id: 31, name: "Giải trí: Anime & Manga Nhật Bản" },
+        { id: 32, name: "Giải trí: Hoạt hình & Phim hoạt hình" }
+    ];
+    let questions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let sessionToken = '';
+
+    // Populate categories
+    const categorySelect = document.getElementById('category');
+    categorySelect.innerHTML = '';
+    const optgroupScience = document.createElement('optgroup');
+    optgroupScience.label = 'Khoa học tự nhiên';
+    scienceCategories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat.id;
+        option.textContent = cat.name;
+        optgroupScience.appendChild(option);
+    });
+    categorySelect.appendChild(optgroupScience);
+    const optgroupOther = document.createElement('optgroup');
+    optgroupOther.label = 'Lĩnh vực khác';
+    otherCategories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat.id;
+        option.textContent = cat.name;
+        optgroupOther.appendChild(option);
+    });
+    categorySelect.appendChild(optgroupOther);
+
+    // Hàm dịch tự động qua API (không cần key)
+    async function translateText(text, targetLang = 'vi') {
+        if (!text || text.trim() === '') return '';
+        // Sử dụng API dịch công cộng (ví dụ: LibreTranslate)
+        try {
+            const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`);
+            const data = await res.json();
+            return data[0].map(item => item[0]).join('');
+        } catch (e) {
+            return text; // fallback nếu lỗi
+        }
+    }
+
+    // Dịch mảng text
+    async function translateArray(arr, targetLang = 'vi') {
+        return Promise.all(arr.map(t => translateText(t, targetLang)));
+    }
+
+    // Decode HTML entities
+    function decodeHtml(html) {
+        const txt = document.createElement('textarea');
+        txt.innerHTML = html;
+        return txt.value;
+    }
+
+    // Fetch session token
+    async function getSessionToken() {
+        try {
+            const response = await fetch('https://opentdb.com/api_token.php?command=request');
+            const data = await response.json();
+            sessionToken = data.token;
+        } catch (error) {
+            console.error('Lỗi lấy token:', error);
+        }
+    }
+
+    // Start quiz
+    async function startQuiz() {
+        document.getElementById('loading-quiz').style.display = 'block';
+        await getSessionToken();
+        const amount = document.getElementById('amount').value;
+        const category = document.getElementById('category').value;
+        const difficulty = document.getElementById('difficulty').value;
+        const type = document.getElementById('type').value;
+        let url = `https://opentdb.com/api.php?amount=${amount}&token=${sessionToken}`;
+        if (category) url += `&category=${category}`;
+        if (difficulty) url += `&difficulty=${difficulty}`;
+        if (type) url += `&type=${type}`;
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            if (data.response_code === 0) {
+                // Dịch toàn bộ câu hỏi và đáp án sang tiếng Việt
+                const rawQuestions = data.results.map(q => ({
+                    question: decodeHtml(q.question),
+                    correct_answer: decodeHtml(q.correct_answer),
+                    incorrect_answers: q.incorrect_answers.map(decodeHtml),
+                }));
+                // Dịch song song
+                const translatedQuestions = await Promise.all(rawQuestions.map(async q => {
+                    const [questionVi, correctVi, ...incorrectVi] = await translateArray([
+                        q.question,
+                        q.correct_answer,
+                        ...q.incorrect_answers
+                    ]);
+                    const allAnswers = [correctVi, ...incorrectVi];
+                    // Trộn đáp án
+                    allAnswers.sort(() => Math.random() - 0.5);
+                    return {
+                        question: questionVi,
+                        correct_answer: correctVi,
+                        incorrect_answers: incorrectVi,
+                        all_answers: allAnswers
+                    };
+                }));
+                questions = translatedQuestions;
+                currentQuestionIndex = 0;
+                score = 0;
+                document.getElementById('config').style.display = 'none';
+                document.getElementById('quiz').style.display = 'block';
+                document.getElementById('loading-quiz').style.display = 'none';
+                displayQuestion();
+            } else {
+                document.getElementById('loading-quiz').style.display = 'none';
+                alert('Lỗi lấy câu hỏi. Vui lòng thử lại.');
+            }
+        } catch (error) {
+            document.getElementById('loading-quiz').style.display = 'none';
+            console.error('Lỗi lấy câu hỏi:', error);
+            alert('Lỗi lấy câu hỏi. Vui lòng thử lại.');
+        }
+    }
+
+    // Display current question
+    function displayQuestion() {
+        const question = questions[currentQuestionIndex];
+        document.getElementById('question').classList.remove('fade-in-text');
+        void document.getElementById('question').offsetWidth; // trigger reflow
+        document.getElementById('question').classList.add('fade-in-text');
+        document.getElementById('question').textContent = question.question;
+        const answersDiv = document.getElementById('answers');
+        answersDiv.innerHTML = '';
+        question.all_answers.forEach(answer => {
+            const button = document.createElement('button');
+            button.className = 'btn-secondary button-3d answer';
+            button.textContent = answer;
+            button.onclick = () => checkAnswer(answer);
+            answersDiv.appendChild(button);
+        });
+        document.getElementById('feedback').textContent = '';
+        document.getElementById('next-btn').style.display = 'none';
+        // Hiện progress
+        document.getElementById('quiz-progress').textContent = `Câu ${currentQuestionIndex + 1} / ${questions.length}`;
+    }
+
+    // Check user's answer
+    function checkAnswer(selectedAnswer) {
+        const question = questions[currentQuestionIndex];
+        const feedback = document.getElementById('feedback');
+        const answerButtons = document.querySelectorAll('.answer');
+        answerButtons.forEach(button => {
+            button.disabled = true;
+            if (button.textContent === question.correct_answer) {
+                button.classList.add('correct');
+                button.style.background = '#73d239';
+                button.style.color = '#fff';
+            } else if (button.textContent === selectedAnswer && selectedAnswer !== question.correct_answer) {
+                button.classList.add('incorrect');
+                button.style.background = '#e74c3c';
+                button.style.color = '#fff';
+            }
+        });
+        if (selectedAnswer === question.correct_answer) {
+            feedback.innerHTML = '<span style="font-size:1.3em;">🎉</span> <b>Chính xác!</b>';
+            feedback.style.color = 'green';
+            score++;
+        } else {
+            feedback.innerHTML = `<span style="font-size:1.3em;">Đáp án đúng là: <b>${question.correct_answer}</b>`;
+            feedback.style.color = 'red';
+        }
+        document.getElementById('next-btn').style.display = 'block';
+    }
+
+    // Move to next question
+    function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion();
+        } else {
+            showResult();
+        }
+    }
+
+    // Show final result
+    function showResult() {
+        document.getElementById('quiz').style.display = 'none';
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('score').innerHTML = `<span style='font-size:2em;'<b>Bạn đúng ${score} trên tổng ${questions.length} câu!</b>`;
+        // Hiệu ứng chúc mừng
+        confettiEffect();
+    }
+
+    // Restart quiz
+    function restartQuiz() {
+        document.getElementById('result').style.display = 'none';
+        document.getElementById('config').style.display = 'block';
+        questions = [];
+        currentQuestionIndex = 0;
+        score = 0;
+    }
+    </script>
+    <style>
+.answers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+@media (max-width: 600px) {
+  .answers-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.answer.correct {
+  animation: correctPulse 0.5s;
+}
+.answer.incorrect {
+  animation: incorrectShake 0.4s;
+}
+@keyframes correctPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 #73d239; }
+  50% { transform: scale(1.08); box-shadow: 0 0 16px #73d239; }
+  100% { transform: scale(1); box-shadow: 0 0 0 #73d239; }
+}
+@keyframes incorrectShake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+.fade-in-text {
+  opacity: 0;
+  animation: fadeInUp 0.6s forwards;
+}
+/* Làm nổi bật optgroup trong select */
+select#category optgroup[label] {
+  font-weight: bold;
+  color: #73d239;
+  background: #23272f;
+}
+</style>
+</body>
+</html> 
