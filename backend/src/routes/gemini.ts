@@ -1,67 +1,62 @@
+/**
+ * GEMINI AI ROUTES
+ * 
+ * Mục đích: Định nghĩa các API endpoints cho Gemini AI
+ * 
+ * Routes:
+ * - POST /api/gemini/chat - Chat với Gemini AI
+ * - POST /api/gemini/diagram - Tạo sơ đồ từ mô tả
+ * - POST /api/gemini/analyze-image - Phân tích hình ảnh
+ * 
+ * Middleware cần:
+ * - Rate limiting: Giới hạn số request để tránh abuse
+ * - Authentication: Xác thực user (nếu cần)
+ * - Validation: Validate request body
+ * 
+ * TODO: Implement routes
+ * 1. Import GeminiService
+ * 2. Setup rate limiting middleware
+ * 3. Create POST /chat route
+ * 4. Create POST /diagram route
+ * 5. Add error handling
+ */
+
 import express, { Request, Response, NextFunction } from 'express';
-import rateLimit from 'express-rate-limit';
-import { GeminiService, GeminiChatRequest, GeminiDiagramRequest } from '../services/geminiService';
+// import { GeminiService } from '../services/geminiService';
+// import rateLimit from 'express-rate-limit';
 
 const router = express.Router();
-const geminiService = new GeminiService();
+// const geminiService = new GeminiService();
 
-// Rate limiting: 20 requests per 15 minutes
-const chatLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 20,
-  message: 'Quá nhiều yêu cầu. Vui lòng thử lại sau 15 phút.'
-});
+// TODO: Setup rate limiting
+// const chatLimiter = rateLimit({
+//   windowMs: 15 * 60 * 1000, // 15 minutes
+//   max: 20, // 20 requests per 15 minutes
+//   message: 'Quá nhiều yêu cầu. Vui lòng thử lại sau 15 phút.'
+// });
 
-const diagramLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 10,
-  message: 'Quá nhiều yêu cầu tạo sơ đồ. Vui lòng thử lại sau 15 phút.'
-});
+// TODO: POST /api/gemini/chat
+// router.post('/chat', chatLimiter, async (req: Request, res: Response, next: NextFunction) => {
+//   try {
+//     const { message, chatHistory } = req.body;
+//     // Validate request
+//     // Call geminiService.sendChatMessage()
+//     // Return response
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
-// POST /api/gemini/chat
-router.post('/chat', chatLimiter, async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const request: GeminiChatRequest = req.body;
-
-    if (!request.message && !request.fileData) {
-      return res.status(400).json({
-        status: 'error',
-        message: 'Message hoặc fileData là bắt buộc'
-      });
-    }
-
-    const responseText = await geminiService.sendChatMessage(request);
-
-    res.json({
-      status: 'success',
-      text: responseText
-    });
-  } catch (error: any) {
-    next(error);
-  }
-});
-
-// POST /api/gemini/diagram
-router.post('/diagram', diagramLimiter, async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const request: GeminiDiagramRequest = req.body;
-
-    if (!request.description) {
-      return res.status(400).json({
-        status: 'error',
-        message: 'Description là bắt buộc'
-      });
-    }
-
-    const mermaidCode = await geminiService.generateDiagram(request);
-
-    res.json({
-      status: 'success',
-      mermaidCode
-    });
-  } catch (error: any) {
-    next(error);
-  }
-});
+// TODO: POST /api/gemini/diagram
+// router.post('/diagram', async (req: Request, res: Response, next: NextFunction) => {
+//   try {
+//     const { description } = req.body;
+//     // Validate request
+//     // Call geminiService.generateDiagram()
+//     // Return diagram data
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 export default router;

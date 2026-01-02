@@ -4,80 +4,125 @@ import { Link } from 'react-router-dom'
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  const headerStyle: React.CSSProperties = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 50,
+    background: 'rgba(28, 29, 38, 0.9)',
+    backdropFilter: 'blur(10px)',
+    borderBottom: '1px solid rgba(115, 210, 57, 0.2)',
+  }
+
+  const containerStyle: React.CSSProperties = {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 1rem',
+  }
+
+  const navStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: '4rem',
+  }
+
+  const logoStyle: React.CSSProperties = {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    color: '#73d239',
+    textDecoration: 'none',
+  }
+
+  const desktopNavStyle: React.CSSProperties = {
+    display: 'none',
+    alignItems: 'center',
+    gap: '1.5rem',
+  }
+
+  const navLinkStyle: React.CSSProperties = {
+    color: 'rgba(255, 255, 255, 0.75)',
+    textDecoration: 'none',
+    transition: 'color 0.3s ease',
+  }
+
+  const mobileButtonStyle: React.CSSProperties = {
+    display: 'block',
+    background: 'none',
+    border: 'none',
+    color: '#73d239',
+    fontSize: '1.5rem',
+    cursor: 'pointer',
+  }
+
+  const mobileNavStyle: React.CSSProperties = {
+    display: isMenuOpen ? 'block' : 'none',
+    padding: '1rem 0',
+  }
+
+  const mobileLinkStyle: React.CSSProperties = {
+    display: 'block',
+    padding: '0.5rem 1rem',
+    color: 'rgba(255, 255, 255, 0.75)',
+    textDecoration: 'none',
+  }
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-primary-dark/90 backdrop-blur-md border-b border-accent-green/20">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <Link to="/" className="text-2xl font-bold text-accent-green">
+    <header style={headerStyle}>
+      <div style={containerStyle}>
+        <div style={navStyle}>
+          <Link to="/" style={logoStyle}>
             KOTARO AI
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link to="https://github.com/Kkhoa-clon/EDUCATION-KOTARO-AI" 
-                  className="text-text-secondary hover:text-accent-green transition-colors">
+          <nav style={{ ...desktopNavStyle, display: 'none' }} className="desktop-nav">
+            <a href="https://github.com/Kkhoa-clon/EDUCATION-KOTARO-AI" 
+               style={navLinkStyle}
+               target="_blank"
+               rel="noopener noreferrer">
               Mã Nguồn Mở
-            </Link>
+            </a>
             
-            <div className="relative group">
-              <button className="text-text-secondary hover:text-accent-green transition-colors">
-                Thư Viện
-              </button>
-              <div className="absolute top-full left-0 mt-2 w-48 bg-secondary-dark rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                <Link to="/thu-vien" className="block px-4 py-2 hover:bg-accent-green/10">Ebook</Link>
-                <Link to="/thu-vien" className="block px-4 py-2 hover:bg-accent-green/10">Nghiên Cứu</Link>
-                <Link to="/thu-vien" className="block px-4 py-2 hover:bg-accent-green/10">Vật Lý</Link>
-                <Link to="/thu-vien" className="block px-4 py-2 hover:bg-accent-green/10">Hóa Học</Link>
-                <Link to="/thu-vien" className="block px-4 py-2 hover:bg-accent-green/10">Sinh Học</Link>
-              </div>
-            </div>
+            <Link to="/thu-vien" style={navLinkStyle}>
+              Thư Viện
+            </Link>
 
-            <Link to="/chatbot" className="text-text-secondary hover:text-accent-green transition-colors">
+            <Link to="/chatbot" style={navLinkStyle}>
               Trợ Lý Sen
             </Link>
 
-            <div className="relative group">
-              <button className="text-text-secondary hover:text-accent-green transition-colors">
-                Thiên Văn Học
-              </button>
-              <div className="absolute top-full left-0 mt-2 w-56 bg-secondary-dark rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                <Link to="/thien-van" className="block px-4 py-2 hover:bg-accent-green/10">Hệ Mặt Trời</Link>
-                <Link to="/thien-van" className="block px-4 py-2 hover:bg-accent-green/10">Trái Đất</Link>
-                <Link to="/thien-van" className="block px-4 py-2 hover:bg-accent-green/10">Robot Sao Hỏa</Link>
-              </div>
-            </div>
+            <Link to="/thien-van" style={navLinkStyle}>
+              Thiên Văn Học
+            </Link>
 
-            <Link to="/quiz" className="text-text-secondary hover:text-accent-green transition-colors">
+            <Link to="/quiz" style={navLinkStyle}>
               Tạo Câu Hỏi
             </Link>
           </nav>
 
-          {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-accent-green"
+            style={mobileButtonStyle}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             ☰
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <nav className="md:hidden py-4 space-y-2">
-            <Link to="/chatbot" className="block px-4 py-2 hover:bg-accent-green/10 rounded">
-              Trợ Lý Sen
-            </Link>
-            <Link to="/thu-vien" className="block px-4 py-2 hover:bg-accent-green/10 rounded">
-              Thư Viện
-            </Link>
-            <Link to="/thien-van" className="block px-4 py-2 hover:bg-accent-green/10 rounded">
-              Thiên Văn Học
-            </Link>
-            <Link to="/quiz" className="block px-4 py-2 hover:bg-accent-green/10 rounded">
-              Tạo Câu Hỏi
-            </Link>
-          </nav>
-        )}
+        <nav style={mobileNavStyle}>
+          <Link to="/chatbot" style={mobileLinkStyle} onClick={() => setIsMenuOpen(false)}>
+            Trợ Lý Sen
+          </Link>
+          <Link to="/thu-vien" style={mobileLinkStyle} onClick={() => setIsMenuOpen(false)}>
+            Thư Viện
+          </Link>
+          <Link to="/thien-van" style={mobileLinkStyle} onClick={() => setIsMenuOpen(false)}>
+            Thiên Văn Học
+          </Link>
+          <Link to="/quiz" style={mobileLinkStyle} onClick={() => setIsMenuOpen(false)}>
+            Tạo Câu Hỏi
+          </Link>
+        </nav>
       </div>
     </header>
   )

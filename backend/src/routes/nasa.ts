@@ -1,105 +1,66 @@
+/**
+ * NASA API ROUTES
+ * 
+ * Mục đích: Định nghĩa các API endpoints cho NASA APIs
+ * 
+ * Routes:
+ * - GET /api/nasa/apod?date=YYYY-MM-DD - Lấy ảnh thiên văn trong ngày
+ * - GET /api/nasa/mars-photos?rover=curiosity&sol=1000 - Lấy ảnh Mars Rover
+ * - GET /api/nasa/asteroids?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD - Lấy dữ liệu tiểu hành tinh
+ * 
+ * Middleware cần:
+ * - Rate limiting: Giới hạn số request
+ * - Caching: Cache responses để giảm API calls
+ * 
+ * TODO: Implement routes
+ * 1. Import NasaService
+ * 2. Setup caching middleware (optional)
+ * 3. Create GET /apod route
+ * 4. Create GET /mars-photos route
+ * 5. Create GET /asteroids route
+ * 6. Add error handling
+ */
+
 import express, { Request, Response, NextFunction } from 'express';
-import rateLimit from 'express-rate-limit';
-import { NasaService } from '../services/nasaService';
+// import { NasaService } from '../services/nasaService';
 
 const router = express.Router();
-const nasaService = new NasaService();
+// const nasaService = new NasaService();
 
-// Rate limiting: 30 requests per 15 minutes
-const nasaLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 30,
-  message: 'Quá nhiều yêu cầu. Vui lòng thử lại sau 15 phút.'
-});
+// TODO: GET /api/nasa/apod
+// router.get('/apod', async (req: Request, res: Response, next: NextFunction) => {
+//   try {
+//     const { date } = req.query;
+//     // Validate date format
+//     // Call nasaService.getAPOD()
+//     // Return APOD data
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
-// GET /api/nasa/rovers
-router.get('/rovers', nasaLimiter, async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const rovers = await nasaService.getRovers();
-    res.json({
-      status: 'success',
-      data: rovers
-    });
-  } catch (error: any) {
-    next(error);
-  }
-});
+// TODO: GET /api/nasa/mars-photos
+// router.get('/mars-photos', async (req: Request, res: Response, next: NextFunction) => {
+//   try {
+//     const { rover, sol, earth_date } = req.query;
+//     // Validate parameters
+//     // Call nasaService.getMarsPhotos()
+//     // Return photos array
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
-// GET /api/nasa/photos
-router.get('/photos', nasaLimiter, async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { rover, camera, earth_date, sol } = req.query;
-
-    const photos = await nasaService.getPhotos({
-      rover: rover as string,
-      camera: camera as string | undefined,
-      earth_date: earth_date as string | undefined,
-      sol: sol ? parseInt(sol as string) : undefined
-    });
-
-    res.json({
-      status: 'success',
-      data: photos
-    });
-  } catch (error: any) {
-    next(error);
-  }
-});
-
-// GET /api/nasa/photos-by-date - Lấy ảnh từ nhiều rovers theo ngày
-router.get('/photos-by-date', nasaLimiter, async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { rovers, earth_date } = req.query;
-
-    if (!rovers || !earth_date) {
-      return res.status(400).json({
-        status: 'error',
-        message: 'Rovers và earth_date là bắt buộc'
-      });
-    }
-
-    const roversArray = Array.isArray(rovers) ? rovers as string[] : [rovers as string];
-    const result = await nasaService.getPhotosByDate({
-      rovers: roversArray,
-      earth_date: earth_date as string
-    });
-
-    res.json({
-      status: 'success',
-      data: result
-    });
-  } catch (error: any) {
-    next(error);
-  }
-});
-
-// GET /api/nasa/nearest-date-photos - Tìm ảnh ở ngày gần nhất
-router.get('/nearest-date-photos', nasaLimiter, async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { rovers, earth_date, min_date, max_date } = req.query;
-
-    if (!rovers || !earth_date || !min_date || !max_date) {
-      return res.status(400).json({
-        status: 'error',
-        message: 'Rovers, earth_date, min_date và max_date là bắt buộc'
-      });
-    }
-
-    const roversArray = Array.isArray(rovers) ? rovers as string[] : [rovers as string];
-    const result = await nasaService.getNearestDatePhotos({
-      rovers: roversArray,
-      earth_date: earth_date as string,
-      minDate: min_date as string,
-      maxDate: max_date as string
-    });
-
-    res.json({
-      status: 'success',
-      data: result
-    });
-  } catch (error: any) {
-    next(error);
-  }
-});
+// TODO: GET /api/nasa/asteroids
+// router.get('/asteroids', async (req: Request, res: Response, next: NextFunction) => {
+//   try {
+//     const { start_date, end_date } = req.query;
+//     // Validate dates
+//     // Call nasaService.getAsteroids()
+//     // Return asteroids data
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 export default router;

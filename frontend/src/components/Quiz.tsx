@@ -133,10 +133,10 @@ const QuizComponent = () => {
         setSelectedAnswer(null)
         setShowFeedback(false)
       } else {
-        showError('Lỗi lấy câu hỏi. Vui lòng thử lại.')
+        alert('Lỗi lấy câu hỏi. Vui lòng thử lại.')
       }
     } catch (error) {
-      showError('Lỗi lấy câu hỏi. Vui lòng thử lại.')
+      alert('Lỗi lấy câu hỏi. Vui lòng thử lại.')
     } finally {
       setLoading(false)
     }
@@ -170,120 +170,200 @@ const QuizComponent = () => {
     setShowFeedback(false)
   }
 
-  const showError = (message: string) => {
-    alert(message)
-  }
-
   const currentQuestion = questions[currentQuestionIndex]
 
+  const pageStyle: React.CSSProperties = {
+    paddingTop: '5rem',
+    minHeight: '100vh',
+    background: 'linear-gradient(135deg, #0f0f23 0%, #1c1d26 25%, #2a2b36 50%, #1c1d26 75%, #0f0f23 100%)',
+  }
+
+  const containerStyle: React.CSSProperties = {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '2rem 1rem',
+  }
+
+  const cardStyle: React.CSSProperties = {
+    background: 'rgba(15, 15, 35, 0.9)',
+    backdropFilter: 'blur(20px)',
+    borderRadius: '25px',
+    border: '1px solid rgba(115, 210, 57, 0.3)',
+    boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)',
+    padding: '2rem',
+    marginBottom: '2rem',
+  }
+
+  const titleStyle: React.CSSProperties = {
+    textAlign: 'center',
+    fontSize: '2.5rem',
+    fontWeight: 'bold',
+    marginBottom: '1rem',
+    color: '#ffffff',
+  }
+
+  const subtitleStyle: React.CSSProperties = {
+    textAlign: 'center',
+    color: 'rgba(255, 255, 255, 0.75)',
+    fontSize: '1.125rem',
+    marginBottom: '2rem',
+  }
+
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    background: '#1c1d26',
+    border: '1px solid rgba(115, 210, 57, 0.3)',
+    borderRadius: '8px',
+    padding: '0.75rem 1rem',
+    color: '#fff',
+    fontSize: '1rem',
+    marginBottom: '1rem',
+  }
+
+  const buttonStyle: React.CSSProperties = {
+    width: '100%',
+    padding: '0.75rem 1rem',
+    background: 'linear-gradient(135deg, #73d239, #5fb82f)',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '8px',
+    fontSize: '1rem',
+    fontWeight: 600,
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+  }
+
+  const answerButtonStyle: React.CSSProperties = {
+    padding: '0.75rem 1rem',
+    borderRadius: '8px',
+    fontSize: '1rem',
+    fontWeight: 600,
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    border: 'none',
+  }
+
+  const gridStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '1rem',
+    marginBottom: '1rem',
+  }
+
   return (
-    <div className="pt-20 min-h-screen bg-gradient-banner">
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold mb-4">Câu Hỏi Ngẫu Nhiên</h1>
-          <p className="text-text-secondary text-lg">Test kiến thức của bạn với các câu hỏi từ OpenTDB</p>
+    <div style={pageStyle}>
+      <div style={containerStyle}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <h1 style={titleStyle}>Câu Hỏi Ngẫu Nhiên</h1>
+          <p style={subtitleStyle}>Test kiến thức của bạn với các câu hỏi từ OpenTDB</p>
         </div>
 
         {questions.length === 0 && !showResult && (
-          <div className="glass p-8">
-            <div className="space-y-4">
-              <div>
-                <label className="block mb-2 font-semibold">Số câu hỏi:</label>
-                <select
-                  value={config.amount}
-                  onChange={(e) => setConfig({ ...config, amount: e.target.value })}
-                  className="w-full bg-primary-dark border border-accent-green/30 rounded-lg px-4 py-2 focus:outline-none focus:border-accent-green"
-                >
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block mb-2 font-semibold">Chủ đề:</label>
-                <select
-                  value={config.category}
-                  onChange={(e) => setConfig({ ...config, category: e.target.value })}
-                  className="w-full bg-primary-dark border border-accent-green/30 rounded-lg px-4 py-2 focus:outline-none focus:border-accent-green"
-                >
-                  <optgroup label="Khoa học tự nhiên">
-                    {scienceCategories.map(cat => (
-                      <option key={cat.id} value={cat.id}>{cat.name}</option>
-                    ))}
-                  </optgroup>
-                  <optgroup label="Lĩnh vực khác">
-                    {otherCategories.map(cat => (
-                      <option key={cat.id} value={cat.id}>{cat.name}</option>
-                    ))}
-                  </optgroup>
-                </select>
-              </div>
-
-              <div>
-                <label className="block mb-2 font-semibold">Độ khó:</label>
-                <select
-                  value={config.difficulty}
-                  onChange={(e) => setConfig({ ...config, difficulty: e.target.value })}
-                  className="w-full bg-primary-dark border border-accent-green/30 rounded-lg px-4 py-2 focus:outline-none focus:border-accent-green"
-                >
-                  <option value="">Tất cả</option>
-                  <option value="easy">Dễ</option>
-                  <option value="medium">Trung bình</option>
-                  <option value="hard">Khó</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block mb-2 font-semibold">Loại câu hỏi:</label>
-                <select
-                  value={config.type}
-                  onChange={(e) => setConfig({ ...config, type: e.target.value })}
-                  className="w-full bg-primary-dark border border-accent-green/30 rounded-lg px-4 py-2 focus:outline-none focus:border-accent-green"
-                >
-                  <option value="">Tất cả</option>
-                  <option value="multiple">Nhiều lựa chọn</option>
-                  <option value="boolean">Đúng/Sai</option>
-                </select>
-              </div>
-
-              <button
-                onClick={startQuiz}
-                disabled={loading}
-                className="w-full py-3 bg-accent-green hover:bg-accent-green-hover rounded-lg font-semibold disabled:opacity-50 transition-colors"
+          <div style={cardStyle}>
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: '#fff' }}>
+                Số câu hỏi:
+              </label>
+              <select
+                value={config.amount}
+                onChange={(e) => setConfig({ ...config, amount: e.target.value })}
+                style={inputStyle}
               >
-                {loading ? '⏳ Đang tải câu hỏi...' : '🚀 Bắt đầu'}
-              </button>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+              </select>
             </div>
+
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: '#fff' }}>
+                Chủ đề:
+              </label>
+              <select
+                value={config.category}
+                onChange={(e) => setConfig({ ...config, category: e.target.value })}
+                style={inputStyle}
+              >
+                <optgroup label="Khoa học tự nhiên">
+                  {scienceCategories.map(cat => (
+                    <option key={cat.id} value={cat.id}>{cat.name}</option>
+                  ))}
+                </optgroup>
+                <optgroup label="Lĩnh vực khác">
+                  {otherCategories.map(cat => (
+                    <option key={cat.id} value={cat.id}>{cat.name}</option>
+                  ))}
+                </optgroup>
+              </select>
+            </div>
+
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: '#fff' }}>
+                Độ khó:
+              </label>
+              <select
+                value={config.difficulty}
+                onChange={(e) => setConfig({ ...config, difficulty: e.target.value })}
+                style={inputStyle}
+              >
+                <option value="">Tất cả</option>
+                <option value="easy">Dễ</option>
+                <option value="medium">Trung bình</option>
+                <option value="hard">Khó</option>
+              </select>
+            </div>
+
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: '#fff' }}>
+                Loại câu hỏi:
+              </label>
+              <select
+                value={config.type}
+                onChange={(e) => setConfig({ ...config, type: e.target.value })}
+                style={inputStyle}
+              >
+                <option value="">Tất cả</option>
+                <option value="multiple">Nhiều lựa chọn</option>
+                <option value="boolean">Đúng/Sai</option>
+              </select>
+            </div>
+
+            <button
+              onClick={startQuiz}
+              disabled={loading}
+              style={{ ...buttonStyle, opacity: loading ? 0.5 : 1 }}
+            >
+              {loading ? '⏳ Đang tải câu hỏi...' : '🚀 Bắt đầu'}
+            </button>
           </div>
         )}
 
         {currentQuestion && !showResult && (
-          <div className="glass p-8">
-            <div className="mb-4 font-semibold text-lg">
+          <div style={cardStyle}>
+            <div style={{ marginBottom: '1rem', fontWeight: 600, fontSize: '1.125rem', color: '#fff' }}>
               Câu {currentQuestionIndex + 1} / {questions.length}
             </div>
-            <div className="mb-6 text-xl min-h-[60px]">
+            <div style={{ marginBottom: '1.5rem', fontSize: '1.25rem', minHeight: '60px', color: '#fff' }}>
               {currentQuestion.question}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div style={gridStyle}>
               {currentQuestion.all_answers.map((answer, index) => {
                 const isCorrect = answer === currentQuestion.correct_answer
                 const isSelected = selectedAnswer === answer
                 const isWrong = isSelected && !isCorrect
 
-                let buttonClass = "px-6 py-3 rounded-lg font-semibold transition-colors "
+                let buttonStyleFinal = { ...answerButtonStyle }
                 if (showFeedback) {
                   if (isCorrect) {
-                    buttonClass += "bg-green-500 text-white"
+                    buttonStyleFinal = { ...buttonStyleFinal, background: '#73d239', color: '#fff' }
                   } else if (isWrong) {
-                    buttonClass += "bg-red-500 text-white"
+                    buttonStyleFinal = { ...buttonStyleFinal, background: '#e74c3c', color: '#fff' }
                   } else {
-                    buttonClass += "bg-primary-dark/50 text-text-secondary"
+                    buttonStyleFinal = { ...buttonStyleFinal, background: 'rgba(28, 29, 38, 0.5)', color: 'rgba(255, 255, 255, 0.75)' }
                   }
                 } else {
-                  buttonClass += "bg-accent-green/20 hover:bg-accent-green/30 text-white"
+                  buttonStyleFinal = { ...buttonStyleFinal, background: 'rgba(115, 210, 57, 0.2)', color: '#fff' }
                 }
 
                 return (
@@ -291,7 +371,7 @@ const QuizComponent = () => {
                     key={index}
                     onClick={() => checkAnswer(answer)}
                     disabled={showFeedback}
-                    className={buttonClass}
+                    style={buttonStyleFinal}
                   >
                     {answer}
                   </button>
@@ -299,11 +379,11 @@ const QuizComponent = () => {
               })}
             </div>
             {showFeedback && (
-              <div className="mb-4">
+              <div style={{ marginBottom: '1rem' }}>
                 {selectedAnswer === currentQuestion.correct_answer ? (
-                  <div className="text-green-400 text-lg">🎉 Chính xác!</div>
+                  <div style={{ color: '#73d239', fontSize: '1.125rem' }}>🎉 Chính xác!</div>
                 ) : (
-                  <div className="text-red-400 text-lg">
+                  <div style={{ color: '#e74c3c', fontSize: '1.125rem' }}>
                     Đáp án đúng là: <b>{currentQuestion.correct_answer}</b>
                   </div>
                 )}
@@ -312,7 +392,7 @@ const QuizComponent = () => {
             {showFeedback && (
               <button
                 onClick={nextQuestion}
-                className="w-full py-3 bg-accent-green hover:bg-accent-green-hover rounded-lg font-semibold transition-colors"
+                style={buttonStyle}
               >
                 {currentQuestionIndex < questions.length - 1 ? 'Câu tiếp theo →' : 'Xem kết quả'}
               </button>
@@ -321,17 +401,17 @@ const QuizComponent = () => {
         )}
 
         {showResult && (
-          <div className="glass p-8 text-center">
-            <div className="text-6xl mb-4">🏆</div>
-            <div className="text-3xl font-bold mb-4">
+          <div style={{ ...cardStyle, textAlign: 'center' }}>
+            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🏆</div>
+            <div style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#fff' }}>
               Bạn đúng {score} trên tổng {questions.length} câu!
             </div>
-            <div className="text-xl text-text-secondary mb-6">
+            <div style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.75)', marginBottom: '1.5rem' }}>
               Điểm số: {((score / questions.length) * 100).toFixed(0)}%
             </div>
             <button
               onClick={restartQuiz}
-              className="px-8 py-3 bg-accent-green hover:bg-accent-green-hover rounded-lg font-semibold transition-colors"
+              style={buttonStyle}
             >
               Làm lại
             </button>

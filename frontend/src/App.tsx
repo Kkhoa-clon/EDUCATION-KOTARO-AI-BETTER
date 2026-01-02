@@ -27,10 +27,16 @@ import RobotSaoHoaPage from './pages/RobotSaoHoaPage'
 // Lab pages
 import Lab2DPage from './pages/Lab2DPage'
 
+const appStyle: React.CSSProperties = {
+  minHeight: '100vh',
+  background: '#1c1d26',
+  color: '#fff',
+}
+
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-primary-dark text-white">
+      <div style={appStyle}>
         <Header />
         <main>
           <Routes>

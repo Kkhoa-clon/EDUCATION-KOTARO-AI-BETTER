@@ -1,98 +1,240 @@
 import { Link } from 'react-router-dom'
 
 const Home = () => {
+  const pageStyle: React.CSSProperties = {
+    paddingTop: '4rem',
+  }
+
+  const heroStyle: React.CSSProperties = {
+    minHeight: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'linear-gradient(135deg, #0f0f23 0%, #1c1d26 25%, #2a2b36 50%, #1c1d26 75%, #0f0f23 100%)',
+    position: 'relative',
+    overflow: 'hidden',
+  }
+
+  const containerStyle: React.CSSProperties = {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 1rem',
+    position: 'relative',
+    zIndex: 10,
+  }
+
+  const cardStyle: React.CSSProperties = {
+    background: 'rgba(15, 15, 35, 0.9)',
+    backdropFilter: 'blur(20px)',
+    borderRadius: '25px',
+    border: '1px solid rgba(115, 210, 57, 0.3)',
+    boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)',
+    padding: '3rem',
+    textAlign: 'center',
+  }
+
+  const badgeStyle: React.CSSProperties = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    padding: '0.5rem 1rem',
+    background: 'rgba(115, 210, 57, 0.1)',
+    border: '1px solid rgba(115, 210, 57, 0.3)',
+    borderRadius: '9999px',
+    marginBottom: '1.5rem',
+  }
+
+  const titleStyle: React.CSSProperties = {
+    fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
+    fontWeight: 900,
+    marginBottom: '1.5rem',
+    color: '#ffffff',
+  }
+
+  const accentStyle: React.CSSProperties = {
+    color: '#73d239',
+  }
+
+  const subtitleStyle: React.CSSProperties = {
+    fontSize: 'clamp(1.25rem, 3vw, 1.5rem)',
+    color: 'rgba(255, 255, 255, 0.75)',
+    marginBottom: '2rem',
+  }
+
+  const descriptionStyle: React.CSSProperties = {
+    fontSize: '1.125rem',
+    color: 'rgba(255, 255, 255, 0.75)',
+    marginBottom: '3rem',
+    maxWidth: '42rem',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  }
+
+  const statsGridStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gap: '1.5rem',
+    marginBottom: '3rem',
+  }
+
+  const statStyle: React.CSSProperties = {
+    textAlign: 'center',
+  }
+
+  const statNumberStyle: React.CSSProperties = {
+    fontSize: '2.5rem',
+    fontWeight: 'bold',
+    color: '#73d239',
+    marginBottom: '0.5rem',
+  }
+
+  const statLabelStyle: React.CSSProperties = {
+    color: 'rgba(255, 255, 255, 0.75)',
+  }
+
+  const buttonContainerStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+    justifyContent: 'center',
+  }
+
+  const primaryButtonStyle: React.CSSProperties = {
+    padding: '1rem 2rem',
+    background: 'linear-gradient(135deg, #73d239, #059669)',
+    borderRadius: '9999px',
+    fontWeight: 600,
+    textDecoration: 'none',
+    color: '#fff',
+    transition: 'transform 0.3s ease',
+    boxShadow: '0 10px 30px rgba(115, 210, 57, 0.3)',
+  }
+
+  const secondaryButtonStyle: React.CSSProperties = {
+    padding: '1rem 2rem',
+    border: '2px solid rgba(115, 210, 57, 0.4)',
+    borderRadius: '9999px',
+    fontWeight: 600,
+    textDecoration: 'none',
+    color: '#fff',
+    transition: 'background-color 0.3s ease',
+  }
+
+  const featuresStyle: React.CSSProperties = {
+    padding: '5rem 1rem',
+    background: 'linear-gradient(135deg, #1c1d26 0%, #2a2b36 100%)',
+  }
+
+  const featuresTitleStyle: React.CSSProperties = {
+    fontSize: '2.5rem',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: '3rem',
+    color: '#fff',
+  }
+
+  const featuresGridStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '2rem',
+  }
+
+  const featureCardStyle: React.CSSProperties = {
+    ...cardStyle,
+    padding: '1.5rem',
+    transition: 'transform 0.3s ease',
+  }
+
+  const featureIconStyle: React.CSSProperties = {
+    fontSize: '2.5rem',
+    marginBottom: '1rem',
+  }
+
+  const featureTitleStyle: React.CSSProperties = {
+    fontSize: '1.25rem',
+    fontWeight: 600,
+    marginBottom: '0.5rem',
+    color: '#fff',
+  }
+
+  const featureTextStyle: React.CSSProperties = {
+    color: 'rgba(255, 255, 255, 0.75)',
+  }
+
   return (
-    <div className="pt-16">
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-banner relative overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-20 w-64 h-64 bg-accent-green/20 rounded-full blur-3xl animate-glow-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent-blue/20 rounded-full blur-3xl animate-glow-pulse" style={{ animationDelay: '1s' }}></div>
-        </div>
+    <div style={pageStyle}>
+      <section style={heroStyle}>
+        <div style={containerStyle}>
+          <div style={cardStyle}>
+            <div style={badgeStyle}>
+              <span>🚀</span>
+              <span style={{ color: '#73d239', fontSize: '0.875rem', fontWeight: 600 }}>AI-Powered Education</span>
+            </div>
+            
+            <h1 style={titleStyle}>
+              <span style={{ display: 'block' }}>EDUCATION</span>
+              <span style={{ ...accentStyle, display: 'block' }}>KOTARO AI</span>
+            </h1>
+            
+            <p style={subtitleStyle}>
+              Tương lai của giáo dục khoa học
+            </p>
+            
+            <p style={descriptionStyle}>
+              Khám phá vũ trụ tri thức với <span style={{ color: '#73d239', fontWeight: 600 }}>Trí tuệ nhân tạo</span> tiên tiến
+            </p>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="glass p-12 max-w-4xl mx-auto animate-slide-in-up">
-            <div className="text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent-green/10 border border-accent-green/30 rounded-full mb-6">
-                <span>🚀</span>
-                <span className="text-accent-green text-sm font-semibold">AI-Powered Education</span>
+            <div style={statsGridStyle}>
+              <div style={statStyle}>
+                <div style={statNumberStyle}>100+</div>
+                <div style={statLabelStyle}>Thí nghiệm ảo</div>
               </div>
-              
-              <h1 className="text-5xl md:text-7xl font-black mb-6">
-                <span className="block">EDUCATION</span>
-                <span className="block text-accent-green">KOTARO AI</span>
-              </h1>
-              
-              <p className="text-xl md:text-2xl text-text-secondary mb-8">
-                Tương lai của giáo dục khoa học
-              </p>
-              
-              <p className="text-lg text-text-secondary mb-12 max-w-2xl mx-auto">
-                Khám phá vũ trụ tri thức với <span className="text-accent-green font-semibold">Trí tuệ nhân tạo</span> tiên tiến
-              </p>
+              <div style={statStyle}>
+                <div style={statNumberStyle}>10000+</div>
+                <div style={statLabelStyle}>Tài liệu học tập</div>
+              </div>
+              <div style={statStyle}>
+                <div style={statNumberStyle}>100+</div>
+                <div style={statLabelStyle}>Tiện ích học tập</div>
+              </div>
+            </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-6 mb-12">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-accent-green mb-2">100+</div>
-                  <div className="text-text-secondary">Thí nghiệm ảo</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-accent-green mb-2">10000+</div>
-                  <div className="text-text-secondary">Tài liệu học tập</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-accent-green mb-2">100+</div>
-                  <div className="text-text-secondary">Tiện ích học tập</div>
-                </div>
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  to="/chatbot"
-                  className="px-8 py-4 bg-gradient-to-r from-accent-green to-accent-blue rounded-full font-semibold hover:scale-105 transition-transform shadow-lg shadow-accent-green/30"
-                >
-                  🤖 Trải nghiệm AI ngay →
-                </Link>
-                <Link
-                  to="#features"
-                  className="px-8 py-4 border-2 border-accent-green/40 rounded-full font-semibold hover:bg-accent-green/10 transition-colors"
-                >
-                  Khám phá tính năng ↓
-                </Link>
-              </div>
+            <div style={buttonContainerStyle}>
+              <Link to="/chatbot" style={primaryButtonStyle}>
+                🤖 Trải nghiệm AI ngay →
+              </Link>
+              <a href="#features" style={secondaryButtonStyle}>
+                Khám phá tính năng ↓
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-20 bg-gradient-section">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">
+      <section id="features" style={featuresStyle}>
+        <div style={containerStyle}>
+          <h2 style={featuresTitleStyle}>
             Tính Năng Nổi Bật
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="glass p-6 hover:scale-105 transition-transform">
-              <div className="text-4xl mb-4">🤖</div>
-              <h3 className="text-xl font-semibold mb-2">Trợ Lý AI</h3>
-              <p className="text-text-secondary">
+          <div style={featuresGridStyle}>
+            <div style={featureCardStyle}>
+              <div style={featureIconStyle}>🤖</div>
+              <h3 style={featureTitleStyle}>Trợ Lý AI</h3>
+              <p style={featureTextStyle}>
                 Trả lời tự động, hỗ trợ học tập 24/7 với Gemini AI
               </p>
             </div>
-            <div className="glass p-6 hover:scale-105 transition-transform">
-              <div className="text-4xl mb-4">📚</div>
-              <h3 className="text-xl font-semibold mb-2">Thư Viện Số</h3>
-              <p className="text-text-secondary">
+            <div style={featureCardStyle}>
+              <div style={featureIconStyle}>📚</div>
+              <h3 style={featureTitleStyle}>Thư Viện Số</h3>
+              <p style={featureTextStyle}>
                 Hàng ngàn tài liệu, ebook chất lượng cao
               </p>
             </div>
-            <div className="glass p-6 hover:scale-105 transition-transform">
-              <div className="text-4xl mb-4">🔬</div>
-              <h3 className="text-xl font-semibold mb-2">Thí Nghiệm Ảo</h3>
-              <p className="text-text-secondary">
+            <div style={featureCardStyle}>
+              <div style={featureIconStyle}>🔬</div>
+              <h3 style={featureTitleStyle}>Thí Nghiệm Ảo</h3>
+              <p style={featureTextStyle}>
                 Mô phỏng 2D/3D các thí nghiệm khoa học
               </p>
             </div>
