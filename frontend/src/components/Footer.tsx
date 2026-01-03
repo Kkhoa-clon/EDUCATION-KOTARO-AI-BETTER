@@ -32,7 +32,6 @@ const Footer = () => {
             </Stack>
           </Grid>
 
-          {/* @ts-expect-error - MUI Grid item prop is valid */}
           <Grid item xs={6} sm={3} md={2}>
             <Typography variant="subtitle2" fontWeight={600} gutterBottom>
               Sản phẩm
