@@ -100,7 +100,7 @@ const Quiz = () => {
     <Box
       sx={{
         minHeight: 'calc(100vh - 200px)',
-        py: { xs: 6, md: 8 },
+        py: { xs: 4, md: 8 },
       }}
     >
       <Container maxWidth="md">

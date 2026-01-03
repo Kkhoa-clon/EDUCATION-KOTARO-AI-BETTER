@@ -20,27 +20,25 @@ router.get('/rovers', async (req, res) => {
   }
 });
 
-// Get photos from a rover
-router.get('/photos', async (req, res) => {
+// Get photos from a rover (legacy path for compatibility)
+router.get('/rovers/:rover/photos', async (req, res) => {
   try {
-    const { rover, camera, earth_date, sol } = req.query;
-
-    if (!rover) {
-      return res.status(400).json({ status: 'error', message: 'Rover name is required' });
-    }
+    const { rover } = req.params;
+    const { camera, earth_date, sol, page } = req.query;
 
     const params = { api_key: NASA_API_KEY };
 
     if (camera) params.camera = camera;
     if (earth_date) params.earth_date = earth_date;
     if (sol) params.sol = parseInt(sol);
+    if (page) params.page = parseInt(page);
 
     const response = await axios.get(`${NASA_BASE_URL}/rovers/${rover}/photos`, { params });
 
-    res.json({ status: 'success', data: response.data.photos });
+    res.json(response.data);
   } catch (error) {
-    console.error('NASA photos error:', error);
-    res.status(500).json({ status: 'error', message: 'Failed to fetch photos' });
+    console.error('NASA mars photos error:', error);
+    res.status(500).json({ status: 'error', message: 'Failed to fetch Mars photos' });
   }
 });
 

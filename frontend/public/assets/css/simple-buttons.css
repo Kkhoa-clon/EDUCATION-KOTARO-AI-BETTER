@@ -1,0 +1,76 @@
+/* Simple button styling for better visibility */
+button, .button, input[type="submit"], input[type="button"],
+.book-btn, .btn-primary, .btn-secondary, .btn-hero {
+    padding: 10px 20px;
+    margin: 5px;
+    border: 2px solid #73d239;
+    background-color: #1a1a2e;
+    color: #73d239;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    min-width: 100px;
+}
+
+button:hover, .button:hover, input[type="submit"]:hover, input[type="button"]:hover,
+.book-btn:hover, .btn-primary:hover, .btn-secondary:hover, .btn-hero:hover {
+    background-color: #73d239;
+    color: #1a1a2e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(115, 210, 57, 0.3);
+}
+
+button:active, .button:active, input[type="submit"]:active, input[type="button"]:active,
+.book-btn:active, .btn-primary:active, .btn-secondary:active, .btn-hero:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(115, 210, 57, 0.2);
+}
+
+/* Primary button style */
+.btn-primary, .book-btn.primary {
+    background-color: #73d239;
+    color: #1a1a2e;
+    border-color: #73d239;
+}
+
+.btn-primary:hover, .book-btn.primary:hover {
+    background-color: #5fb02d;
+    border-color: #5fb02d;
+}
+
+/* Secondary button style */
+.btn-secondary {
+    background-color: transparent;
+    color: #73d239;
+    border-color: #73d239;
+}
+
+.btn-secondary:hover {
+    background-color: #73d239;
+    color: #1a1a2e;
+}
+
+/* Disabled button */
+button:disabled, .button:disabled, input[type="submit"]:disabled, input[type="button"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Small buttons */
+button.small, .button.small {
+    padding: 6px 12px;
+    font-size: 12px;
+    min-width: 60px;
+}
+
+/* Large buttons */
+button.large, .button.large {
+    padding: 14px 28px;
+    font-size: 16px;
+    min-width: 150px;
+}

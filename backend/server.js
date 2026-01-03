@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 // Routes
 app.use('/api/gemini', geminiRoutes);
 app.use('/api/nasa', nasaRoutes);
+app.use('/api/mars', nasaRoutes); // Alias for mars routes
 app.use('/api/email', emailRoutes);
 app.use('/api/quiz', quizRoutes);
 
