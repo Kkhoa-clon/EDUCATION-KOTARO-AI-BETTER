@@ -14,8 +14,7 @@ This is a Vietnamese educational AI platform with a React frontend and Node.js/E
 - `frontend/src/pages/`: Page components (Home, Quiz, subject pages)
 - `frontend/src/components/`: Reusable components (Header, Footer, Chatbot)
 - `frontend/src/services/api.ts`: API client for backend calls
-- `backend/routes/`: API route handlers (gemini.js, nasa.js, email.js)
-- `frontend/public/data/`: JSON data files for ebooks and subjects
+- `backend/routes/`: API route handlers (gemini.js, nasa.js, email.js, quiz.js)
 
 ## Development Workflow
 - Run both servers: `npm run dev` (from root, uses concurrently)
@@ -73,7 +72,6 @@ router.post('/endpoint', async (req, res) => {
 - **EmailJS**: Contact form (called directly from frontend)
 
 ## Data Management
-- Subject content stored in JSON files: `hoa-hoc.json`, `vat-ly.json`, etc.
 - Educational content in Vietnamese
 - Static data served from `frontend/public/`
 
