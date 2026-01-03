@@ -13,170 +13,471 @@ const Home: React.FC = () => {
 
   return (
     <Box>
-      {/* Hero Section - Enhanced Design */}
+      {/* Hero Section - Clean Education Design */}
       <Box
         sx={{
-          textAlign: 'center',
-          py: { xs: 8, md: 12 },
-          background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%)',
+          backgroundColor: 'background.paper',
+          py: { xs: 6, md: 8 },
           mb: 8,
-          position: 'relative',
-          overflow: 'hidden',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)',
-            pointerEvents: 'none',
-          },
+          borderBottom: '1px solid',
+          borderColor: 'divider',
         }}
       >
-        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+        <Container maxWidth="lg">
           <Box
-            component="img"
-            src="/assets/image/logo.png"
-            alt="Kotaro AI Logo"
             sx={{
-              height: { xs: 80, md: 100 },
-              width: 'auto',
-              mb: 4,
-              boxShadow: '0 8px 24px rgba(34, 197, 94, 0.3)',
-              borderRadius: 2,
-            }}
-          />
-          <Typography
-            variant="h2"
-            component="h1"
-            sx={{
-              background: 'linear-gradient(135deg, #22c55e 0%, #10b981 100%)',
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              fontWeight: 800,
-              mb: 2,
-              fontSize: { xs: '2.5rem', md: '3.5rem' },
+              display: 'flex',
+              flexDirection: { xs: 'column', md: 'row' },
+              alignItems: 'center',
+              gap: { xs: 4, md: 6 },
             }}
           >
-            Education Kotaro AI
-          </Typography>
-          <Typography
-            variant="h6"
-            component="h2"
-            sx={{ mb: 4, color: 'text.secondary', maxWidth: 800, mx: 'auto', lineHeight: 1.6, fontSize: { xs: '1.1rem', md: '1.25rem' } }}
-          >
-            Nền tảng học tập thông minh với trí tuệ nhân tạo cho thế hệ trẻ Việt Nam
-          </Typography>
+            {/* Left Content */}
+            <Box sx={{ flex: 1, textAlign: { xs: 'center', md: 'left' } }}>
+              <Box
+                component="img"
+                src="/assets/image/logo.png"
+                alt="Kotaro AI Logo"
+                sx={{
+                  height: { xs: 60, md: 80 },
+                  width: 'auto',
+                  mb: 3,
+                  display: { xs: 'block', md: 'block' },
+                  mx: { xs: 'auto', md: 0 },
+                }}
+              />
+              <Typography
+                variant="h3"
+                component="h1"
+                sx={{
+                  color: 'primary.main',
+                  fontWeight: 700,
+                  mb: 2,
+                  fontSize: { xs: '2rem', md: '2.5rem' },
+                }}
+              >
+                Education Kotaro AI
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  mb: 4,
+                  color: 'text.secondary',
+                  lineHeight: 1.6,
+                  fontSize: { xs: '1rem', md: '1.1rem' },
+                  maxWidth: { xs: '100%', md: 500 },
+                }}
+              >
+                Nền tảng học tập thông minh với trí tuệ nhân tạo cho thế hệ trẻ Việt Nam
+              </Typography>
 
-          {/* Statistics Chips */}
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3, mb: 6, flexWrap: 'wrap' }}>
-            <Paper
-              elevation={0}
-              sx={{
-                px: 3,
-                py: 2,
-                borderRadius: 3,
-                backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(34, 197, 94, 0.2)',
-              }}
-            >
-              <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700 }}>
-                10K+
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Học sinh sử dụng
-              </Typography>
-            </Paper>
-            <Paper
-              elevation={0}
-              sx={{
-                px: 3,
-                py: 2,
-                borderRadius: 3,
-                backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(34, 197, 94, 0.2)',
-              }}
-            >
-              <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700 }}>
-                8
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Môn học chính
-              </Typography>
-            </Paper>
-            <Paper
-              elevation={0}
-              sx={{
-                px: 3,
-                py: 2,
-                borderRadius: 3,
-                backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(34, 197, 94, 0.2)',
-              }}
-            >
-              <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 700 }}>
-                95%
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Độ hài lòng
-              </Typography>
-            </Paper>
-          </Box>
+              <Box sx={{ display: 'flex', gap: 2, justifyContent: { xs: 'center', md: 'flex-start' }, flexWrap: 'wrap' }}>
+                <Button
+                  variant="contained"
+                  size="large"
+                  component={Link}
+                  to="/chatbot"
+                  sx={{
+                    minWidth: 160,
+                    py: 1.5,
+                    px: 4,
+                    borderRadius: 2,
+                    fontWeight: 600,
+                  }}
+                >
+                  Bắt đầu học tập
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  component={Link}
+                  to="/thu-vien"
+                  sx={{
+                    minWidth: 160,
+                    py: 1.5,
+                    px: 4,
+                    borderRadius: 2,
+                    fontWeight: 600,
+                    borderWidth: 2,
+                  }}
+                >
+                  Khám phá thư viện
+                </Button>
+              </Box>
+            </Box>
 
-          <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Button
-              variant="contained"
-              size="large"
-              component={Link}
-              to="/chatbot"
-              sx={{
-                minWidth: 200,
-                py: 2,
-                px: 5,
-                borderRadius: 4,
-                fontWeight: 600,
-                fontSize: '1.1rem',
-                boxShadow: '0 6px 20px rgba(34, 197, 94, 0.4)',
-                '&:hover': {
-                  boxShadow: '0 8px 30px rgba(34, 197, 94, 0.5)',
-                  transform: 'translateY(-3px)',
-                },
-                transition: 'all 0.3s ease',
-              }}
-            >
-              Bắt đầu học tập
-            </Button>
-            <Button
-              variant="outlined"
-              size="large"
-              component={Link}
-              to="/thu-vien"
-              sx={{
-                minWidth: 200,
-                py: 2,
-                px: 5,
-                borderRadius: 4,
-                fontWeight: 600,
-                fontSize: '1.1rem',
-                borderWidth: 2,
-                '&:hover': {
-                  borderWidth: 2,
-                  backgroundColor: 'rgba(34, 197, 94, 0.08)',
-                  transform: 'translateY(-2px)',
-                },
-                transition: 'all 0.3s ease',
-              }}
-            >
-              Khám phá thư viện
-            </Button>
+            {/* Right Content - Statistics */}
+            <Box sx={{ flex: 1 }}>
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+                  gap: 3,
+                  maxWidth: 400,
+                  mx: { xs: 'auto', md: 0 },
+                }}
+              >
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 3,
+                    textAlign: 'center',
+                    borderRadius: 2,
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    backgroundColor: 'background.default',
+                  }}
+                >
+                  <Typography variant="h3" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
+                    10K+
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500 }}>
+                    Học sinh sử dụng
+                  </Typography>
+                </Paper>
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 3,
+                    textAlign: 'center',
+                    borderRadius: 2,
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    backgroundColor: 'background.default',
+                  }}
+                >
+                  <Typography variant="h3" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
+                    8
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500 }}>
+                    Môn học chính
+                  </Typography>
+                </Paper>
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 3,
+                    textAlign: 'center',
+                    borderRadius: 2,
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    backgroundColor: 'background.default',
+                    gridColumn: { xs: '1 / -1', sm: '1 / -1' },
+                  }}
+                >
+                  <Typography variant="h3" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
+                    95%
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500 }}>
+                    Độ hài lòng
+                  </Typography>
+                </Paper>
+              </Box>
+            </Box>
           </Box>
         </Container>
       </Box>
+      {/* Statistics Section */}
+      <Box
+        sx={{
+          py: 8,
+          background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%)',
+          mb: 8,
+        }}
+      >
+        <Container maxWidth="lg">
+          <Typography variant="h3" component="h2" textAlign="center" sx={{ mb: 6, fontWeight: 700 }}>
+            Thành tựu của chúng tôi
+          </Typography>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, justifyContent: 'center' }}>
+            <Card
+              sx={{
+                flex: '1 1 250px',
+                maxWidth: 300,
+                textAlign: 'center',
+                p: 4,
+                borderRadius: 4,
+                background: 'rgba(255, 255, 255, 0.9)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(34, 197, 94, 0.1)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  transform: 'translateY(-8px)',
+                  boxShadow: '0 16px 32px rgba(34, 197, 94, 0.2)',
+                  borderColor: 'primary.main',
+                },
+              }}
+            >
+              <PeopleIcon sx={{ fontSize: 64, color: 'primary.main', mb: 2 }} />
+              <Typography
+                variant="h3"
+                sx={{
+                  background: 'linear-gradient(135deg, #22c55e 0%, #10b981 100%)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontWeight: 800,
+                  mb: 1,
+                }}
+              >
+                10,000+
+              </Typography>
+              <Typography variant="h6" color="text.secondary" sx={{ fontWeight: 500 }}>
+                Học sinh đã tham gia
+              </Typography>
+            </Card>
+            <Card
+              sx={{
+                flex: '1 1 250px',
+                maxWidth: 300,
+                textAlign: 'center',
+                p: 4,
+                borderRadius: 4,
+                background: 'rgba(255, 255, 255, 0.9)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(34, 197, 94, 0.1)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  transform: 'translateY(-8px)',
+                  boxShadow: '0 16px 32px rgba(34, 197, 94, 0.2)',
+                  borderColor: 'primary.main',
+                },
+              }}
+            >
+              <LibraryBooksIcon sx={{ fontSize: 64, color: 'primary.main', mb: 2 }} />
+              <Typography
+                variant="h3"
+                sx={{
+                  background: 'linear-gradient(135deg, #22c55e 0%, #10b981 100%)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontWeight: 800,
+                  mb: 1,
+                }}
+              >
+                500+
+              </Typography>
+              <Typography variant="h6" color="text.secondary" sx={{ fontWeight: 500 }}>
+                Bài giảng chất lượng
+              </Typography>
+            </Card>
+            <Card
+              sx={{
+                flex: '1 1 250px',
+                maxWidth: 300,
+                textAlign: 'center',
+                p: 4,
+                borderRadius: 4,
+                background: 'rgba(255, 255, 255, 0.9)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(34, 197, 94, 0.1)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  transform: 'translateY(-8px)',
+                  boxShadow: '0 16px 32px rgba(34, 197, 94, 0.2)',
+                  borderColor: 'primary.main',
+                },
+              }}
+            >
+              <SchoolIcon sx={{ fontSize: 64, color: 'primary.main', mb: 2 }} />
+              <Typography
+                variant="h3"
+                sx={{
+                  background: 'linear-gradient(135deg, #22c55e 0%, #10b981 100%)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontWeight: 800,
+                  mb: 1,
+                }}
+              >
+                8
+              </Typography>
+              <Typography variant="h6" color="text.secondary" sx={{ fontWeight: 500 }}>
+                Môn học được hỗ trợ
+              </Typography>
+            </Card>
+            <Card
+              sx={{
+                flex: '1 1 250px',
+                maxWidth: 300,
+                textAlign: 'center',
+                p: 4,
+                borderRadius: 4,
+                background: 'rgba(255, 255, 255, 0.9)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(34, 197, 94, 0.1)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  transform: 'translateY(-8px)',
+                  boxShadow: '0 16px 32px rgba(34, 197, 94, 0.2)',
+                  borderColor: 'primary.main',
+                },
+              }}
+            >
+              <AccessTimeIcon sx={{ fontSize: 64, color: 'primary.main', mb: 2 }} />
+              <Typography
+                variant="h3"
+                sx={{
+                  background: 'linear-gradient(135deg, #22c55e 0%, #10b981 100%)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontWeight: 800,
+                  mb: 1,
+                }}
+              >
+                24/7
+              </Typography>
+              <Typography variant="h6" color="text.secondary" sx={{ fontWeight: 500 }}>
+                Hỗ trợ học tập
+              </Typography>
+            </Card>
+          </Box>
+        </Container>
+      </Box>
+
+
+            {/* Gallery Preview Section - Compact Design */}
+      <Container maxWidth="lg" sx={{ mb: 6 }}>
+        <Typography variant="h4" component="h2" textAlign="center" sx={{ mb: 3, fontWeight: 700 }}>
+          Tính Năng Mô Phỏng 3D Vũ Trụ - NASA
+        </Typography>
+
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, justifyContent: 'center' }}>
+          <Box sx={{ flex: '1 1 300px', maxWidth: 350 }}>
+            <Card
+              component={Link}
+              to="/thien-van/image-nasa"
+              sx={{
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                transition: 'all 0.3s ease',
+                textDecoration: 'none',
+                '&:hover': {
+                  transform: 'translateY(-6px)',
+                  boxShadow: '0 10px 25px rgba(34, 197, 94, 0.2)',
+                },
+                borderRadius: 2,
+                overflow: 'hidden',
+              }}
+            >
+              <Box
+                component="img"
+                src="/assets/image/traidat.png"
+                alt="Hình ảnh Trái Đất"
+                sx={{
+                  width: '100%',
+                  height: 160,
+                  objectFit: 'cover',
+                  transition: 'transform 0.3s ease',
+                  '&:hover': {
+                    transform: 'scale(1.03)',
+                  },
+                }}
+              />
+              <CardContent sx={{ p: 2, flexGrow: 1, textAlign: 'center' }}>
+                <Typography variant="subtitle1" sx={{ color: 'primary.main', mb: 1, fontWeight: 600 }}>
+                  Hành tinh Trái Đất
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.5 }}>
+                  Hình ảnh hành tinh xanh cua chúng ta từ không gian mô phỏng.
+                </Typography>
+              </CardContent>
+            </Card>
+          </Box>
+
+          <Box sx={{ flex: '1 1 300px', maxWidth: 350 }}>
+            <Card
+              component={Link}
+              to="/thien-van/image-nasa"
+              sx={{
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                transition: 'all 0.3s ease',
+                textDecoration: 'none',
+                '&:hover': {
+                  transform: 'translateY(-6px)',
+                  boxShadow: '0 10px 25px rgba(34, 197, 94, 0.2)',
+                },
+                borderRadius: 2,
+                overflow: 'hidden',
+              }}
+            >
+              <Box
+                component="img"
+                src="/assets/image/hemattroi.png"
+                alt="Hình ảnh Hệ Mặt Trời"
+                sx={{
+                  width: '100%',
+                  height: 160,
+                  objectFit: 'cover',
+                  transition: 'transform 0.3s ease',
+                  '&:hover': {
+                    transform: 'scale(1.03)',
+                  },
+                }}
+              />
+              <CardContent sx={{ p: 2, flexGrow: 1, textAlign: 'center' }}>
+                <Typography variant="subtitle1" sx={{ color: 'primary.main', mb: 1, fontWeight: 600 }}>
+                  Hệ Mặt Trời
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.5 }}>
+                  Khám phá các hành tinh và vệ tinh trong hệ mặt trời của chúng ta.
+                </Typography>
+              </CardContent>
+            </Card>
+          </Box>
+
+          <Box sx={{ flex: '1 1 300px', maxWidth: 350 }}>
+            <Card
+              component={Link}
+              to="/thien-van/image-nasa"
+              sx={{
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                transition: 'all 0.3s ease',
+                textDecoration: 'none',
+                '&:hover': {
+                  transform: 'translateY(-6px)',
+                  boxShadow: '0 10px 25px rgba(34, 197, 94, 0.2)',
+                },
+                borderRadius: 2,
+                overflow: 'hidden',
+              }}
+            >
+              <Box
+                component="img"
+                src="/assets/image/tieuhanhtinh.png"
+                alt="Tiểu Hành Tinh"
+                sx={{
+                  width: '100%',
+                  height: 160,
+                  objectFit: 'cover',
+                  transition: 'transform 0.3s ease',
+                  '&:hover': {
+                    transform: 'scale(1.03)',
+                  },
+                }}
+              />
+              <CardContent sx={{ p: 2, flexGrow: 1, textAlign: 'center' }}>
+                <Typography variant="subtitle1" sx={{ color: 'primary.main', mb: 1, fontWeight: 600 }}>
+                  Tiểu Hành Tinh
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.5 }}>
+                  Tìm hiểu về các tiểu hành tinh và vành đai tiểu hành tinh trong không gian.
+                </Typography>
+              </CardContent>
+            </Card>
+          </Box>
+        </Box>
+        </Container>
+
+
 
       {/* Key Features Section */}
       <Container maxWidth="lg" sx={{ mb: 8 }}>
@@ -372,305 +673,10 @@ const Home: React.FC = () => {
         </Container>
       </Box>
 
-      {/* Statistics Section */}
-      <Box
-        sx={{
-          py: 8,
-          background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%)',
-          mb: 8,
-        }}
-      >
-        <Container maxWidth="lg">
-          <Typography variant="h3" component="h2" textAlign="center" sx={{ mb: 6, fontWeight: 700 }}>
-            Thành tựu của chúng tôi
-          </Typography>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, justifyContent: 'center' }}>
-            <Card
-              sx={{
-                flex: '1 1 250px',
-                maxWidth: 300,
-                textAlign: 'center',
-                p: 4,
-                borderRadius: 4,
-                background: 'rgba(255, 255, 255, 0.9)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(34, 197, 94, 0.1)',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-8px)',
-                  boxShadow: '0 16px 32px rgba(34, 197, 94, 0.2)',
-                  borderColor: 'primary.main',
-                },
-              }}
-            >
-              <PeopleIcon sx={{ fontSize: 64, color: 'primary.main', mb: 2 }} />
-              <Typography
-                variant="h3"
-                sx={{
-                  background: 'linear-gradient(135deg, #22c55e 0%, #10b981 100%)',
-                  backgroundClip: 'text',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  fontWeight: 800,
-                  mb: 1,
-                }}
-              >
-                10,000+
-              </Typography>
-              <Typography variant="h6" color="text.secondary" sx={{ fontWeight: 500 }}>
-                Học sinh đã tham gia
-              </Typography>
-            </Card>
-            <Card
-              sx={{
-                flex: '1 1 250px',
-                maxWidth: 300,
-                textAlign: 'center',
-                p: 4,
-                borderRadius: 4,
-                background: 'rgba(255, 255, 255, 0.9)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(34, 197, 94, 0.1)',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-8px)',
-                  boxShadow: '0 16px 32px rgba(34, 197, 94, 0.2)',
-                  borderColor: 'primary.main',
-                },
-              }}
-            >
-              <LibraryBooksIcon sx={{ fontSize: 64, color: 'primary.main', mb: 2 }} />
-              <Typography
-                variant="h3"
-                sx={{
-                  background: 'linear-gradient(135deg, #22c55e 0%, #10b981 100%)',
-                  backgroundClip: 'text',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  fontWeight: 800,
-                  mb: 1,
-                }}
-              >
-                500+
-              </Typography>
-              <Typography variant="h6" color="text.secondary" sx={{ fontWeight: 500 }}>
-                Bài giảng chất lượng
-              </Typography>
-            </Card>
-            <Card
-              sx={{
-                flex: '1 1 250px',
-                maxWidth: 300,
-                textAlign: 'center',
-                p: 4,
-                borderRadius: 4,
-                background: 'rgba(255, 255, 255, 0.9)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(34, 197, 94, 0.1)',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-8px)',
-                  boxShadow: '0 16px 32px rgba(34, 197, 94, 0.2)',
-                  borderColor: 'primary.main',
-                },
-              }}
-            >
-              <SchoolIcon sx={{ fontSize: 64, color: 'primary.main', mb: 2 }} />
-              <Typography
-                variant="h3"
-                sx={{
-                  background: 'linear-gradient(135deg, #22c55e 0%, #10b981 100%)',
-                  backgroundClip: 'text',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  fontWeight: 800,
-                  mb: 1,
-                }}
-              >
-                8
-              </Typography>
-              <Typography variant="h6" color="text.secondary" sx={{ fontWeight: 500 }}>
-                Môn học được hỗ trợ
-              </Typography>
-            </Card>
-            <Card
-              sx={{
-                flex: '1 1 250px',
-                maxWidth: 300,
-                textAlign: 'center',
-                p: 4,
-                borderRadius: 4,
-                background: 'rgba(255, 255, 255, 0.9)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(34, 197, 94, 0.1)',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-8px)',
-                  boxShadow: '0 16px 32px rgba(34, 197, 94, 0.2)',
-                  borderColor: 'primary.main',
-                },
-              }}
-            >
-              <AccessTimeIcon sx={{ fontSize: 64, color: 'primary.main', mb: 2 }} />
-              <Typography
-                variant="h3"
-                sx={{
-                  background: 'linear-gradient(135deg, #22c55e 0%, #10b981 100%)',
-                  backgroundClip: 'text',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  fontWeight: 800,
-                  mb: 1,
-                }}
-              >
-                24/7
-              </Typography>
-              <Typography variant="h6" color="text.secondary" sx={{ fontWeight: 500 }}>
-                Hỗ trợ học tập
-              </Typography>
-            </Card>
-          </Box>
-        </Container>
-      </Box>
 
 
-      {/* Gallery Preview Section - Compact Design */}
-      <Container maxWidth="lg" sx={{ mb: 6 }}>
-        <Typography variant="h4" component="h2" textAlign="center" sx={{ mb: 3, fontWeight: 700 }}>
-          Tính Năng Mô Phỏng 3D Vũ Trụ - NASA
-        </Typography>
 
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, justifyContent: 'center' }}>
-          <Box sx={{ flex: '1 1 300px', maxWidth: 350 }}>
-            <Card
-              component={Link}
-              to="/thien-van/image-nasa"
-              sx={{
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                transition: 'all 0.3s ease',
-                textDecoration: 'none',
-                '&:hover': {
-                  transform: 'translateY(-6px)',
-                  boxShadow: '0 10px 25px rgba(34, 197, 94, 0.2)',
-                },
-                borderRadius: 2,
-                overflow: 'hidden',
-              }}
-            >
-              <Box
-                component="img"
-                src="/assets/image/traidat.png"
-                alt="Hình ảnh Trái Đất"
-                sx={{
-                  width: '100%',
-                  height: 160,
-                  objectFit: 'cover',
-                  transition: 'transform 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.03)',
-                  },
-                }}
-              />
-              <CardContent sx={{ p: 2, flexGrow: 1, textAlign: 'center' }}>
-                <Typography variant="subtitle1" sx={{ color: 'primary.main', mb: 1, fontWeight: 600 }}>
-                  Hành tinh Trái Đất
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.5 }}>
-                  Hình ảnh hành tinh xanh cua chúng ta từ không gian mô phỏng.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Box>
 
-          <Box sx={{ flex: '1 1 300px', maxWidth: 350 }}>
-            <Card
-              component={Link}
-              to="/thien-van/image-nasa"
-              sx={{
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                transition: 'all 0.3s ease',
-                textDecoration: 'none',
-                '&:hover': {
-                  transform: 'translateY(-6px)',
-                  boxShadow: '0 10px 25px rgba(34, 197, 94, 0.2)',
-                },
-                borderRadius: 2,
-                overflow: 'hidden',
-              }}
-            >
-              <Box
-                component="img"
-                src="/assets/image/hemattroi.png"
-                alt="Hình ảnh Hệ Mặt Trời"
-                sx={{
-                  width: '100%',
-                  height: 160,
-                  objectFit: 'cover',
-                  transition: 'transform 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.03)',
-                  },
-                }}
-              />
-              <CardContent sx={{ p: 2, flexGrow: 1, textAlign: 'center' }}>
-                <Typography variant="subtitle1" sx={{ color: 'primary.main', mb: 1, fontWeight: 600 }}>
-                  Hệ Mặt Trời
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.5 }}>
-                  Khám phá các hành tinh và vệ tinh trong hệ mặt trời của chúng ta.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Box>
-
-          <Box sx={{ flex: '1 1 300px', maxWidth: 350 }}>
-            <Card
-              component={Link}
-              to="/thien-van/image-nasa"
-              sx={{
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                transition: 'all 0.3s ease',
-                textDecoration: 'none',
-                '&:hover': {
-                  transform: 'translateY(-6px)',
-                  boxShadow: '0 10px 25px rgba(34, 197, 94, 0.2)',
-                },
-                borderRadius: 2,
-                overflow: 'hidden',
-              }}
-            >
-              <Box
-                component="img"
-                src="/assets/image/tieuhanhtinh.png"
-                alt="Tiểu Hành Tinh"
-                sx={{
-                  width: '100%',
-                  height: 160,
-                  objectFit: 'cover',
-                  transition: 'transform 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.03)',
-                  },
-                }}
-              />
-              <CardContent sx={{ p: 2, flexGrow: 1, textAlign: 'center' }}>
-                <Typography variant="subtitle1" sx={{ color: 'primary.main', mb: 1, fontWeight: 600 }}>
-                  Tiểu Hành Tinh
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.5 }}>
-                  Tìm hiểu về các tiểu hành tinh và vành đai tiểu hành tinh trong không gian.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Box>
-        </Box>
-        </Container>
 
       {/* CTA Section */}
       <Container maxWidth="lg" sx={{ mb: 8 }}>
@@ -699,25 +705,7 @@ const Home: React.FC = () => {
           </Button>
         </Box>
         <Box sx={{ textAlign: 'center', mt: 3 }}>
-          <Button
-            variant="outlined"
-            component={Link}
-            to="/thien-van/image-nasa"
-            sx={{
-              minWidth: 180,
-              py: 1.25,
-              px: 3,
-              borderRadius: 2,
-              fontWeight: 600,
-              borderWidth: 2,
-              '&:hover': {
-                borderWidth: 2,
-                backgroundColor: 'rgba(34, 197, 94, 0.08)',
-              },
-            }}
-          >
-            Xem thêm hình ảnh
-          </Button>
+
         </Box>
       </Container>
             {/* Features Section - Compact Grid */}
