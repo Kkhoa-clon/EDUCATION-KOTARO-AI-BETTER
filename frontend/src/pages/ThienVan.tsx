@@ -57,7 +57,6 @@ const ThienVan = () => {
 
         <Grid container spacing={4}>
           {features.map((feature, index) => (
-            // @ts-expect-error - MUI Grid item prop is valid
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card
                 component={Link}

@@ -17,7 +17,7 @@ import {
   Chip,
   Stack,
 } from '@mui/material'
-import { PhotoCamera, Info, CalendarToday } from '@mui/icons-material'
+import { PhotoCamera, CalendarToday } from '@mui/icons-material'
 
 interface Photo {
   id: number

@@ -16,7 +16,6 @@ const LienHe = () => {
         </Typography>
 
         <Grid container spacing={4}>
-          {/* @ts-expect-error - MUI Grid item prop is valid */}
           <Grid item xs={12} md={8}>
             <Card sx={{ p: 4 }}>
               <Stack spacing={3}>
@@ -37,7 +36,6 @@ const LienHe = () => {
             </Card>
           </Grid>
 
-          {/* @ts-expect-error - MUI Grid item prop is valid */}
           <Grid item xs={12} md={4}>
             <Stack spacing={3}>
               <Card sx={{ p: 3 }}>

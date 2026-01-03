@@ -46,6 +46,7 @@ const Header = () => {
     { label: 'Trợ Lý Sen', path: '/chatbot' },
     { label: 'Thiên Văn Học', path: '/thien-van' },
     { label: 'Tạo Câu Hỏi', path: '/quiz' },
+    { label: 'Liên Hệ', path: '/lien-he' },
   ]
 
   const drawer = (
