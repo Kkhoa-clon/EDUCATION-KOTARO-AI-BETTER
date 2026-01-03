@@ -19,12 +19,13 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import CancelIcon from '@mui/icons-material/Cancel'
 import RefreshIcon from '@mui/icons-material/Refresh'
+import api from '../services/api'
 
 interface Question {
+  id: string
   question: string
-  correct_answer: string
-  incorrect_answers: string[]
-  all_answers: string[]
+  answers: string[]
+  correctAnswer: string
 }
 
 const Quiz = () => {
@@ -36,37 +37,40 @@ const Quiz = () => {
   const [score, setScore] = useState(0)
   const [showResult, setShowResult] = useState(false)
   const [config, setConfig] = useState({
-    amount: '10',
+    amount: '5',
     category: '',
     difficulty: '',
-    type: '',
+    type: 'multiple', // default to multiple choice
   })
 
   const startQuiz = async () => {
     setLoading(true)
-    // Simulate API call
-    setTimeout(() => {
-      setQuestions([
-        {
-          question: 'Câu hỏi mẫu 1?',
-          correct_answer: 'Đáp án đúng',
-          incorrect_answers: ['Sai 1', 'Sai 2', 'Sai 3'],
-          all_answers: ['Đáp án đúng', 'Sai 1', 'Sai 2', 'Sai 3'],
-        },
-      ])
-      setLoading(false)
+    try {
+      const response = await api.post('/api/quiz/generate', {
+        amount: parseInt(config.amount),
+        category: config.category || undefined,
+        difficulty: config.difficulty || undefined,
+        type: config.type || undefined,
+      })
+      setQuestions(response.data.questions)
       setCurrentQuestionIndex(0)
       setSelectedAnswer('')
       setShowFeedback(false)
       setScore(0)
       setShowResult(false)
-    }, 1000)
+    } catch (error) {
+      console.error('Failed to generate quiz:', error)
+      // Handle error, maybe show alert
+      alert(error.response?.data?.message || 'Không thể tạo câu hỏi. Vui lòng thử lại.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const checkAnswer = (answer: string) => {
     setSelectedAnswer(answer)
     setShowFeedback(true)
-    if (answer === questions[currentQuestionIndex].correct_answer) {
+    if (answer === questions[currentQuestionIndex].correctAnswer) {
       setScore(score + 1)
     }
   }
@@ -132,9 +136,42 @@ const Quiz = () => {
                   label="Chủ đề"
                 >
                   <MenuItem value="">Tất cả</MenuItem>
+                  <MenuItem value="9">Kiến thức chung</MenuItem>
+                  <MenuItem value="10">Giải trí: Sách</MenuItem>
+                  <MenuItem value="11">Giải trí: Phim</MenuItem>
+                  <MenuItem value="12">Giải trí: Nhạc</MenuItem>
+                  <MenuItem value="13">Giải trí: Nhạc kịch & Sân khấu</MenuItem>
+                  <MenuItem value="14">Giải trí: Truyền hình</MenuItem>
+                  <MenuItem value="15">Giải trí: Trò chơi điện tử</MenuItem>
+                  <MenuItem value="16">Giải trí: Trò chơi bàn</MenuItem>
                   <MenuItem value="17">Khoa học & Tự nhiên</MenuItem>
                   <MenuItem value="18">Khoa học: Máy tính</MenuItem>
                   <MenuItem value="19">Khoa học: Toán học</MenuItem>
+                  <MenuItem value="20">Thần thoại</MenuItem>
+                  <MenuItem value="21">Thể thao</MenuItem>
+                  <MenuItem value="22">Địa lý</MenuItem>
+                  <MenuItem value="23">Lịch sử</MenuItem>
+                  <MenuItem value="24">Chính trị</MenuItem>
+                  <MenuItem value="25">Nghệ thuật</MenuItem>
+                  <MenuItem value="26">Người nổi tiếng</MenuItem>
+                  <MenuItem value="27">Động vật</MenuItem>
+                  <MenuItem value="28">Phương tiện</MenuItem>
+                  <MenuItem value="29">Giải trí: Truyện tranh</MenuItem>
+                  <MenuItem value="30">Khoa học: Thiết bị</MenuItem>
+                  <MenuItem value="31">Giải trí: Anime & Manga Nhật</MenuItem>
+                  <MenuItem value="32">Giải trí: Hoạt hình</MenuItem>
+                </Select>
+              </FormControl>
+
+              <FormControl fullWidth>
+                <InputLabel>Loại câu hỏi</InputLabel>
+                <Select
+                  value={config.type}
+                  onChange={(e) => setConfig({ ...config, type: e.target.value })}
+                  label="Loại câu hỏi"
+                >
+                  <MenuItem value="multiple">Trắc nghiệm (4 lựa chọn)</MenuItem>
+                  <MenuItem value="boolean">Đúng/Sai</MenuItem>
                 </Select>
               </FormControl>
 
@@ -185,8 +222,8 @@ const Quiz = () => {
               </Typography>
 
               <Grid container spacing={2}>
-                {currentQuestion.all_answers.map((answer, index) => {
-                  const isCorrect = answer === currentQuestion.correct_answer
+                {currentQuestion.answers.map((answer, index) => {
+                  const isCorrect = answer === currentQuestion.correctAnswer
                   const isSelected = selectedAnswer === answer
                   const isWrong = isSelected && !isCorrect
 
@@ -204,7 +241,6 @@ const Quiz = () => {
                   }
 
                   return (
-                    // @ts-expect-error - MUI Grid item prop is valid
                     <Grid item xs={12} sm={6} key={index}>
                       <Button
                         fullWidth
@@ -228,16 +264,16 @@ const Quiz = () => {
 
               {showFeedback && (
                 <Alert
-                  severity={selectedAnswer === currentQuestion.correct_answer ? 'success' : 'error'}
+                  severity={selectedAnswer === currentQuestion.correctAnswer ? 'success' : 'error'}
                   icon={
-                    selectedAnswer === currentQuestion.correct_answer ? <CheckCircleIcon /> : <CancelIcon />
+                    selectedAnswer === currentQuestion.correctAnswer ? <CheckCircleIcon /> : <CancelIcon />
                   }
                 >
-                  {selectedAnswer === currentQuestion.correct_answer ? (
+                  {selectedAnswer === currentQuestion.correctAnswer ? (
                     '🎉 Chính xác!'
                   ) : (
                     <>
-                      Đáp án đúng là: <strong>{currentQuestion.correct_answer}</strong>
+                      Đáp án đúng là: <strong>{currentQuestion.correctAnswer}</strong>
                     </>
                   )}
                 </Alert>

@@ -9,17 +9,22 @@
     "build": "echo 'No build step required'"
   },
   "dependencies": {
-    "express": "^4.18.2",
+    "@google/generative-ai": "^0.21.0",
+    "axios": "^1.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "axios": "^1.6.0",
-    "nodemailer": "^6.9.7",
-    "@google/generative-ai": "^0.21.0"
+    "express": "^4.18.2",
+    "he": "^1.2.0",
+    "nodemailer": "^6.9.7"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
-  "keywords": ["education", "ai", "api"],
+  "keywords": [
+    "education",
+    "ai",
+    "api"
+  ],
   "author": "",
   "license": "ISC"
 }

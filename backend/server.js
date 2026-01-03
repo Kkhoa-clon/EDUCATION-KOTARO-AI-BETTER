@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const geminiRoutes = require('./routes/gemini');
 const nasaRoutes = require('./routes/nasa');
 const emailRoutes = require('./routes/email');
+const quizRoutes = require('./routes/quiz');
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use('/api/gemini', geminiRoutes);
 app.use('/api/nasa', nasaRoutes);
 app.use('/api/email', emailRoutes);
+app.use('/api/quiz', quizRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

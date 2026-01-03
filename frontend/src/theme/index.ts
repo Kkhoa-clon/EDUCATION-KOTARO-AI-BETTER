@@ -176,7 +176,7 @@ export const lightTheme = createTheme({
       fontWeight: designTokens.typography.fontWeight.semibold,
     },
   },
-  spacing: [0, 4, 8, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 640, 768],
+  spacing: (factor: number) => `${0.25 * factor}rem`,
   shape: {
     borderRadius: 12,
   },
