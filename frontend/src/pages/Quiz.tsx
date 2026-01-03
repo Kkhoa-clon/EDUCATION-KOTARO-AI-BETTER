@@ -100,12 +100,12 @@ const Quiz = () => {
     <Box
       sx={{
         minHeight: 'calc(100vh - 200px)',
-        py: { xs: 4, md: 8 },
+        py: { xs: 6, md: 8 },
       }}
     >
       <Container maxWidth="md">
         <Typography variant="h2" component="h1" gutterBottom fontWeight={700} textAlign="center" sx={{ mb: 2 }}>
-          Câu Hỏi Ngẫu Nhiên
+          Kiểm Tra Kiến Thức
         </Typography>
         <Typography variant="h6" color="text.secondary" textAlign="center" sx={{ mb: 6 }}>
           Test kiến thức của bạn với các câu hỏi từ OpenTDB

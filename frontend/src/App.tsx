@@ -48,7 +48,7 @@ function App() {
             component="main"
             sx={{
               flexGrow: 1,
-              pt: { xs: 8, sm: 9 },
+              pt: { xs: 12, sm: 14 },
             }}
           >
             <Routes>
