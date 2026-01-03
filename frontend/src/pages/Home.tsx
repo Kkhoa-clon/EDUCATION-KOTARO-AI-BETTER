@@ -1,39 +1,57 @@
 import React from 'react'
-import { Box, Typography, Button, Card, CardContent, Avatar, Container, Paper } from '@mui/material'
 import { Link } from 'react-router-dom'
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
-import ChatIcon from '@mui/icons-material/Chat'
-import PublicIcon from '@mui/icons-material/Public'
-import StarIcon from '@mui/icons-material/Star'
-import PeopleIcon from '@mui/icons-material/People'
-import SchoolIcon from '@mui/icons-material/School'
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  Grid,
+  Card,
+  CardContent,
+  Paper,
+  Avatar,
+} from '@mui/material'
+import {
+  Chat as ChatIcon,
+  Public as PublicIcon,
+  LibraryBooks as LibraryBooksIcon,
+  Star as StarIcon,
+  People as PeopleIcon,
+  School as SchoolIcon,
+  AccessTime as AccessTimeIcon,
+} from '@mui/icons-material'
 
 const Home: React.FC = () => {
-
   return (
-    <Box>
-      {/* Hero Section - Clean Education Design */}
+    <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default' }}>
+      {/* Enhanced Hero Section */}
       <Box
         sx={{
-          backgroundColor: 'background.paper',
-          py: { xs: 6, md: 8 },
-          mb: 8,
-          borderBottom: '1px solid',
-          borderColor: 'divider',
+          position: 'relative',
+          overflow: 'hidden',
+          background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 25%, #10b981 50%, #059669 75%, #047857 100%)',
+          color: 'white',
+          py: { xs: 8, md: 12 },
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'url("/assets/image/bg.webp") no-repeat center center / cover',
+            opacity: 0.1,
+            animation: 'twinkle 4s ease-in-out infinite alternate',
+          },
+          '@keyframes twinkle': {
+            '0%': { opacity: 0.1 },
+            '100%': { opacity: 0.2 },
+          },
         }}
       >
-        <Container maxWidth="lg">
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              alignItems: 'center',
-              gap: { xs: 4, md: 6 },
-            }}
-          >
-            {/* Left Content */}
-            <Box sx={{ flex: 1, textAlign: { xs: 'center', md: 'left' } }}>
+        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+          <Grid container spacing={4} alignItems="center">
+            <Grid item xs={12} md={6}>
               <Box
                 component="img"
                 src="/assets/image/logo.png"
@@ -42,47 +60,61 @@ const Home: React.FC = () => {
                   height: { xs: 60, md: 80 },
                   width: 'auto',
                   mb: 3,
-                  display: { xs: 'block', md: 'block' },
-                  mx: { xs: 'auto', md: 0 },
+                  filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
                 }}
               />
               <Typography
-                variant="h3"
+                variant="h1"
                 component="h1"
                 sx={{
-                  color: 'primary.main',
-                  fontWeight: 700,
+                  fontSize: { xs: '2.5rem', md: '4rem' },
+                  fontWeight: 800,
                   mb: 2,
-                  fontSize: { xs: '2rem', md: '2.5rem' },
+                  lineHeight: 1.1,
+                  textShadow: '0 4px 20px rgba(0,0,0,0.3)',
                 }}
               >
-                Education Kotaro AI
+                Education
+                <Box component="span" sx={{ color: '#4ade80' }}>
+                  {' '}Kotaro AI
+                </Box>
               </Typography>
               <Typography
-                variant="h6"
+                variant="h5"
                 sx={{
                   mb: 4,
-                  color: 'text.secondary',
+                  fontWeight: 400,
                   lineHeight: 1.6,
-                  fontSize: { xs: '1rem', md: '1.1rem' },
-                  maxWidth: { xs: '100%', md: 500 },
+                  opacity: 0.95,
+                  textShadow: '0 2px 10px rgba(0,0,0,0.2)',
+                  fontSize: { xs: '1.1rem', md: '1.3rem' },
                 }}
               >
-                Nền tảng học tập thông minh với trí tuệ nhân tạo cho thế hệ trẻ Việt Nam
+                Nền tảng học tập AI tiên tiến cho thế hệ trẻ Việt Nam.
+                Khám phá vũ trụ, thử nghiệm ảo và ôn thi hiệu quả.
               </Typography>
-
-              <Box sx={{ display: 'flex', gap: 2, justifyContent: { xs: 'center', md: 'flex-start' }, flexWrap: 'wrap' }}>
+              <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                 <Button
                   variant="contained"
                   size="large"
                   component={Link}
                   to="/chatbot"
                   sx={{
-                    minWidth: 160,
-                    py: 1.5,
+                    backgroundColor: 'rgba(255,255,255,0.2)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255,255,255,0.3)',
+                    color: 'white',
                     px: 4,
-                    borderRadius: 2,
+                    py: 1.5,
+                    fontSize: '1.1rem',
                     fontWeight: 600,
+                    borderRadius: 3,
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255,255,255,0.3)',
+                      transform: 'translateY(-2px)',
+                      boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
+                    },
                   }}
                 >
                   Bắt đầu học tập
@@ -93,90 +125,65 @@ const Home: React.FC = () => {
                   component={Link}
                   to="/thu-vien"
                   sx={{
-                    minWidth: 160,
-                    py: 1.5,
+                    borderColor: 'rgba(255,255,255,0.5)',
+                    color: 'white',
                     px: 4,
-                    borderRadius: 2,
+                    py: 1.5,
+                    fontSize: '1.1rem',
                     fontWeight: 600,
-                    borderWidth: 2,
+                    borderRadius: 3,
+                    backdropFilter: 'blur(10px)',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      borderColor: 'white',
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                      transform: 'translateY(-2px)',
+                    },
                   }}
                 >
                   Khám phá thư viện
                 </Button>
               </Box>
-            </Box>
-
-            {/* Right Content - Statistics */}
-            <Box sx={{ flex: 1 }}>
+            </Grid>
+            <Grid item xs={12} md={6}>
               <Box
                 sx={{
-                  display: 'grid',
-                  gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
-                  gap: 3,
-                  maxWidth: 400,
-                  mx: { xs: 'auto', md: 0 },
+                  position: 'relative',
+                  textAlign: 'center',
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: -20,
+                    left: -20,
+                    right: -20,
+                    bottom: -20,
+                    background: 'radial-gradient(circle, rgba(74,222,128,0.2) 0%, transparent 70%)',
+                    borderRadius: '50%',
+                    animation: 'float 6s ease-in-out infinite',
+                  },
+                  '@keyframes float': {
+                    '0%, 100%': { transform: 'translateY(0px)' },
+                    '50%': { transform: 'translateY(-10px)' },
+                  },
                 }}
               >
-                <Paper
-                  elevation={0}
+                <Box
+                  component="img"
+                  src="/assets/image/macbook.png"
+                  alt="Education Kotaro AI Illustration"
                   sx={{
-                    p: 3,
-                    textAlign: 'center',
-                    borderRadius: 2,
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    backgroundColor: 'background.default',
+                    width: '100%',
+                    maxWidth: 500,
+                    height: 'auto',
+                    filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.3))',
                   }}
-                >
-                  <Typography variant="h3" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
-                    10K+
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500 }}>
-                    Học sinh sử dụng
-                  </Typography>
-                </Paper>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    p: 3,
-                    textAlign: 'center',
-                    borderRadius: 2,
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    backgroundColor: 'background.default',
-                  }}
-                >
-                  <Typography variant="h3" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
-                    8
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500 }}>
-                    Môn học chính
-                  </Typography>
-                </Paper>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    p: 3,
-                    textAlign: 'center',
-                    borderRadius: 2,
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    backgroundColor: 'background.default',
-                    gridColumn: { xs: '1 / -1', sm: '1 / -1' },
-                  }}
-                >
-                  <Typography variant="h3" sx={{ color: 'primary.main', fontWeight: 700, mb: 1 }}>
-                    95%
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500 }}>
-                    Độ hài lòng
-                  </Typography>
-                </Paper>
+                />
               </Box>
-            </Box>
-          </Box>
+            </Grid>
+          </Grid>
         </Container>
       </Box>
+
       {/* Statistics Section */}
       <Box
         sx={{
