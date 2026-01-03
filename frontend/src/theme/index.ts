@@ -34,7 +34,7 @@ export const designTokens = {
     success: '#10b981',
     warning: '#f59e0b',
     error: '#ef4444',
-    info: '#06b6d4',
+    info: '#22c55e',
   },
   spacing: {
     xs: '0.25rem', // 4px
