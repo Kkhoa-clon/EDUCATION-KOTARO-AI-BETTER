@@ -72,10 +72,10 @@ const ThuVien = () => {
   ]
 
   const stats = [
-    { label: 'Tài liệu', value: '1,400+', icon: '📚' },
-    { label: 'Danh mục', value: '6', icon: '📂' },
-    { label: 'Tác giả', value: '50+', icon: '👥' },
-    { label: 'Đánh giá', value: '4.8/5', icon: '⭐' },
+    // { label: 'Tài liệu', value: '1,400+', icon: '📚' },
+    // { label: 'Danh mục', value: '6', icon: '📂' },
+    // { label: 'Tác giả', value: '50+', icon: '👥' },
+    // { label: 'Đánh giá', value: '4.8/5', icon: '⭐' },
   ]
 
   return (
