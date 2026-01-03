@@ -12,6 +12,7 @@ import {
   Stack,
   CircularProgress,
   Alert,
+  Container,
 } from '@mui/material'
 import {
   Close as CloseIcon,
@@ -93,26 +94,12 @@ const ImageNASAPage = () => {
     <Box sx={{ py: { xs: 4, md: 8 } }}>
       <Box
         sx={{
-          background: `linear-gradient(135deg, rgba(28, 29, 38, 0.8) 0%, rgba(39, 40, 51, 0.8) 50%, rgba(28, 29, 38, 0.8) 100%), url('/assets/image/dc-xanh.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundBlendMode: 'overlay',
+          background: (theme) => `linear-gradient(135deg, ${theme.palette.primary.main}10 0%, ${theme.palette.success.main}10 50%, ${theme.palette.primary.main}10 100%)`,
           py: { xs: 4, md: 6 },
           textAlign: 'center',
-          position: 'relative',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(34, 197, 94, 0.1)',
-          },
         }}
       >
-        <Box sx={{ position: 'relative', zIndex: 1 }}>
-        <Box sx={{ maxWidth: 'md', mx: 'auto' }}>
+        <Container maxWidth="md">
           <Typography variant="h2" component="h2" sx={{ mb: 2, fontWeight: 300 }}>
             Ảnh Thiên Văn Thời Gian Thực
           </Typography>
@@ -121,8 +108,7 @@ const ImageNASAPage = () => {
             <br />
             Xem, tải về và tìm hiểu ý nghĩa các bức ảnh nổi bật từ NASA
           </Typography>
-        </Box>
-        </Box>
+        </Container>
       </Box>
 
       <Box sx={{ py: 4 }}>

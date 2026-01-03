@@ -13,7 +13,7 @@ const HanhTinhKhacPage = () => {
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100vh - 200px)' }}>
       <Box
         sx={{
-          background: 'linear-gradient(135deg, #1c1d26 0%, #272833 50%, #1c1d26 100%)',
+          background: (theme) => `linear-gradient(135deg, ${theme.palette.primary.main}10 0%, ${theme.palette.success.main}10 50%, ${theme.palette.primary.main}10 100%)`,
           py: { xs: 4, md: 6 },
           textAlign: 'center',
         }}
@@ -31,16 +31,16 @@ const HanhTinhKhacPage = () => {
       <Box sx={{ flex: 1, position: 'relative', m: { xs: 2, md: 4 } }}>
         <Card
           sx={{
-            height: { xs: '500px', md: 'calc(100vh - 400px)' },
-            minHeight: '500px',
+            height: { xs: '700px', md: 'calc(100vh - 200px)' },
+            minHeight: '700px',
             overflow: 'hidden',
             bgcolor: 'black',
           }}
         >
           <Box
             sx={{
-              background: 'linear-gradient(90deg, #73d239, #8ee63e)',
-              color: 'black',
+              background: (theme) => `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+              color: (theme) => theme.palette.primary.contrastText,
               p: 2,
               textAlign: 'center',
             }}

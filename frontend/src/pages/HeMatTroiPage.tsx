@@ -13,7 +13,7 @@ const HeMatTroiPage = () => {
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100vh - 200px)' }}>
       <Box
         sx={{
-          background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.1) 50%, rgba(34, 197, 94, 0.1) 100%)',
+          background: (theme) => `linear-gradient(135deg, ${theme.palette.primary.main}10 0%, ${theme.palette.success.main}10 50%, ${theme.palette.primary.main}10 100%)`,
           py: { xs: 4, md: 6 },
           textAlign: 'center',
         }}
@@ -31,16 +31,16 @@ const HeMatTroiPage = () => {
       <Box sx={{ flex: 1, position: 'relative', m: { xs: 2, md: 4 } }}>
         <Card
           sx={{
-            height: { xs: '500px', md: 'calc(100vh - 400px)' },
-            minHeight: '500px',
+            height: { xs: '800px', md: 'calc(100vh - 100px)' },
+            minHeight: '800px',
             overflow: 'hidden',
             bgcolor: 'black',
           }}
         >
           <Box
             sx={{
-              background: 'linear-gradient(90deg, #73d239, #8ee63e)',
-              color: 'black',
+              background: (theme) => `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+              color: (theme) => theme.palette.primary.contrastText,
               p: 2,
               textAlign: 'center',
             }}
