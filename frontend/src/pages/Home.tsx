@@ -54,7 +54,7 @@ const Home: React.FC = () => {
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src="/assets/image/logo.png"
+                src="/assets/image/logo.webp"
                 alt="Kotaro AI Logo"
                 sx={{
                   height: { xs: 60, md: 80 },
