@@ -356,7 +356,7 @@ const Home: React.FC = () => {
           <Box sx={{ flex: '1 1 300px', maxWidth: 350 }}>
             <Card
               component={Link}
-              to="/thien-van/image-nasa"
+              to="/thien-van/trai-dat"
               sx={{
                 height: '100%',
                 display: 'flex',
@@ -399,7 +399,7 @@ const Home: React.FC = () => {
           <Box sx={{ flex: '1 1 300px', maxWidth: 350 }}>
             <Card
               component={Link}
-              to="/thien-van/image-nasa"
+              to="/thien-van/he-mat-troi"
               sx={{
                 height: '100%',
                 display: 'flex',
@@ -442,7 +442,7 @@ const Home: React.FC = () => {
           <Box sx={{ flex: '1 1 300px', maxWidth: 350 }}>
             <Card
               component={Link}
-              to="/thien-van/image-nasa"
+              to="/thien-van/tieu-hanh-tinh"
               sx={{
                 height: '100%',
                 display: 'flex',
@@ -481,9 +481,139 @@ const Home: React.FC = () => {
               </CardContent>
             </Card>
           </Box>
+                    <Box sx={{ flex: '1 1 300px', maxWidth: 350 }}>
+            <Card
+              component={Link}
+              to="/thien-van/hanh-tinh-khac"
+              sx={{
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                transition: 'all 0.3s ease',
+                textDecoration: 'none',
+                '&:hover': {
+                  transform: 'translateY(-6px)',
+                  boxShadow: '0 10px 25px rgba(34, 197, 94, 0.2)',
+                },
+                borderRadius: 2,
+                overflow: 'hidden',
+              }}
+            >
+              <Box
+                component="img"
+                src="/assets/image/hanhtinhkhac.png"
+                alt="Hành Tinh Khác"
+                sx={{
+                  width: '100%',
+                  height: 160,
+                  objectFit: 'cover',
+                  transition: 'transform 0.3s ease',
+                  '&:hover': {
+                    transform: 'scale(1.03)',
+                  },
+                }}
+              />
+              <CardContent sx={{ p: 2, flexGrow: 1, textAlign: 'center' }}>
+                <Typography variant="subtitle1" sx={{ color: 'primary.main', mb: 1, fontWeight: 600 }}>
+                  Hành Tinh Khác
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.5 }}>
+                  Khám phá các hình tinh ngoài hệ mặt trời và các hiện tượng vũ trụ thú vị.
+                </Typography>
+              </CardContent>
+            </Card>
+          </Box>
+            <Box sx={{ flex: '1 1 300px', maxWidth: 350 }}>
+            <Card
+              component={Link}
+              to="/thien-van/image-nasa"
+              sx={{
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                transition: 'all 0.3s ease',
+                textDecoration: 'none',
+                '&:hover': {
+                  transform: 'translateY(-6px)',
+                  boxShadow: '0 10px 25px rgba(34, 197, 94, 0.2)',
+                },
+                borderRadius: 2,
+                overflow: 'hidden',
+              }}
+            >
+              <Box
+                component="img"
+                src="/assets/image/image-nasa.png"
+                alt="Ảnh Thiên Văn NASA"
+                sx={{
+                  width: '100%',
+                  height: 160,
+                  objectFit: 'cover',
+                  transition: 'transform 0.3s ease',
+                  '&:hover': {
+                    transform: 'scale(1.03)',
+                  },
+                }}
+              />
+              <CardContent sx={{ p: 2, flexGrow: 1, textAlign: 'center' }}>
+                <Typography variant="subtitle1" sx={{ color: 'primary.main', mb: 1, fontWeight: 600 }}>
+                  Ảnh Thiên Văn NASA
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.5 }}>
+                  Bộ sưu tập hình ảnh thiên văn ấn tượng được cung cấp bởi NASA.
+                </Typography>
+              </CardContent>
+            </Card>
+
+
+
+
+          </Box>
+            <Box sx={{ flex: '1 1 300px', maxWidth: 350 }}>
+            <Card
+              component={Link}
+              to="/thien-van/robot-sao-hoa"
+              sx={{
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                transition: 'all 0.3s ease',
+                textDecoration: 'none',
+                '&:hover': {
+                  transform: 'translateY(-6px)',
+                  boxShadow: '0 10px 25px rgba(34, 197, 94, 0.2)',
+                },
+                borderRadius: 2,
+                overflow: 'hidden',
+              }}
+            >
+              <Box
+                component="img"
+                src="/assets/image/robot-sao-hoa.png"
+                alt="Ảnh Thiên Văn NASA"
+                sx={{
+                  width: '100%',
+                  height: 160,
+                  objectFit: 'cover',
+                  transition: 'transform 0.3s ease',
+                  '&:hover': {
+                    transform: 'scale(1.03)',
+                  },
+                }}
+              />
+              <CardContent sx={{ p: 2, flexGrow: 1, textAlign: 'center' }}>
+                <Typography variant="subtitle1" sx={{ color: 'primary.main', mb: 1, fontWeight: 600 }}>
+                  Robot Sao Hỏa
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.5 }}>
+                  Tìm hiểu về các robot thám hiểm và nhiệm vụ khám phá sao Hỏa.
+                </Typography>
+              </CardContent>
+            </Card>
+          </Box>
         </Box>
         </Container>
-
+          
 
 
       {/* Key Features Section */}
