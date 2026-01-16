@@ -22,22 +22,69 @@ const ChatbotComponent = () => {
     },
   ])
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!message.trim()) return
 
-    setMessages([...messages, { text: message, sender: 'user' }])
+    const userMessage = message
+    setMessages([...messages, { text: userMessage, sender: 'user' }])
     setMessage('')
 
-    // Simulate bot response
-    setTimeout(() => {
+    try {
+      // Prepare messages for Ollama
+      const ollamaMessages = [
+        {
+          role: "system",
+          content: "You are Kotaro AI, a helpful AI assistant for education. Answer clearly and simply in Vietnamese.",
+        },
+        ...messages.map(msg => ({
+          role: msg.sender === 'user' ? 'user' : 'assistant',
+          content: msg.text,
+        })),
+        {
+          role: "user",
+          content: userMessage,
+        },
+      ]
+
+      const response = await fetch('http://localhost:11434/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: "qwen2.5-coder:7b",
+          messages: ollamaMessages,
+          stream: false,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (data.message && data.message.content) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            text: data.message.content,
+            sender: 'bot',
+          },
+        ])
+      } else {
+        setMessages((prev) => [
+          ...prev,
+          {
+            text: 'Xin lỗi, có lỗi xảy ra. Vui lòng thử lại.',
+            sender: 'bot',
+          },
+        ])
+      }
+    } catch (error) {
+      console.error('Error sending message:', error)
       setMessages((prev) => [
         ...prev,
         {
-          text: 'Cảm ơn bạn đã hỏi! Tính năng này đang được phát triển. Vui lòng quay lại sau.',
+          text: 'Không thể kết nối đến Ollama. Vui lòng kiểm tra Ollama đang chạy trên port 11434.',
           sender: 'bot',
         },
       ])
-    }, 1000)
+    }
   }
 
   return (

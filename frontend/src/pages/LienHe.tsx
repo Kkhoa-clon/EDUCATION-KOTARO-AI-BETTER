@@ -46,7 +46,7 @@ const LienHe = () => {
                       Email
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      support@kotaro-ai.com
+                      education-kotaro@gmail.com
                     </Typography>
                   </Box>
                 </Stack>
@@ -60,7 +60,7 @@ const LienHe = () => {
                       Điện thoại
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      +84 XXX XXX XXX
+                      +84 916 096 112
                     </Typography>
                   </Box>
                 </Stack>
@@ -74,7 +74,7 @@ const LienHe = () => {
                       Địa chỉ
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      Việt Nam
+                      Đồng Tháp, Hồng Ngự, Việt Nam
                     </Typography>
                   </Box>
                 </Stack>
