@@ -36,9 +36,10 @@ const MessageContent = ({ content, sender }: { content: string; sender: 'user' |
   return (
     <ReactMarkdown
       components={{
-        code({ node, inline, className, children, ...props }) {
+        code({ node, className, children, ...props }: any) {
           const match = /language-(\w+)/.exec(className || '')
-          return !inline && match ? (
+          const isInline = !match
+          return !isInline && match ? (
             <Box sx={{ position: 'relative', mt: 1, mb: 1 }}>
               <SyntaxHighlighter
                 style={materialDark}
@@ -117,7 +118,7 @@ const MessageContent = ({ content, sender }: { content: string; sender: 'user' |
 
 const ChatbotComponent = () => {
   const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState<Array<{ text: string; sender: 'user' | 'bot' }>>([
+  const [messages, setMessages] = useState<Array<{ text: string; sender: 'user' | 'bot'; timestamp?: Date }>>([
     {
       text: 'Xin chào! Tôi là Kotaro AI, trợ lý học tập của bạn. Tôi có thể giúp bạn trả lời câu hỏi về khoa học, toán học, vật lý, hóa học và nhiều lĩnh vực khác. Hãy đặt câu hỏi để bắt đầu!',
       sender: 'bot',
