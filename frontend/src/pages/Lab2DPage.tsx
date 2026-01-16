@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Box,
   Container,
@@ -23,12 +23,92 @@ import {
   CircularProgress,
   Fab,
 } from '@mui/material'
-import ScienceIcon from '@mui/icons-material/Science'
+import FlashOnIcon from '@mui/icons-material/FlashOn'
 import BiotechIcon from '@mui/icons-material/Biotech'
 import CalculateIcon from '@mui/icons-material/Calculate'
+import GrassIcon from '@mui/icons-material/Grass'
+import ScienceIcon from '@mui/icons-material/Science'
+import WavesIcon from '@mui/icons-material/Waves'
+import ElectricBoltIcon from '@mui/icons-material/ElectricBolt'
+import ThermostatIcon from '@mui/icons-material/Thermostat'
+import ScaleIcon from '@mui/icons-material/Scale'
+import WbSunnyIcon from '@mui/icons-material/WbSunny'
+import DnsIcon from '@mui/icons-material/Dns'
+import FunctionsIcon from '@mui/icons-material/Functions'
+import ShowChartIcon from '@mui/icons-material/ShowChart'
+import NumbersIcon from '@mui/icons-material/Numbers'
+import BalanceIcon from '@mui/icons-material/Balance'
+import LightbulbIcon from '@mui/icons-material/Lightbulb'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import HearingIcon from '@mui/icons-material/Hearing'
+import TimelineIcon from '@mui/icons-material/Timeline'
+import StraightenIcon from '@mui/icons-material/Straighten'
+import SpeedIcon from '@mui/icons-material/Speed'
+import LensIcon from '@mui/icons-material/Lens'
+import BuildIcon from '@mui/icons-material/Build'
+import AddIcon from '@mui/icons-material/Add'
+import ScatterPlotIcon from '@mui/icons-material/ScatterPlot'
+import GasMeterIcon from '@mui/icons-material/GasMeter'
+import ColorLensIcon from '@mui/icons-material/ColorLens'
 import PsychologyIcon from '@mui/icons-material/Psychology'
+import SolarPowerIcon from '@mui/icons-material/SolarPower'
+import CloudIcon from '@mui/icons-material/Cloud'
+import TrendingUpIcon from '@mui/icons-material/TrendingUp'
+import SquareIcon from '@mui/icons-material/Square'
 import SearchIcon from '@mui/icons-material/Search'
+import AbcIcon from '@mui/icons-material/Abc'
+import EqualizerIcon from '@mui/icons-material/Equalizer'
+import PieChartIcon from '@mui/icons-material/PieChart'
+import BarChartIcon from '@mui/icons-material/BarChart'
+import DonutLargeIcon from '@mui/icons-material/DonutLarge'
+import MultilineChartIcon from '@mui/icons-material/MultilineChart'
+import BubbleChartIcon from '@mui/icons-material/BubbleChart'
+import SsidChartIcon from '@mui/icons-material/SsidChart'
+import WaterDropIcon from '@mui/icons-material/WaterDrop'
+import AirIcon from '@mui/icons-material/Air'
+import AcUnitIcon from '@mui/icons-material/AcUnit'
+import WhatshotIcon from '@mui/icons-material/Whatshot'
+import WbIncandescentIcon from '@mui/icons-material/WbIncandescent'
+import InvertColorsIcon from '@mui/icons-material/InvertColors'
+import OpacityIcon from '@mui/icons-material/Opacity'
+import GradientIcon from '@mui/icons-material/Gradient'
+import PaletteIcon from '@mui/icons-material/Palette'
+import BrushIcon from '@mui/icons-material/Brush'
+import FormatPaintIcon from '@mui/icons-material/FormatPaint'
+import ColorizeIcon from '@mui/icons-material/Colorize'
+import BlurOnIcon from '@mui/icons-material/BlurOn'
+import BlurCircularIcon from '@mui/icons-material/BlurCircular'
+import BlurLinearIcon from '@mui/icons-material/BlurLinear'
+import FilterBAndWIcon from '@mui/icons-material/FilterBAndW'
+import FilterCenterFocusIcon from '@mui/icons-material/FilterCenterFocus'
+import FilterDramaIcon from '@mui/icons-material/FilterDrama'
+import FilterFramesIcon from '@mui/icons-material/FilterFrames'
+import FilterHdrIcon from '@mui/icons-material/FilterHdr'
 import FilterListIcon from '@mui/icons-material/FilterList'
+import FilterNoneIcon from '@mui/icons-material/FilterNone'
+import FilterTiltShiftIcon from '@mui/icons-material/FilterTiltShift'
+import FilterVintageIcon from '@mui/icons-material/FilterVintage'
+import FlareIcon from '@mui/icons-material/Flare'
+import FlashAutoIcon from '@mui/icons-material/FlashAuto'
+import FlashOffIcon from '@mui/icons-material/FlashOff'
+import FlipIcon from '@mui/icons-material/Flip'
+import GifIcon from '@mui/icons-material/Gif'
+import GifBoxIcon from '@mui/icons-material/GifBox'
+import GrainIcon from '@mui/icons-material/Grain'
+import GridOffIcon from '@mui/icons-material/GridOff'
+import GridOnIcon from '@mui/icons-material/GridOn'
+import HdrOffIcon from '@mui/icons-material/HdrOff'
+import HdrOnIcon from '@mui/icons-material/HdrOn'
+import HdrStrongIcon from '@mui/icons-material/HdrStrong'
+import HdrWeakIcon from '@mui/icons-material/HdrWeak'
+import HealingIcon from '@mui/icons-material/Healing'
+import ImageIcon from '@mui/icons-material/Image'
+import ImageAspectRatioIcon from '@mui/icons-material/ImageAspectRatio'
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported'
+import ImageSearchIcon from '@mui/icons-material/ImageSearch'
+import IsoIcon from '@mui/icons-material/Iso'
+import LandscapeIcon from '@mui/icons-material/Landscape'
+import LeakAddIcon from '@mui/icons-material/LeakAdd'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import LaunchIcon from '@mui/icons-material/Launch'
@@ -42,125 +122,91 @@ interface Experiment {
   category: string
   description?: string
   isFavorite?: boolean
+  icon?: any
 }
 
 const experiments = {
   'Vật Lý': [
-    { name: 'Sự Nổi Cơ Bản', url: 'https://phet.colorado.edu/sims/html/buoyancy-basics/latest/buoyancy-basics_vi.html', category: 'Vật Lý', description: 'Khám phá nguyên lý nổi của vật thể trong chất lỏng' },
-    { name: 'Hình Dạng Phân Tử', url: 'https://phet.colorado.edu/sims/html/molecule-shapes/latest/molecule-shapes_vi.html', category: 'Vật Lý', description: 'Học về cấu trúc và hình dạng của các phân tử' },
-    { name: 'Sóng Trên 1 Sợi Dây', url: 'https://phet.colorado.edu/sims/html/density/latest/density_vi.html', category: 'Vật Lý', description: 'Quan sát và nghiên cứu sự lan truyền của sóng' },
-    { name: 'Máy Phát Điện', url: 'https://phet.colorado.edu/sims/html/generator/latest/generator_vi.html', category: 'Vật Lý', description: 'Tìm hiểu nguyên lý hoạt động của máy phát điện' },
-    { name: 'Nam Châm Và Nam Châm Điện', url: 'https://phet.colorado.edu/sims/html/magnets-and-electromagnets/latest/magnets-and-electromagnets_vi.html', category: 'Vật Lý', description: 'Khám phá lực từ trường và nam châm điện' },
-    { name: 'Phòng Thí Nghiệm Điện Từ Faraday', url: 'https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_vi.html', category: 'Vật Lý', description: 'Thực nghiệm về cảm ứng điện từ' },
-    { name: 'Phòng Thí Nghiệm Đạn Từ', url: 'https://phet.colorado.edu/sims/html/projectile-data-lab/latest/projectile-data-lab_vi.html', category: 'Vật Lý', description: 'Phân tích chuyển động của vật thể ném' },
-    { name: 'Sóng Âm', url: 'https://phet.colorado.edu/sims/html/sound-waves/latest/sound-waves_vi.html', category: 'Vật Lý', description: 'Nghiên cứu đặc tính của sóng âm' },
-    { name: 'Máy Vẽ Đồ Thị Vi Tích Phân', url: 'https://phet.colorado.edu/sims/html/calculus-grapher/latest/calculus-grapher_vi.html', category: 'Vật Lý', description: 'Trực quan hóa các khái niệm vi tích phân' },
-    { name: 'Mật Độ', url: 'https://phet.colorado.edu/sims/html/density/latest/density_vi.html', category: 'Vật Lý', description: 'Học về mật độ và sự nổi chìm của vật thể' },
-    { name: 'Quang Hình Phần Cơ Bản', url: 'https://phet.colorado.edu/sims/html/geometric-optics-basics/latest/geometric-optics-basics_vi.html', category: 'Vật Lý', description: 'Khám phá cơ bản về quang học hình học' },
-    { name: 'Quang Hình', url: 'https://phet.colorado.edu/sims/html/geometric-optics/latest/geometric-optics_vi.html', category: 'Vật Lý', description: 'Nghiên cứu sâu về quang học hình học' },
-    { name: 'Bộ Lắp Ráp Mạch AC', url: 'https://phet.colorado.edu/sims/html/circuit-construction-kit-ac/latest/circuit-construction-kit-ac_vi.html', category: 'Vật Lý', description: 'Xây dựng mạch điện xoay chiều' },
-    { name: 'Bộ Lắp Ráp Mạch AC Phòng Thí Nghiệm Ảo', url: 'https://phet.colorado.edu/sims/html/circuit-construction-kit-ac-virtual-lab/latest/circuit-construction-kit-ac-virtual-lab_vi.html', category: 'Vật Lý', description: 'Thí nghiệm ảo với mạch AC' },
-    { name: 'Kiểu Chuẩn Tắt', url: 'https://phet.colorado.edu/sims/html/normal-modes/latest/normal-modes_vi.html', category: 'Vật Lý', description: 'Học về các chế độ dao động chuẩn' },
-    { name: 'Tổng Hợp Sóng', url: 'https://phet.colorado.edu/sims/html/fourier-making-waves/latest/fourier-making-waves_vi.html', category: 'Vật Lý', description: 'Tạo sóng từ các hàm cơ bản' },
-    { name: 'Lực Hấp Dẫn Phần Cơ Bản', url: 'https://phet.colorado.edu/sims/html/gravity-force-lab-basics/latest/gravity-force-lab-basics_vi.html', category: 'Vật Lý', description: 'Khám phá lực hấp dẫn cơ bản' },
-    { name: 'Sóng', url: 'https://phet.colorado.edu/sims/html/waves-intro/latest/waves-intro_vi.html', category: 'Vật Lý', description: 'Giới thiệu về các loại sóng' },
-    { name: 'Giao Thoa Sóng', url: 'https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_vi.html', category: 'Vật Lý', description: 'Quan sát hiện tượng giao thoa sóng' },
-    { name: 'Định Luật Comlomb', url: 'https://phet.colorado.edu/sims/html/coulombs-law/latest/coulombs-law_vi.html', category: 'Vật Lý', description: 'Nghiên cứu lực tương tác giữa các điện tích' },
-    { name: 'Con Lắc Phần Cơ Bản', url: 'https://phet.colorado.edu/sims/html/masses-and-springs-basics/latest/masses-and-springs-basics_vi.html', category: 'Vật Lý', description: 'Khám phá dao động của con lắc cơ bản' },
-    { name: 'Năng Lượng Các Dạng Và Sự Chuyển Hóa', url: 'https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_vi.html', category: 'Vật Lý', description: 'Học về các dạng năng lượng và chuyển hóa' },
-    { name: 'Con Lắc Lò Xò', url: 'https://phet.colorado.edu/sims/html/masses-and-springs/latest/masses-and-springs_vi.html', category: 'Vật Lý', description: 'Nghiên cứu dao động của hệ lò xo-khối lượng' },
-    { name: 'Tụ Điện Phần Cơ Bản', url: 'https://phet.colorado.edu/sims/html/capacitor-lab-basics/latest/capacitor-lab-basics_vi.html', category: 'Vật Lý', description: 'Khám phá nguyên lý hoạt động của tụ điện' },
-    { name: 'Con Lắc', url: 'https://phet.colorado.edu/sims/html/pendulum-lab/latest/pendulum-lab_vi.html', category: 'Vật Lý', description: 'Thí nghiệm với con lắc vật lý' },
-    { name: 'Chuyển Động Của Đạn Tử', url: 'https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_vi.html', category: 'Vật Lý', description: 'Phân tích chuyển động của vật ném' },
-    { name: 'Lực Hấp Dẫn Và Quỹ Đạo', url: 'https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits_vi.html', category: 'Vật Lý', description: 'Nghiên cứu lực hấp dẫn và quỹ đạo' },
-    { name: 'Định Luật Hooke', url: 'https://phet.colorado.edu/sims/html/hookes-law/latest/hookes-law_vi.html', category: 'Vật Lý', description: 'Khám phá định luật đàn hồi' },
-    { name: 'Mô Hình Diện Tích', url: 'https://phet.colorado.edu/sims/html/area-model-algebra/latest/area-model-algebra_vi.html', category: 'Vật Lý', description: 'Sử dụng mô hình diện tích trong đại số' },
-    { name: 'Số Thập Phần Với Mô Hình Diện Tích', url: 'https://phet.colorado.edu/sims/html/area-model-decimals/latest/area-model-decimals_vi.html', category: 'Vật Lý', description: 'Học số thập phân qua mô hình diện tích' },
-    { name: 'Phép Nhân Với Mô Hình Diện Tích', url: 'https://phet.colorado.edu/sims/html/area-model-multiplication/latest/area-model-multiplication_vi.html', category: 'Vật Lý', description: 'Học phép nhân qua mô hình diện tích' },
-    { name: 'Giới Thiệu Mô Hình Diện Tích', url: 'https://phet.colorado.edu/sims/html/area-model-introduction/latest/area-model-introduction_vi.html', category: 'Vật Lý', description: 'Giới thiệu về mô hình diện tích' },
-    { name: 'Định Luật Ohm', url: 'https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_vi.html', category: 'Vật Lý', description: 'Khám phá định luật Ohm' },
-    { name: 'Điện Trở', url: 'https://phet.colorado.edu/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_vi.html', category: 'Vật Lý', description: 'Nghiên cứu điện trở trong dây dẫn' },
-    { name: 'Khúc Xạ Ánh Sáng', url: 'https://phet.colorado.edu/sims/html/bending-light/latest/bending-light_vi.html', category: 'Vật Lý', description: 'Quan sát hiện tượng khúc xạ ánh sáng' },
-    { name: 'Công Viên Ván Trược', url: 'https://phet.colorado.edu/sims/html/energy-skate-park/latest/energy-skate-park_vi.html', category: 'Vật Lý', description: 'Khám phá năng lượng trong công viên ván trượt' },
-    { name: 'Tạo Dựng Phân Tử', url: 'https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_vi.html', category: 'Vật Lý', description: 'Xây dựng các phân tử từ nguyên tử' },
-    { name: 'Cộng Phương Trình Vector', url: 'https://phet.colorado.edu/sims/html/vector-addition-equations/latest/vector-addition-equations_vi.html', category: 'Vật Lý', description: 'Giải phương trình cộng vector' },
-    { name: 'Cộng Vector', url: 'https://phet.colorado.edu/sims/html/vector-addition/latest/vector-addition_vi.html', category: 'Vật Lý', description: 'Học cách cộng các vector' },
-    { name: 'Vẽ Đường Cong Thực Nghiệm', url: 'https://phet.colorado.edu/sims/html/curve-fitting/latest/curve-fitting_vi.html', category: 'Vật Lý', description: 'Vẽ đường cong phù hợp với dữ liệu' },
-    { name: 'Sự Khuyết Tán', url: 'https://phet.colorado.edu/sims/html/diffusion/latest/diffusion_vi.html', category: 'Vật Lý', description: 'Quan sát hiện tượng khuếch tán' },
-    { name: 'Giới Thiệu Chất Khí', url: 'https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_vi.html', category: 'Vật Lý', description: 'Giới thiệu về tính chất của khí' },
-    { name: 'Tính Chất Của Khí', url: 'https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_vi.html', category: 'Vật Lý', description: 'Nghiên cứu tính chất vật lý của khí' },
-    { name: 'Quang Phổ Của Thể Đen', url: 'https://phet.colorado.edu/sims/html/blackbody-spectrum/latest/blackbody-spectrum_vi.html', category: 'Vật Lý', description: 'Khám phá quang phổ của vật đen' },
-    { name: 'Đồ Thị Hàm Số Bậc 2', url: 'https://phet.colorado.edu/sims/html/graphing-quadratics/latest/graphing-quadratics_vi.html', category: 'Vật Lý', description: 'Vẽ đồ thị hàm số bậc hai' },
-    { name: 'Đẳng Thức 2 Biến', url: 'https://phet.colorado.edu/sims/html/equality-explorer-two-variables/latest/equality-explorer-two-variables_vi.html', category: 'Vật Lý', description: 'Khám phá đẳng thức với hai biến' },
-    { name: 'Đẳng Thức Phần Cơ Bản', url: 'https://phet.colorado.edu/sims/html/equality-explorer-basics/latest/equality-explorer-basics_vi.html', category: 'Vật Lý', description: 'Giới thiệu về đẳng thức cơ bản' },
-    { name: 'Đẳng Thức', url: 'https://phet.colorado.edu/sims/html/equality-explorer/latest/equality-explorer_vi.html', category: 'Vật Lý', description: 'Nghiên cứu các đẳng thức toán học' },
-    { name: 'Đại Số Với Mô Hình Diện Tích', url: 'https://phet.colorado.edu/sims/html/area-model-algebra/latest/area-model-algebra_vi.html', category: 'Vật Lý', description: 'Áp dụng mô hình diện tích trong đại số' },
-    { name: 'Đường Thẳng Số Tuyến Tính', url: 'https://phet.colorado.edu/sims/html/graphing-lines/latest/graphing-lines_vi.html', category: 'Vật Lý' },
-    { name: 'Cân Bằng', url: 'https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_vi.html', category: 'Vật Lý' },
-    { name: 'Áp Suất', url: 'https://phet.colorado.edu/sims/html/under-pressure/latest/under-pressure_vi.html', category: 'Vật Lý' },
-    { name: 'Ma Sát', url: 'https://phet.colorado.edu/sims/html/friction/latest/friction_vi.html', category: 'Vật Lý' },
-    { name: 'Lực Và Chuyển Động', url: 'https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_vi.html', category: 'Vật Lý' },
-    { name: 'John Travoltage', url: 'https://phet.colorado.edu/sims/html/john-travoltage/latest/john-travoltage_vi.html', category: 'Vật Lý' },
-    { name: 'Tương Tác Nguyên Tử', url: 'https://phet.colorado.edu/sims/html/atomic-interactions/latest/atomic-interactions_vi.html', category: 'Vật Lý' },
-    { name: 'Điện Tích Và Điện Trường', url: 'https://phet.colorado.edu/sims/html/charges-and-fields/latest/charges-and-fields_vi.html', category: 'Vật Lý' },
-    { name: 'Táng Xạ Rutherford', url: 'https://phet.colorado.edu/sims/html/rutherford-scattering/latest/rutherford-scattering_vi.html', category: 'Vật Lý' },
-    { name: 'Đồng Tử Nguyên Tử Khối', url: 'https://phet.colorado.edu/sims/html/isotopes-and-atomic-mass/latest/isotopes-and-atomic-mass_vi.html', category: 'Vật Lý' },
-    { name: 'Vòng Tròn Lượng Giác', url: 'https://phet.colorado.edu/sims/html/trig-tour/latest/trig-tour_vi.html', category: 'Vật Lý' },
-    { name: 'Phân Tử Và Ánh Sáng', url: 'https://phet.colorado.edu/sims/html/molecules-and-light/latest/molecules-and-light_vi.html', category: 'Vật Lý' },
-    { name: 'Hồi Quy Bình Phương Cực Tiểu', url: 'https://phet.colorado.edu/sims/html/least-squares-regression/latest/least-squares-regression_vi.html', category: 'Vật Lý' },
-    { name: 'Diện Tích', url: 'https://phet.colorado.edu/sims/html/area-builder/latest/area-builder_vi.html', category: 'Vật Lý' },
-    { name: 'Đồ Thị Độ Dốc Đoạn Chắn', url: 'https://phet.colorado.edu/sims/html/graphing-slope-intercept/latest/graphing-slope-intercept_vi.html', category: 'Vật Lý' },
-    { name: 'Đồ Thị Hàm Số', url: 'https://phet.colorado.edu/sims/html/function-builder-basics/latest/function-builder-basics_vi.html', category: 'Vật Lý' },
-    { name: 'Sân Chơi Tỷ Lệ', url: 'https://phet.colorado.edu/sims/html/proportion-playground/latest/proportion-playground_vi.html', category: 'Vật Lý' },
-    { name: 'Tỷ Xuất Đơn Vị', url: 'https://phet.colorado.edu/sims/html/unit-rates/latest/unit-rates_vi.html', category: 'Vật Lý' },
-    { name: 'Trạng Thái Của Vật Chất Phần Cơ Bản', url: 'https://phet.colorado.edu/sims/html/states-of-matter-basics/latest/states-of-matter-basics_vi.html', category: 'Vật Lý' },
-    { name: 'Xác Xuất Plinko', url: 'https://phet.colorado.edu/sims/html/plinko-probability/latest/plinko-probability_vi.html', category: 'Vật Lý' },
-    { name: 'Tạo Ra 10', url: 'https://phet.colorado.edu/sims/html/make-a-ten/latest/make-a-ten_vi.html', category: 'Vật Lý' },
-    { name: 'Va Chạm', url: 'https://phet.colorado.edu/sims/html/collision-lab/latest/collision-lab_vi.html', category: 'Vật Lý' },
-    { name: 'Đường Thẳng Số Khoảng Cách', url: 'https://phet.colorado.edu/sims/html/number-line-distance/latest/number-line-distance_vi.html', category: 'Vật Lý' },
-    { name: 'Tỷ Số Và Tỷ Lệ', url: 'https://phet.colorado.edu/sims/html/ratio-and-proportion/latest/ratio-and-proportion_vi.html', category: 'Vật Lý' },
-    { name: 'Đường Thẳng Số Các Phép Toán', url: 'https://phet.colorado.edu/sims/html/number-line-operations/latest/number-line-operations_vi.html', category: 'Vật Lý' },
-    { name: 'Đường Thẳng Số Nguyên', url: 'https://phet.colorado.edu/sims/html/number-line-integers/latest/number-line-integers_vi.html', category: 'Vật Lý' },
-    { name: 'Đường Thẳng Số Tuyến Tính', url: 'https://phet.colorado.edu/sims/html/graphing-lines/latest/graphing-lines_vi.html', category: 'Vật Lý' },
-    { name: 'Đồ Thị Hàm Số Tuyến Tính', url: 'https://phet.colorado.edu/sims/html/graphing-lines/latest/graphing-lines_vi.html', category: 'Vật Lý' },
+    { name: 'Sự Nổi Cơ Bản', url: 'https://phet.colorado.edu/sims/html/buoyancy-basics/latest/buoyancy-basics_vi.html', category: 'Vật Lý', description: 'Khám phá nguyên lý nổi của vật thể trong chất lỏng', icon: WaterDropIcon },
+    { name: 'Hình Dạng Phân Tử', url: 'https://phet.colorado.edu/sims/html/molecule-shapes/latest/molecule-shapes_vi.html', category: 'Vật Lý', description: 'Học về cấu trúc và hình dạng của các phân tử', icon: DnsIcon },
+    { name: 'Sóng Trên 1 Sợi Dây', url: 'https://phet.colorado.edu/sims/html/density/latest/density_vi.html', category: 'Vật Lý', description: 'Quan sát và nghiên cứu sự lan truyền của sóng', icon: WavesIcon },
+    { name: 'Máy Phát Điện', url: 'https://phet.colorado.edu/sims/html/generator/latest/generator_vi.html', category: 'Vật Lý', description: 'Tìm hiểu nguyên lý hoạt động của máy phát điện', icon: ElectricBoltIcon },
+    { name: 'Nam Châm Và Nam Châm Điện', url: 'https://phet.colorado.edu/sims/html/magnets-and-electromagnets/latest/magnets-and-electromagnets_vi.html', category: 'Vật Lý', description: 'Khám phá lực từ trường và nam châm điện', icon: FlashOnIcon },
+    { name: 'Phòng Thí Nghiệm Điện Từ Faraday', url: 'https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_vi.html', category: 'Vật Lý', description: 'Thực nghiệm về cảm ứng điện từ', icon: ElectricBoltIcon },
+    { name: 'Phòng Thí Nghiệm Đạn Từ', url: 'https://phet.colorado.edu/sims/html/projectile-data-lab/latest/projectile-data-lab_vi.html', category: 'Vật Lý', description: 'Phân tích chuyển động của vật thể ném', icon: ScatterPlotIcon },
+    { name: 'Sóng Âm', url: 'https://phet.colorado.edu/sims/html/sound-waves/latest/sound-waves_vi.html', category: 'Vật Lý', description: 'Nghiên cứu đặc tính của sóng âm', icon: HearingIcon },
+    { name: 'Máy Vẽ Đồ Thị Vi Tích Phân', url: 'https://phet.colorado.edu/sims/html/calculus-grapher/latest/calculus-grapher_vi.html', category: 'Vật Lý', description: 'Trực quan hóa các khái niệm vi tích phân', icon: FunctionsIcon },
+    { name: 'Mật Độ', url: 'https://phet.colorado.edu/sims/html/density/latest/density_vi.html', category: 'Vật Lý', description: 'Học về mật độ và sự nổi chìm của vật thể', icon: ScaleIcon },
+    { name: 'Quang Hình Phần Cơ Bản', url: 'https://phet.colorado.edu/sims/html/geometric-optics-basics/latest/geometric-optics-basics_vi.html', category: 'Vật Lý', description: 'Khám phá cơ bản về quang học hình học', icon: LensIcon },
+    { name: 'Quang Hình', url: 'https://phet.colorado.edu/sims/html/geometric-optics/latest/geometric-optics_vi.html', category: 'Vật Lý', description: 'Nghiên cứu sâu về quang học hình học', icon: LensIcon },
+    { name: 'Bộ Lắp Ráp Mạch AC', url: 'https://phet.colorado.edu/sims/html/circuit-construction-kit-ac/latest/circuit-construction-kit-ac_vi.html', category: 'Vật Lý', description: 'Xây dựng mạch điện xoay chiều', icon: BuildIcon },
+    { name: 'Bộ Lắp Ráp Mạch AC Phòng Thí Nghiệm Ảo', url: 'https://phet.colorado.edu/sims/html/circuit-construction-kit-ac-virtual-lab/latest/circuit-construction-kit-ac-virtual-lab_vi.html', category: 'Vật Lý', description: 'Thí nghiệm ảo với mạch AC', icon: BuildIcon },
+    { name: 'Kiểu Chuẩn Tắt', url: 'https://phet.colorado.edu/sims/html/normal-modes/latest/normal-modes_vi.html', category: 'Vật Lý', description: 'Học về các chế độ dao động chuẩn', icon: TimelineIcon },
+    { name: 'Tổng Hợp Sóng', url: 'https://phet.colorado.edu/sims/html/fourier-making-waves/latest/fourier-making-waves_vi.html', category: 'Vật Lý', description: 'Tạo sóng từ các hàm cơ bản', icon: WavesIcon },
+    { name: 'Lực Hấp Dẫn Phần Cơ Bản', url: 'https://phet.colorado.edu/sims/html/gravity-force-lab-basics/latest/gravity-force-lab-basics_vi.html', category: 'Vật Lý', description: 'Khám phá lực hấp dẫn cơ bản', icon: SolarPowerIcon },
+    { name: 'Sóng', url: 'https://phet.colorado.edu/sims/html/waves-intro/latest/waves-intro_vi.html', category: 'Vật Lý', description: 'Giới thiệu về các loại sóng', icon: WavesIcon },
+    { name: 'Giao Thoa Sóng', url: 'https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_vi.html', category: 'Vật Lý', description: 'Quan sát hiện tượng giao thoa sóng', icon: WavesIcon },
+    { name: 'Định Luật Comlomb', url: 'https://phet.colorado.edu/sims/html/coulombs-law/latest/coulombs-law_vi.html', category: 'Vật Lý', description: 'Nghiên cứu lực tương tác giữa các điện tích', icon: ElectricBoltIcon },
+    { name: 'Con Lắc Phần Cơ Bản', url: 'https://phet.colorado.edu/sims/html/masses-and-springs-basics/latest/masses-and-springs-basics_vi.html', category: 'Vật Lý', description: 'Khám phá dao động của con lắc cơ bản', icon: TimelineIcon },
+    { name: 'Năng Lượng Các Dạng Và Sự Chuyển Hóa', url: 'https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_vi.html', category: 'Vật Lý', description: 'Học về các dạng năng lượng và chuyển hóa', icon: FlashOnIcon },
+    { name: 'Con Lắc Lò Xò', url: 'https://phet.colorado.edu/sims/html/masses-and-springs/latest/masses-and-springs_vi.html', category: 'Vật Lý', description: 'Nghiên cứu dao động của hệ lò xo-khối lượng', icon: TimelineIcon },
+    { name: 'Tụ Điện Phần Cơ Bản', url: 'https://phet.colorado.edu/sims/html/capacitor-lab-basics/latest/capacitor-lab-basics_vi.html', category: 'Vật Lý', description: 'Khám phá nguyên lý hoạt động của tụ điện', icon: ElectricBoltIcon },
+    { name: 'Con Lắc', url: 'https://phet.colorado.edu/sims/html/pendulum-lab/latest/pendulum-lab_vi.html', category: 'Vật Lý', description: 'Thí nghiệm với con lắc vật lý', icon: TimelineIcon },
+    { name: 'Chuyển Động Của Đạn Tử', url: 'https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_vi.html', category: 'Vật Lý', description: 'Phân tích chuyển động của vật ném', icon: ScatterPlotIcon },
+    { name: 'Lực Hấp Dẫn Và Quỹ Đạo', url: 'https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits_vi.html', category: 'Vật Lý', description: 'Nghiên cứu lực hấp dẫn và quỹ đạo', icon: SolarPowerIcon },
+    { name: 'Định Luật Hooke', url: 'https://phet.colorado.edu/sims/html/hookes-law/latest/hookes-law_vi.html', category: 'Vật Lý', description: 'Khám phá định luật đàn hồi', icon: StraightenIcon },
+    { name: 'Mô Hình Diện Tích', url: 'https://phet.colorado.edu/sims/html/area-model-algebra/latest/area-model-algebra_vi.html', category: 'Vật Lý', description: 'Sử dụng mô hình diện tích trong đại số', icon: SquareIcon },
+    { name: 'Số Thập Phần Với Mô Hình Diện Tích', url: 'https://phet.colorado.edu/sims/html/area-model-decimals/latest/area-model-decimals_vi.html', category: 'Vật Lý', description: 'Học số thập phân qua mô hình diện tích', icon: SquareIcon },
+    { name: 'Phép Nhân Với Mô Hình Diện Tích', url: 'https://phet.colorado.edu/sims/html/area-model-multiplication/latest/area-model-multiplication_vi.html', category: 'Vật Lý', description: 'Học phép nhân qua mô hình diện tích', icon: SquareIcon },
+    { name: 'Giới Thiệu Mô Hình Diện Tích', url: 'https://phet.colorado.edu/sims/html/area-model-introduction/latest/area-model-introduction_vi.html', category: 'Vật Lý', description: 'Giới thiệu về mô hình diện tích', icon: SquareIcon },
+    { name: 'Định Luật Ohm', url: 'https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_vi.html', category: 'Vật Lý', description: 'Khám phá định luật Ohm', icon: ElectricBoltIcon },
+    { name: 'Điện Trở', url: 'https://phet.colorado.edu/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_vi.html', category: 'Vật Lý', description: 'Nghiên cứu điện trở trong dây dẫn', icon: ElectricBoltIcon },
+    { name: 'Khúc Xạ Ánh Sáng', url: 'https://phet.colorado.edu/sims/html/bending-light/latest/bending-light_vi.html', category: 'Vật Lý', description: 'Quan sát hiện tượng khúc xạ ánh sáng', icon: LensIcon },
+    { name: 'Công Viên Ván Trược', url: 'https://phet.colorado.edu/sims/html/energy-skate-park/latest/energy-skate-park_vi.html', category: 'Vật Lý', description: 'Khám phá năng lượng trong công viên ván trượt', icon: SpeedIcon },
+    { name: 'Tạo Dựng Phân Tử', url: 'https://phet.colorado.edu/sims/html/build-a-molecule/latest/build-a-molecule_vi.html', category: 'Vật Lý', description: 'Xây dựng các phân tử từ nguyên tử', icon: DnsIcon },
+    { name: 'Cộng Phương Trình Vector', url: 'https://phet.colorado.edu/sims/html/vector-addition-equations/latest/vector-addition-equations_vi.html', category: 'Vật Lý', description: 'Giải phương trình cộng vector', icon: FunctionsIcon },
+    { name: 'Cộng Vector', url: 'https://phet.colorado.edu/sims/html/vector-addition/latest/vector-addition_vi.html', category: 'Vật Lý', description: 'Học cách cộng các vector', icon: FunctionsIcon },
+    { name: 'Vẽ Đường Cong Thực Nghiệm', url: 'https://phet.colorado.edu/sims/html/curve-fitting/latest/curve-fitting_vi.html', category: 'Vật Lý', description: 'Vẽ đường cong phù hợp với dữ liệu', icon: ShowChartIcon },
+    { name: 'Sự Khuyết Tán', url: 'https://phet.colorado.edu/sims/html/diffusion/latest/diffusion_vi.html', category: 'Vật Lý', description: 'Quan sát hiện tượng khuếch tán', icon: AirIcon },
+    { name: 'Giới Thiệu Chất Khí', url: 'https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_vi.html', category: 'Vật Lý', description: 'Giới thiệu về tính chất của khí', icon: GasMeterIcon },
   ],
   'Hóa Học': [
-    { name: 'Dung Dịch Acid-Base', url: 'https://phet.colorado.edu/sims/html/acid-base-solutions/latest/acid-base-solutions_vi.html', category: 'Hóa Học', description: 'Khám phá dung dịch acid và base' },
-    { name: 'Thang Đo pH', url: 'https://phet.colorado.edu/sims/html/ph-scale/latest/ph-scale_vi.html', category: 'Hóa Học', description: 'Học về thang đo pH' },
-    { name: 'Nồng Độ', url: 'https://phet.colorado.edu/sims/html/concentration/latest/concentration_vi.html', category: 'Hóa Học', description: 'Nghiên cứu nồng độ dung dịch' },
-    { name: 'Định Luật Beer', url: 'https://phet.colorado.edu/sims/html/beers-law-lab/latest/beers-law-lab_vi.html', category: 'Hóa Học', description: 'Khám phá định luật Beer' },
-    { name: 'Nồng Độ Mol', url: 'https://phet.colorado.edu/sims/html/molarity/latest/molarity_vi.html', category: 'Hóa Học', description: 'Hiểu về nồng độ mol' },
-    { name: 'Chất Phản Ứng, Sản Phẩm, Phần Dư', url: 'https://phet.colorado.edu/sims/html/reactants-products-and-leftovers/latest/reactants-products-and-leftovers_vi.html', category: 'Hóa Học', description: 'Khám phá chất phản ứng, sản phẩm và phần dư' },
+    { name: 'Dung Dịch Acid-Base', url: 'https://phet.colorado.edu/sims/html/acid-base-solutions/latest/acid-base-solutions_vi.html', category: 'Hóa Học', description: 'Khám phá dung dịch acid và base', icon: InvertColorsIcon },
+    { name: 'Thang Đo pH', url: 'https://phet.colorado.edu/sims/html/ph-scale/latest/ph-scale_vi.html', category: 'Hóa Học', description: 'Học về thang đo pH', icon: GasMeterIcon },
+    { name: 'Nồng Độ', url: 'https://phet.colorado.edu/sims/html/concentration/latest/concentration_vi.html', category: 'Hóa Học', description: 'Nghiên cứu nồng độ dung dịch', icon: OpacityIcon },
+    { name: 'Định Luật Beer', url: 'https://phet.colorado.edu/sims/html/beers-law-lab/latest/beers-law-lab_vi.html', category: 'Hóa Học', description: 'Khám phá định luật Beer', icon: ColorLensIcon },
+    { name: 'Nồng Độ Mol', url: 'https://phet.colorado.edu/sims/html/molarity/latest/molarity_vi.html', category: 'Hóa Học', description: 'Hiểu về nồng độ mol', icon: BalanceIcon },
+    { name: 'Chất Phản Ứng, Sản Phẩm, Phần Dư', url: 'https://phet.colorado.edu/sims/html/reactants-products-and-leftovers/latest/reactants-products-and-leftovers_vi.html', category: 'Hóa Học', description: 'Khám phá chất phản ứng, sản phẩm và phần dư', icon: WhatshotIcon },
   ],
   'Sinh Học': [
-    { name: 'Chọn Lọc Tự Nhiên', url: 'https://phet.colorado.edu/sims/html/natural-selection/latest/natural-selection_vi.html', category: 'Sinh Học', description: 'Khám phá quá trình chọn lọc tự nhiên' },
-    { name: 'Biểu Hiện Gene Điều Cơ Bản', url: 'https://phet.colorado.edu/sims/html/gene-expression-essentials/latest/gene-expression-essentials_vi.html', category: 'Sinh Học', description: 'Học về biểu hiện gene cơ bản' },
-    { name: 'Cực Tính Của Phân Tử', url: 'https://phet.colorado.edu/sims/html/molecule-polarity/latest/molecule-polarity_vi.html', category: 'Sinh Học', description: 'Nghiên cứu cực tính của phân tử' },
-    { name: 'Neuron', url: 'https://phet.colorado.edu/sims/html/neuron/latest/neuron_vi.html', category: 'Sinh Học', description: 'Khám phá cấu trúc và chức năng của neuron' },
-    { name: 'Thị Giác Màu', url: 'https://phet.colorado.edu/sims/html/color-vision/latest/color-vision_vi.html', category: 'Sinh Học', description: 'Hiểu về thị giác màu sắc' },
+    { name: 'Chọn Lọc Tự Nhiên', url: 'https://phet.colorado.edu/sims/html/natural-selection/latest/natural-selection_vi.html', category: 'Sinh Học', description: 'Khám phá quá trình chọn lọc tự nhiên', icon: TrendingUpIcon },
+    { name: 'Biểu Hiện Gene Điều Cơ Bản', url: 'https://phet.colorado.edu/sims/html/gene-expression-essentials/latest/gene-expression-essentials_vi.html', category: 'Sinh Học', description: 'Học về biểu hiện gene cơ bản', icon: DnsIcon },
+    { name: 'Cực Tính Của Phân Tử', url: 'https://phet.colorado.edu/sims/html/molecule-polarity/latest/molecule-polarity_vi.html', category: 'Sinh Học', description: 'Nghiên cứu cực tính của phân tử', icon: GradientIcon },
+    { name: 'Neuron', url: 'https://phet.colorado.edu/sims/html/neuron/latest/neuron_vi.html', category: 'Sinh Học', description: 'Khám phá cấu trúc và chức năng của neuron', icon: PsychologyIcon },
+    { name: 'Thị Giác Màu', url: 'https://phet.colorado.edu/sims/html/color-vision/latest/color-vision_vi.html', category: 'Sinh Học', description: 'Hiểu về thị giác màu sắc', icon: VisibilityIcon },
   ],
   'Toán Học': [
-    { name: 'Tạo Dựng Hạt Nhân', url: 'https://phet.colorado.edu/sims/html/build-a-nucleus/latest/build-a-nucleus_vi.html', category: 'Toán Học', description: 'Xây dựng hạt nhân nguyên tử' },
-    { name: 'Định Luật Kepler', url: 'https://phet.colorado.edu/sims/html/keplers-laws/latest/keplers-laws_vi.html', category: 'Toán Học', description: 'Khám phá định luật Kepler về chuyển động hành tinh' },
-    { name: 'Thái Dương Hệ', url: 'https://phet.colorado.edu/sims/html/my-solar-system/latest/my-solar-system_vi.html', category: 'Toán Học', description: 'Mô phỏng hệ mặt trời' },
-    { name: 'Hiệu Ứng Nhà Kính', url: 'https://phet.colorado.edu/sims/html/greenhouse-effect/latest/greenhouse-effect_vi.html', category: 'Toán Học', description: 'Nghiên cứu hiệu ứng nhà kính' },
-    { name: 'Phân Bố Mẫu Của Đạn', url: 'https://phet.colorado.edu/sims/html/projectile-sampling-distributions/latest/projectile-sampling-distributions_vi.html', category: 'Toán Học', description: 'Phân tích phân bố mẫu của chuyển động vật ném' },
-    { name: 'Tâm Và Tính Biến Đổi', url: 'https://phet.colorado.edu/sims/html/center-and-variability/latest/center-and-variability_vi.html', category: 'Toán Học', description: 'Học về tâm và tính biến đổi của dữ liệu' },
-    { name: 'Tứ Giác', url: 'https://phet.colorado.edu/sims/html/quadrilateral/latest/quadrilateral_vi.html', category: 'Toán Học', description: 'Khám phá các loại tứ giác' },
-    { name: 'So Sánh Số', url: 'https://phet.colorado.edu/sims/html/number-compare/latest/number-compare_vi.html', category: 'Toán Học', description: 'So sánh các số khác nhau' },
-    { name: 'Vui Đùa Với Con Số', url: 'https://phet.colorado.edu/sims/html/number-play/latest/number-play_vi.html', category: 'Toán Học', description: 'Chơi đùa với các con số' },
-    { name: 'Phân Số Hỗn Số', url: 'https://phet.colorado.edu/sims/html/fractions-mixed-numbers/latest/fractions-mixed-numbers_vi.html', category: 'Toán Học', description: 'Học về phân số hỗn số' },
-    { name: 'Phân Số Phần Giới Thiệu', url: 'https://phet.colorado.edu/sims/html/fractions-intro/latest/fractions-intro_vi.html', category: 'Toán Học', description: 'Giới thiệu về phân số' },
-    { name: 'Tạo Ra Một Phân Số', url: 'https://phet.colorado.edu/sims/html/build-a-fraction/latest/build-a-fraction_vi.html', category: 'Toán Học', description: 'Xây dựng các phân số' },
-    { name: 'Phân Số : Đẳng Thức', url: 'https://phet.colorado.edu/sims/html/fractions-equality/latest/fractions-equality_vi.html', category: 'Toán Học', description: 'Khám phá đẳng thức của phân số' },
-    { name: 'Số Học', url: 'https://phet.colorado.edu/sims/html/arithmetic/latest/arithmetic_vi.html', category: 'Toán Học', description: 'Luyện tập các phép tính số học' },
+    { name: 'Tạo Dựng Hạt Nhân', url: 'https://phet.colorado.edu/sims/html/build-a-nucleus/latest/build-a-nucleus_vi.html', category: 'Toán Học', description: 'Xây dựng hạt nhân nguyên tử', icon: DnsIcon },
+    { name: 'Định Luật Kepler', url: 'https://phet.colorado.edu/sims/html/keplers-laws/latest/keplers-laws_vi.html', category: 'Toán Học', description: 'Khám phá định luật Kepler về chuyển động hành tinh', icon: SolarPowerIcon },
+    { name: 'Thái Dương Hệ', url: 'https://phet.colorado.edu/sims/html/my-solar-system/latest/my-solar-system_vi.html', category: 'Toán Học', description: 'Mô phỏng hệ mặt trời', icon: SolarPowerIcon },
+    { name: 'Hiệu Ứng Nhà Kính', url: 'https://phet.colorado.edu/sims/html/greenhouse-effect/latest/greenhouse-effect_vi.html', category: 'Toán Học', description: 'Nghiên cứu hiệu ứng nhà kính', icon: CloudIcon },
+    { name: 'Phân Bố Mẫu Của Đạn', url: 'https://phet.colorado.edu/sims/html/projectile-sampling-distributions/latest/projectile-sampling-distributions_vi.html', category: 'Toán Học', description: 'Phân tích phân bố mẫu của chuyển động vật ném', icon: ScatterPlotIcon },
+    { name: 'Tâm Và Tính Biến Đổi', url: 'https://phet.colorado.edu/sims/html/center-and-variability/latest/center-and-variability_vi.html', category: 'Toán Học', description: 'Học về tâm và tính biến đổi của dữ liệu', icon: BarChartIcon },
+    { name: 'Tứ Giác', url: 'https://phet.colorado.edu/sims/html/quadrilateral/latest/quadrilateral_vi.html', category: 'Toán Học', description: 'Khám phá các loại tứ giác', icon: SquareIcon },
+    { name: 'So Sánh Số', url: 'https://phet.colorado.edu/sims/html/number-compare/latest/number-compare_vi.html', category: 'Toán Học', description: 'So sánh các số khác nhau', icon: NumbersIcon },
+    { name: 'Vui Đùa Với Con Số', url: 'https://phet.colorado.edu/sims/html/number-play/latest/number-play_vi.html', category: 'Toán Học', description: 'Chơi đùa với các con số', icon: NumbersIcon },
+    { name: 'Phân Số Hỗn Số', url: 'https://phet.colorado.edu/sims/html/fractions-mixed-numbers/latest/fractions-mixed-numbers_vi.html', category: 'Toán Học', description: 'Học về phân số hỗn số', icon: PieChartIcon },
+    { name: 'Phân Số Phần Giới Thiệu', url: 'https://phet.colorado.edu/sims/html/fractions-intro/latest/fractions-intro_vi.html', category: 'Toán Học', description: 'Giới thiệu về phân số', icon: PieChartIcon },
+    { name: 'Tạo Ra Một Phân Số', url: 'https://phet.colorado.edu/sims/html/build-a-fraction/latest/build-a-fraction_vi.html', category: 'Toán Học', description: 'Xây dựng các phân số', icon: PieChartIcon },
+    { name: 'Phân Số : Đẳng Thức', url: 'https://phet.colorado.edu/sims/html/fractions-equality/latest/fractions-equality_vi.html', category: 'Toán Học', description: 'Khám phá đẳng thức của phân số', icon: EqualizerIcon },
+    { name: 'Số Học', url: 'https://phet.colorado.edu/sims/html/arithmetic/latest/arithmetic_vi.html', category: 'Toán Học', description: 'Luyện tập các phép tính số học', icon: CalculateIcon },
   ],
 }
 
 const resources = [
   {
     name: 'Vật Lý',
-    icon: ScienceIcon,
+    icon: FlashOnIcon,
     color: '#22c55e',
     description: 'Khám phá các định luật vật lý từ cơ bản đến nâng cao với thí nghiệm ảo tương tác',
     count: experiments['Vật Lý'].length + ' thí nghiệm'
@@ -174,7 +220,7 @@ const resources = [
   },
   {
     name: 'Sinh Học',
-    icon: PsychologyIcon,
+    icon: GrassIcon,
     color: '#059669',
     description: 'Khám phá thế giới sinh học qua các mô phỏng về tế bào, di truyền và sinh thái',
     count: experiments['Sinh Học'].length + ' thí nghiệm'
@@ -203,11 +249,11 @@ const Lab2DPage = () => {
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'Vật Lý':
-        return <ScienceIcon />
+        return <FlashOnIcon />
       case 'Hóa Học':
         return <BiotechIcon />
       case 'Sinh Học':
-        return <PsychologyIcon />
+        return <GrassIcon />
       case 'Toán Học':
         return <CalculateIcon />
       default:
@@ -590,7 +636,7 @@ const Lab2DPage = () => {
                       border: '3px solid rgba(34, 197, 94, 0.5)',
                     }
                   }}>
-                    {getCategoryIcon(categories[selectedTab])}
+                    {experiment.icon ? React.createElement(experiment.icon) : <ScienceIcon />}
                   </Box>
                   <Typography
                     variant="h6"

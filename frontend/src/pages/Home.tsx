@@ -169,7 +169,7 @@ const Home: React.FC = () => {
               >
                 <Box
                   component="img"
-                  src="/assets/image/macbook.png"
+                  src="/assets/image/macbook.webp"
                   alt="Education Kotaro AI Illustration"
                   sx={{
                     width: '100%',
@@ -373,7 +373,7 @@ const Home: React.FC = () => {
             >
               <Box
                 component="img"
-                src="/assets/image/traidat.png"
+                src="/assets/image/traidat.webp"
                 alt="Hình ảnh Trái Đất"
                 sx={{
                   width: '100%',
@@ -416,7 +416,7 @@ const Home: React.FC = () => {
             >
               <Box
                 component="img"
-                src="/assets/image/hemattroi.png"
+                src="/assets/image/hemattroi.webp"
                 alt="Hình ảnh Hệ Mặt Trời"
                 sx={{
                   width: '100%',
@@ -459,7 +459,7 @@ const Home: React.FC = () => {
             >
               <Box
                 component="img"
-                src="/assets/image/tieuhanhtinh.png"
+                src="/assets/image/tieuhanhtinh.webp"
                 alt="Tiểu Hành Tinh"
                 sx={{
                   width: '100%',
@@ -501,7 +501,7 @@ const Home: React.FC = () => {
             >
               <Box
                 component="img"
-                src="/assets/image/hanhtinhkhac.png"
+                src="/assets/image/hanhtinhkhac.webp"
                 alt="Hành Tinh Khác"
                 sx={{
                   width: '100%',
@@ -543,7 +543,7 @@ const Home: React.FC = () => {
             >
               <Box
                 component="img"
-                src="/assets/image/image-nasa.png"
+                src="/assets/image/image-nasa.webp"
                 alt="Ảnh Thiên Văn NASA"
                 sx={{
                   width: '100%',
@@ -589,7 +589,7 @@ const Home: React.FC = () => {
             >
               <Box
                 component="img"
-                src="/assets/image/robot-sao-hoa.png"
+                src="/assets/image/robot-sao-hoa.webp"
                 alt="Ảnh Thiên Văn NASA"
                 sx={{
                   width: '100%',
@@ -868,7 +868,7 @@ const Home: React.FC = () => {
             >
               <Box
                 component="img"
-                src="/assets/image/web1.png"
+                src="/assets/image/web1.webp"
                 alt="Khoa Học Tự Nhiên"
                 sx={{
                   width: '100%',
@@ -904,7 +904,7 @@ const Home: React.FC = () => {
             >
               <Box
                 component="img"
-                src="/assets/image/web2.png"
+                src="/assets/image/web2.webp"
                 alt="Công nghệ và Khoa học"
                 sx={{
                   width: '100%',
@@ -995,7 +995,7 @@ const Home: React.FC = () => {
             >
               <CardContent sx={{ p: 4, textAlign: 'center', flexGrow: 1 }}>
                 <Avatar
-                  src="/assets/image/tacgia1.jpeg"
+                  src="/assets/image/tacgia1.webp"
                   alt="Đỗ Nguyễn Đăng Khoa"
                   sx={{
                     width: 140,
@@ -1028,7 +1028,6 @@ const Home: React.FC = () => {
                   <Box component="img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" sx={{ width: 36, height: 36, borderRadius: 1 }} />
                   <Box component="img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" sx={{ width: 36, height: 36, borderRadius: 1 }} />
                   <Box component="img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" sx={{ width: 36, height: 36, borderRadius: 1 }} />
-                  <Box component="img" src="https://vitejs.dev/logo.svg" alt="Vite" sx={{ width: 36, height: 36, borderRadius: 1 }} />
                 </Box>
               </CardContent>
             </Card>
@@ -1051,7 +1050,7 @@ const Home: React.FC = () => {
             >
               <CardContent sx={{ p: 4, textAlign: 'center', flexGrow: 1 }}>
                 <Avatar
-                  src="/assets/image/tacgia2.jpg"
+                  src="/assets/image/tacgia2.webp"
                   alt="Nguyễn Văng Ngọc Tiến"
                   sx={{
                     width: 140,
@@ -1084,7 +1083,6 @@ const Home: React.FC = () => {
                   <Box component="img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" sx={{ width: 36, height: 36, borderRadius: 1 }} />
                   <Box component="img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" sx={{ width: 36, height: 36, borderRadius: 1 }} />
                   <Box component="img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" sx={{ width: 36, height: 36, borderRadius: 1 }} />
-                  <Box component="img" src="https://vitejs.dev/logo.svg" alt="Vite" sx={{ width: 36, height: 36, borderRadius: 1 }} />
                 </Box>
               </CardContent>
             </Card>
