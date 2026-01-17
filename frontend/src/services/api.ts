@@ -139,18 +139,4 @@ export const emailApi = {
   },
 }
 
-// AR API
-export const arApi = {
-  getModels: async () => {
-    // Check cache trước (AR models không thay đổi thường xuyên)
-    const cached = getCachedResponse('/api/ar/models')
-    if (cached) {
-      return cached
-    }
-    
-    const response = await api.get('/api/ar/models')
-    return response.data
-  },
-}
-
 export default api

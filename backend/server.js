@@ -7,7 +7,6 @@ const geminiRoutes = require('./routes/gemini');
 const nasaRoutes = require('./routes/nasa');
 const emailRoutes = require('./routes/email');
 const quizRoutes = require('./routes/quiz');
-const arRoutes = require('./routes/ar');
 
 dotenv.config();
 
@@ -19,29 +18,12 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-// Serve AR files from android and ios directories
-app.use('/api/ar/android', express.static(path.join(__dirname, 'android'), {
-  setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.glb')) {
-      res.setHeader('Content-Type', 'model/gltf-binary');
-    }
-  }
-}));
-app.use('/api/ar/ios', express.static(path.join(__dirname, 'ios'), {
-  setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.usdz')) {
-      res.setHeader('Content-Type', 'model/vnd.usdz+zip');
-    }
-  }
-}));
-
 // Routes
 app.use('/api/gemini', geminiRoutes);
 app.use('/api/nasa', nasaRoutes);
 app.use('/api/mars', nasaRoutes); // Alias for mars routes
 app.use('/api/email', emailRoutes);
 app.use('/api/quiz', quizRoutes);
-app.use('/api/ar', arRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

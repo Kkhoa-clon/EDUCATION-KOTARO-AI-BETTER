@@ -28,7 +28,6 @@ import RobotSaoHoaPage from './pages/RobotSaoHoaPage'
 
 // Lab pages
 import Lab2DPage from './pages/Lab2DPage'
-import VR from './pages/VR'
 
 function App() {
   return (
@@ -76,7 +75,6 @@ function App() {
 
               {/* Lab routes */}
               <Route path="/lab/lab2d" element={<Lab2DPage />} />
-              <Route path="/lab/vr" element={<VR />} />
 
               {/* Other routes */}
               <Route path="/quiz" element={<Quiz />} />
