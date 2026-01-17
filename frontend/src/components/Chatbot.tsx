@@ -200,7 +200,7 @@ const ChatbotComponent = () => {
           setMessages((prev) => {
             const newMessages = [...prev]
             const lastMessage = newMessages[newMessages.length - 1]
-            if (lastMessage.sender === 'bot') {
+            if (lastMessage.sender === 'bot') { 
               lastMessage.text = currentText
             } else {
               newMessages.push({ text: currentText, sender: 'bot', timestamp: new Date() })

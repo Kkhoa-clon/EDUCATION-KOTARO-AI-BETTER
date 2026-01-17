@@ -940,7 +940,7 @@ const Home: React.FC = () => {
             >
               <Box
                 component="img"
-                src="assets/image/web3.png"
+                src="assets/image/web3.webp"
                 alt="Thiên văn học"
                 sx={{
                   width: '100%',

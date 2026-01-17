@@ -1,10 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
+const os = require('os');
 const geminiRoutes = require('./routes/gemini');
 const nasaRoutes = require('./routes/nasa');
 const emailRoutes = require('./routes/email');
 const quizRoutes = require('./routes/quiz');
+const arRoutes = require('./routes/ar');
 
 dotenv.config();
 
@@ -16,12 +19,29 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
+// Serve AR files from android and ios directories
+app.use('/api/ar/android', express.static(path.join(__dirname, 'android'), {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.glb')) {
+      res.setHeader('Content-Type', 'model/gltf-binary');
+    }
+  }
+}));
+app.use('/api/ar/ios', express.static(path.join(__dirname, 'ios'), {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.usdz')) {
+      res.setHeader('Content-Type', 'model/vnd.usdz+zip');
+    }
+  }
+}));
+
 // Routes
 app.use('/api/gemini', geminiRoutes);
 app.use('/api/nasa', nasaRoutes);
 app.use('/api/mars', nasaRoutes); // Alias for mars routes
 app.use('/api/email', emailRoutes);
 app.use('/api/quiz', quizRoutes);
+app.use('/api/ar', arRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
@@ -34,8 +54,30 @@ app.use((err, req, res, next) => {
   res.status(500).json({ status: 'error', message: 'Something went wrong!' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+const HOST = process.env.HOST || '0.0.0.0';
+
+// Hàm lấy địa chỉ IP LAN
+function getLocalIP() {
+  const interfaces = os.networkInterfaces();
+  for (const name of Object.keys(interfaces)) {
+    for (const iface of interfaces[name]) {
+      // Bỏ qua IPv6 và internal (loopback) addresses
+      if (iface.family === 'IPv4' && !iface.internal) {
+        return iface.address;
+      }
+    }
+  }
+  return 'localhost';
+}
+
+app.listen(PORT, HOST, () => {
+  const localIP = getLocalIP();
+  console.log('\n========================================');
+  console.log('🚀 Server đang chạy!');
+  console.log('========================================');
+  console.log(`📍 Local:    http://localhost:${PORT}`);
+  console.log(`🌐 LAN:      http://${localIP}:${PORT}`);
+  console.log('========================================\n');
 });
 
 module.exports = app;
